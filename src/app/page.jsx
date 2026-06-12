@@ -1,4 +1,5 @@
 import ProductCard from "@/components/cards/ProductCard/ProductCard";
+import Banner from "@/components/home/Banner/Banner";
 
 import Footer from "@/components/shared/Footer/Footer";
 import Navbar from "@/components/shared/Navbar/Navbar";
@@ -18,6 +19,9 @@ const Page = async () => {
       <nav>
         <Navbar />
       </nav>
+
+      {/* header */}
+       <Banner/>
 
       <div className="max-w-7xl mx-auto overflow-hidden px-5">
         <div className="max-w-7xl mx-auto overflow-hidden px-5"></div>

@@ -1,4 +1,5 @@
 "use client"
+import LoginButton from '@/components/buttons/LoginButton';
 import Logo from '@/components/Logo/Logo'
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react'
@@ -55,6 +56,10 @@ const Navbar = () => {
           <div className='flex items-center justify-center gap-6 text-white text-3xl'>
             <FiHeart className="cursor-pointer hover:text-red-500 transition-colors" />
             <BsCart3 className="cursor-pointer hover:text-red-500 transition-colors" /> 
+          {/* Login Button */}
+          <LoginButton/>
+          {/*  */}
+
             <button onClick={handleMenu} className='lg:hidden focus:outline-none z-50 relative'>
               {isOpen ? <MdClose className="text-red-500" /> : <MdMenu />}
             </button>
