@@ -252,14 +252,7 @@ const DetailsCard = ({ product }) => {
             </div>
           </div>
 
-          {/* মেটা ডেটা ইনফরমেশন (সম্পূর্ণ ডাইনামিক) */}
-          <div className="space-y-2 text-sm text-gray-500 border-t border-gray-100 pt-6">
-            <p><span className="font-semibold text-gray-700">SKU:</span> {sku}</p>
-            <p><span className="font-semibold text-gray-700">Category:</span> {category}</p>
-            {tags && tags.length > 0 && (
-              <p><span className="font-semibold text-gray-700">Tags:</span> {tags.join(', ')}</p>
-            )}
-          </div>
+        
         </div>
 
       </div>

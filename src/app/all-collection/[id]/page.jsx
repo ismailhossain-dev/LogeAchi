@@ -1,4 +1,5 @@
 import DetailsCard from "@/components/cards/DetailsCard/DetailsCard";
+import Footer from "@/components/shared/Footer/Footer";
 import Navbar from "@/components/shared/Navbar/Navbar";
 
 
@@ -19,6 +20,7 @@ export default async function ProductDetails({ params }) {
      
       
      <DetailsCard product={product}></DetailsCard>
+     <Footer/>
     </div>
   );
 }

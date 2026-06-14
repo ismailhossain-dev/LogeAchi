@@ -47,75 +47,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#f5f5f5] text-gray-600 font-sans relative w-full pt-16 pb-8 border-t border-gray-200">
+    <footer className="bg-[#f5f5f5] text-gray-600 font-sans relative w-full pt-4 pb-8 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* ================= TOP SECTION ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 items-center">
-          
-          {/* 1. Left Side: Follow Us */}
-          <div className="flex flex-col items-center lg:items-start gap-4">
-            <h3 className="text-lg font-bold text-gray-800 uppercase tracking-wider">
-              Follow us
-            </h3>
-            <div className="flex gap-3">
-              {/* Pinterest */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaPinterestP className="w-5 h-5" />
-              </a>
-              {/* Twitter */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaTwitter className="w-5 h-5" />
-              </a>
-              {/* Instagram */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaInstagram className="w-5 h-5" />
-              </a>
-              {/* Facebook */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaFacebookF className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
+      
 
-          {/* 2. Center: Newsletter */}
-          <div className="flex flex-col items-center text-center gap-4 lg:px-4">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
-              Sign up for newsletter
-            </h2>
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row w-full max-w-md gap-2 sm:gap-0 bg-white p-1.5 rounded-lg shadow-sm border border-gray-200">
-              <input 
-                type="email" 
-                placeholder="Your Email Address" 
-                required
-                className="w-full px-4 py-2 text-gray-700 bg-transparent focus:outline-none text-sm"
-              />
-              <button 
-                type="submit" 
-                className="bg-[#ff6a00] text-white font-semibold text-sm px-6 py-2.5 rounded-md sm:rounded-lg hover:bg-[#e05d00] active:scale-[0.98] transition-all duration-200 whitespace-nowrap shadow-sm"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
 
-          {/* 3. Right Side: Brand & Quick Contacts */}
-          <div className="flex flex-col items-center lg:items-end text-center lg:text-right gap-3">
-           <Logo/>
-            <p className="text-sm max-w-xs text-gray-500">
-              Your ultimate destination for premium products. Quality and trust delivered straight to your doorstep.
-            </p>
-            <div className="flex flex-col items-center lg:items-end gap-1.5 text-xs text-gray-500 mt-2">
-              <span className="flex items-center gap-1.5"><FiMapPin className="w-3.5 h-3.5 text-gray-400" /> 123 Street, Dhaka, Bangladesh</span>
-              <span className="flex items-center gap-1.5"><FiPhone className="w-3.5 h-3.5 text-gray-400" /> +880 1234 567890</span>
-              <span className="flex items-center gap-1.5"><FiMail className="w-3.5 h-3.5 text-gray-400" /> support@besto.com</span>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Divider Line */}
-        <hr className="border-gray-200 my-0" />
 
         {/* ================= BOTTOM SECTION ================= */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 py-16">
@@ -187,19 +124,29 @@ const Footer = () => {
             </div>
             
             {/* Payment Method Logos */}
-            <div>
-              <h5 className="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                <FaRegCreditCard className="w-3.5 h-3.5 text-gray-500" /> Secured Payment
-              </h5>
-              {/* এখানে পেমেন্ট মেথডগুলোর জন্য রিয়েল ব্র্যান্ডেড রিঅ্যাক্ট আইকন সেট করা হয়েছে */}
-              <div className="flex flex-wrap gap-2 text-2xl text-gray-500">
-                <FaCcVisa className="hover:text-blue-800 transition-colors cursor-pointer bg-white rounded-sm" />
-                <FaCcPaypal className="hover:text-blue-600 transition-colors cursor-pointer bg-white rounded-sm" />
-                <FaCcMastercard className="hover:text-red-500 transition-colors cursor-pointer bg-white rounded-sm" />
-                <FaCcDiscover className="hover:text-orange-500 transition-colors cursor-pointer bg-white rounded-sm" />
-                <FaCcAmex className="hover:text-blue-900 transition-colors cursor-pointer bg-white rounded-sm" />
-              </div>
+           <div className="flex flex-col items-center lg:items-start gap-4">
+            <h3 className="text-lg font-bold text-gray-800 uppercase tracking-wider">
+              Follow us
+            </h3>
+            <div className="flex gap-3">
+              {/* Pinterest */}
+              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
+                <FaPinterestP className="w-5 h-5" />
+              </a>
+              {/* Twitter */}
+              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
+                <FaTwitter className="w-5 h-5" />
+              </a>
+              {/* Instagram */}
+              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
+                <FaInstagram className="w-5 h-5" />
+              </a>
+              {/* Facebook */}
+              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
+                <FaFacebookF className="w-4 h-4" />
+              </a>
             </div>
+          </div>
           </div>
 
         </div>

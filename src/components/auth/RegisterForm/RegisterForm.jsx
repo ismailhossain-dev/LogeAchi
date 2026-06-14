@@ -1,14 +1,15 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { User, Mail, Lock, ArrowLeft, Sparkles } from "lucide-react";
+import { User, Mail, Lock, ArrowLeft, Sparkles, EyeOff, LockIcon, Eye } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { postUser } from "@/actions/server/auth";
 // import { postUser } from "@/actions/server/auth";
 
 const RegisterForm = () => {
+    const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -148,20 +149,37 @@ const RegisterForm = () => {
               </div>
 
               {/* Lock Password Input Box */}
+             {/* Password Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-700 tracking-wide">Lock password</label>
+                <label className="text-xs font-bold text-slate-700 tracking-wide">
+                  Lock password
+                </label>
+
                 <div className="relative flex items-center">
-                  <Lock size={16} className="absolute left-4 text-slate-400" />
+                  <LockIcon size={16} className="absolute left-4 text-slate-400" />
+
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     {...register("password", {
                       required: "Password is required",
-                      minLength: { value: 6, message: "Minimum 6 characters required" },
+                      minLength: {
+                        value: 6,
+                        message: "Minimum 6 characters required",
+                      },
                     })}
                     placeholder="Input password"
-                    className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 focus:border-orange-500 rounded-xl text-sm text-slate-800 outline-none placeholder:text-slate-400 font-medium transition-all shadow-sm focus:shadow-[0_0_0_3px_rgba(249,115,22,0.1)]"
+                    className="w-full pl-11 pr-10 py-3 bg-white border border-slate-200 focus:border-orange-500 rounded-xl text-sm text-slate-800 outline-none placeholder:text-slate-400 font-medium transition-all shadow-sm focus:shadow-[0_0_0_3px_rgba(249,115,22,0.1)]"
                   />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 text-slate-400 hover:text-slate-600 transition"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
+
                 {errors.password && (
                   <span className="text-red-500 text-xs font-medium mt-0.5 pl-1 block">
                     {errors.password.message}

@@ -2,13 +2,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { Mail, Lock, ArrowLeft, Sparkles } from "lucide-react";
+import { Mail,  ArrowLeft, Sparkles, LockIcon } from "lucide-react";
 import Link from "next/link";
 
 import { signIn } from "next-auth/react";
-
+import { useState } from "react";
+import { Lock, Eye, EyeOff } from "lucide-react";
 const LoginForm = () => {
-
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -17,6 +18,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     console.log("Form Data:", data);
+
     const result = await signIn("credentials", {
       email: data.email,
       password: data.password,
@@ -26,11 +28,9 @@ const LoginForm = () => {
   };
 
   return (
- 
     // মূল ব্যাকগ্রাউন্ড একটু অফ-হোয়াইট রাখা হয়েছে যাতে মেইন কার্ডটি পরিষ্কার ফুটে ওঠে
     //first dev p-4 sm:p-6 lg:p-8
     <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center  font-sans">
-      
       {/* সেন্ট্রাল কন্টেইনার কার্ড */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
@@ -38,7 +38,6 @@ const LoginForm = () => {
         transition={{ duration: 0.4 }}
         className="flex w-full max-w-5xl min-h-[600px] bg-white rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-200/50"
       >
-        
         {/* Left Side: Cinematic Hero Image */}
         <div className="hidden lg:block relative flex-1 min-w-[450px] bg-slate-50">
           <img
@@ -66,13 +65,15 @@ const LoginForm = () => {
 
         {/* Right Side: Form Section */}
         <div className="flex-1 flex flex-col justify-center p-8 sm:p-12 lg:p-14 bg-white relative">
-          
           {/* ১. Go Back বাটন (উপরের বাম কোণায়) */}
-          <Link href={"/"} 
-            
+          <Link
+            href={"/"}
             className="absolute top-6 left-8 sm:left-12 flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-orange-600 transition-colors group"
           >
-            <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft
+              size={16}
+              className="group-hover:-translate-x-0.5 transition-transform"
+            />
             Go Back
           </Link>
 
@@ -97,12 +98,16 @@ const LoginForm = () => {
 
             {/* মেইন লগইন ফর্ম */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-              
               {/* Email Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-700 tracking-wide">Mail address</label>
+                <label className="text-xs font-bold text-slate-700 tracking-wide">
+                  Mail address
+                </label>
                 <div className="relative flex items-center">
-                  <Mail size={16} className="absolute left-4 text-slate-400 group-focus-within:text-orange-500 transition-colors" />
+                  <Mail
+                    size={16}
+                    className="absolute left-4 text-slate-400 group-focus-within:text-orange-500 transition-colors"
+                  />
                   <input
                     {...register("email", {
                       required: "Email is required",
@@ -125,19 +130,35 @@ const LoginForm = () => {
 
               {/* Password Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-700 tracking-wide">Lock password</label>
+                <label className="text-xs font-bold text-slate-700 tracking-wide">
+                  Lock password
+                </label>
+
                 <div className="relative flex items-center">
-                  <Lock size={16} className="absolute left-4 text-slate-400" />
+                  <LockIcon size={16} className="absolute left-4 text-slate-400" />
+
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     {...register("password", {
                       required: "Password is required",
-                      minLength: { value: 6, message: "Minimum 6 characters required" },
+                      minLength: {
+                        value: 6,
+                        message: "Minimum 6 characters required",
+                      },
                     })}
                     placeholder="Input password"
-                    className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 focus:border-orange-500 rounded-xl text-sm text-slate-800 outline-none placeholder:text-slate-400 font-medium transition-all shadow-sm focus:shadow-[0_0_0_3px_rgba(249,115,22,0.1)]"
+                    className="w-full pl-11 pr-10 py-3 bg-white border border-slate-200 focus:border-orange-500 rounded-xl text-sm text-slate-800 outline-none placeholder:text-slate-400 font-medium transition-all shadow-sm focus:shadow-[0_0_0_3px_rgba(249,115,22,0.1)]"
                   />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 text-slate-400 hover:text-slate-600 transition"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
+
                 {errors.password && (
                   <span className="text-red-500 text-xs font-medium mt-0.5 pl-1 block">
                     {errors.password.message}
@@ -166,7 +187,6 @@ const LoginForm = () => {
             </p>
           </motion.div>
         </div>
-        
       </motion.div>
     </div>
   );
