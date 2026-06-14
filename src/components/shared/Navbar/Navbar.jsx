@@ -32,7 +32,7 @@ const Navbar = () => {
 
   const navbarLinks = [
     { id: 1, name: "Home", href: "/" },
-    { id: 2, name: "Shop", href: "/shop" },
+    { id: 2, name: "Shop", href: "/all-collection" },
     { id: 3, name: "Collection", href: "/collection" },
     { id: 4, name: "Blogs", href: "/blogs" }
   ]
@@ -46,6 +46,8 @@ const Navbar = () => {
           <div>
             <Logo />
           </div>
+          
+          {/* Desktop Links */}
           <div className='hidden lg:flex gap-6 text-white font-medium'>
             {navbarLinks.map((item) => (
               <div key={item.id} className="hover:text-red-500 transition-colors">
@@ -53,25 +55,28 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-          <div className='flex items-center justify-center gap-6 text-white text-3xl'>
+          
+          {/* Icons & Login */}
+          <div className='flex items-center justify-center gap-4 sm:gap-6 text-white text-2xl sm:text-3xl'>
             <FiHeart className="cursor-pointer hover:text-red-500 transition-colors" />
             <BsCart3 className="cursor-pointer hover:text-red-500 transition-colors" /> 
-          {/* Login Button */}
-          <LoginButton/>
-          {/*  */}
+            
+            {/* Login Button - এখন সব ডিভাইসেই দেখাবে */}
+            <LoginButton/>
 
+            {/* Hamburger / Close Menu Button */}
             <button onClick={handleMenu} className='lg:hidden focus:outline-none z-50 relative'>
-              {isOpen ? <MdClose className="text-red-500" /> : <MdMenu />}
+              {isOpen ? <MdClose className="text-red-500 text-3xl" /> : <MdMenu className="text-3xl" />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* ২. স্টিকি নেভিগেশন বার (ডাইনামিক duration ব্যবহার করা হয়েছে) */}
+      {/* ২. স্টিকি নেভিগেশন বার */}
       <nav className={`fixed top-0 left-0 w-full z-50 bg-[#1a1a1a]/95 backdrop-blur-md shadow-md py-3 transition-transform ease-in-out ${
         isScrolled 
-          ? 'translate-y-0 duration-500' // নিচে নামার সময় ০.৫ সেকেন্ড সময় নেবে
-          : '-translate-y-full duration-0' // উপরে চলে যাওয়ার সময় ০ সেকেন্ড (ইনস্ট্যান্ট)
+          ? 'translate-y-0 duration-500' 
+          : '-translate-y-full duration-0' 
       }`}>
         <div className="flex justify-between items-center max-w-7xl mx-auto px-5">
           <div>
@@ -84,11 +89,15 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-          <div className='flex items-center justify-center gap-6 text-white text-3xl'>
+          <div className='flex items-center justify-center gap-4 sm:gap-6 text-white text-2xl sm:text-3xl'>
             <FiHeart className="cursor-pointer hover:text-red-500 transition-colors" />
             <BsCart3 className="cursor-pointer hover:text-red-500 transition-colors" /> 
+            
+            {/* Sticky বার-এও Login Button যুক্ত করা হয়েছে */}
+            <LoginButton/>
+
             <button onClick={handleMenu} className='lg:hidden focus:outline-none z-50 relative'>
-              {isOpen ? <MdClose className="text-red-500" /> : <MdMenu />}
+              {isOpen ? <MdClose className="text-red-500 text-3xl" /> : <MdMenu className="text-3xl" />}
             </button>
           </div>
         </div>

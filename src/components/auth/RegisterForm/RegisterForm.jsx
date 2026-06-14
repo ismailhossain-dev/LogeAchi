@@ -1,10 +1,11 @@
-"use client";
+"use client"
 import React from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { User, Mail, Lock, ArrowLeft, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { postUser } from "@/actions/server/auth";
 // import { postUser } from "@/actions/server/auth";
 
 const RegisterForm = () => {
@@ -17,18 +18,23 @@ const RegisterForm = () => {
 
   const onSubmit = async (data) => {
     console.log("Form Data:", data);
-    // const result = await postUser(data);
 
-    // if (result?.insertedId) {
-    //   alert("Successfully Registered | Please login");
-    //   router.push("/login");
-    //   console.log("User created successfully");
-    // }
+  
+
+    const result = await postUser(data);
+   
+
+    if (result?.insertedId) {
+      alert("Successfully Registered | Please login");
+      router.push("/login");
+      console.log("User created successfully");
+    }
   };
 
   return (
     // ব্যাকগ্রাউন্ড অফ-হোয়াইট যাতে সেন্ট্রাল কার্ডটি পপ-আপ করে
-    <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
+    //sm:p-6 lg:p-8 p-4 
+    <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center  font-sans">
       
       {/* সেন্ট্রাল কন্টেইনার কার্ড */}
       <motion.div

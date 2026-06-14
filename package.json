@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "bcrypt": "^6.0.0",
     "lucide-react": "^1.18.0",
     "mongodb": "^7.3.0",
     "motion": "^12.40.0",

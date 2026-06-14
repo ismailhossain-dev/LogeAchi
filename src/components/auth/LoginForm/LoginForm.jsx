@@ -26,8 +26,10 @@ const LoginForm = () => {
   };
 
   return (
+ 
     // মূল ব্যাকগ্রাউন্ড একটু অফ-হোয়াইট রাখা হয়েছে যাতে মেইন কার্ডটি পরিষ্কার ফুটে ওঠে
-    <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
+    //first dev p-4 sm:p-6 lg:p-8
+    <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center  font-sans">
       
       {/* সেন্ট্রাল কন্টেইনার কার্ড */}
       <motion.div
