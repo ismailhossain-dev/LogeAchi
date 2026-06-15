@@ -15,8 +15,13 @@ export const authOptions = {
     },
     async authorize(credentials, req) {
 
+      //match korai tese login user e
      const user = await loginUser(credentials)
-     console.log("I am a authOptions", user);
+    //  console.log("I am a authOptions", user);
+
+     if(user){
+      return user;
+     }
      
      //=======is user not then the return will be null===========
       return null

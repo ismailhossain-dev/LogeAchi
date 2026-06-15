@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
   const { id } = await params;
-  console.log("single product id");
+  // console.log("single product id");
   try {
     const product = await dbConnect("products").findOne({_id: new ObjectId(id)});
 

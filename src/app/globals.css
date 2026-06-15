@@ -1,18 +1,67 @@
 @import "tailwindcss";
 
-
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
-/* no daisyUi use just ai use no pakage install  */
-:root {
-  --color-primary: #2563eb;
-  --color-secondary: #f59e0b;
-  --color-background: #ffffff;
-  --color-text: #111827;
+/* 🛠️ Custom Utility Class */
+.btn {
+  @apply bg-[#ff6801] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#e05b00] transition duration-200;
 }
 
-/* .btn{
-    @apply bg-[#ff6801] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#e05b00] transition duration-200
-} */
+/* shadcn custom theme */
+@theme {
+  /* Clean, neutral backgrounds */
+  --color-background: hsl(0 0% 100%);       /* White */
+  --color-foreground: hsl(222.2 84% 4.9%);  /* Near Black */
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222.2 84% 4.9%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222.2 84% 4.9%);
+
+  /* 🎨 YOUR 2 CUSTOM COLORS (Light Mode) */
+  --color-primary: #1e2942;         /* সুন্দর একটি অরেঞ্জ-রেড শেড (আপনার .btn এর সাথে মিল রেখে) */
+  --color-primary-foreground: hsl(0 0% 100%);
+  
+  --color-secondary: hsl(16 100% 50%);       /* আপনার দেওয়া সেকেন্ডারি অ্যাম্বার কালার */
+  --color-secondary-foreground: hsl(0 0% 100%);
+
+  /* Neutral UI Elements */
+  --color-muted: hsl(210 40% 96.1%);
+  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
+  --color-accent: hsl(210 40% 96.1%);
+  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-border: hsl(214.3 31.8% 91.4%);
+  --color-input: hsl(214.3 31.8% 91.4%);
+  --color-ring: hsl(16 100% 50%); 
+  
+  --radius-lg: 0.5rem;
+}
+
+/* 🌙 Dark Mode Settings */
+.dark {
+  --color-background: hsl(222.2 84% 4.9%); /* Dark Slate */
+  --color-foreground: hsl(210 40% 98%);    /* Off-white */
+  --color-card: hsl(222.2 84% 4.9%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-popover: hsl(222.2 84% 4.9%);
+  --color-popover-foreground: hsl(210 40% 98%);
+
+  /* 🎨 YOUR 2 CUSTOM COLORS (Dark Mode) */
+  --color-primary: hsl(16 100% 60%);        /* ডার্ক মোডের জন্য একটু ব্রাইট */
+  --color-primary-foreground: hsl(222.2 84% 4.9%);
+  
+  --color-secondary: hsl(35 92% 55%);       
+  --color-secondary-foreground: hsl(222.2 84% 4.9%);
+
+  /* Neutral UI Elements */
+  --color-muted: hsl(217.2 32.6% 17.5%);
+  --color-muted-foreground: hsl(215.4 16.3% 65.1%); /* ফিক্সড টাইপো (Maruti রিমুভ করা হয়েছে) */
+  --color-accent: hsl(217.2 32.6% 17.5%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-border: hsl(217.2 32.6% 17.5%);
+  --color-input: hsl(217.2 32.6% 17.5%);
+  --color-ring: hsl(16 100% 60%);
+}
