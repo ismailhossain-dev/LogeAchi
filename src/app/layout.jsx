@@ -2,7 +2,7 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "@/components/shared/Navbar/NavbarWrapper";
 import NextAuthProvider from "@/provider/NextAuthProvider";
-
+  import { ToastContainer, toast } from 'react-toastify';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,7 +29,9 @@ export default function RootLayout({ children }) {
     <NextAuthProvider>
       <html lang="en" className={`${poppins.className} h-full antialiased`}>
         <body className="min-h-full flex flex-col">
+            <ToastContainer />
           <NavbarWrapper />
+       
           <main>{children}</main>
         </body>
       </html>

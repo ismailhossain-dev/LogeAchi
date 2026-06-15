@@ -1,16 +1,23 @@
 "use client"
 import ProductModel from "@/components/model/ProductModel";
+import { useAuth } from "@/hooks/useAuth";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { FiHeart, FiEye } from "react-icons/fi";
-// নতুন মডাল কম্পোনেন্টটি ইমপোর্ট করুন (আপনার ফোল্ডার পাথ অনুযায়ী অ্যাডজাস্ট করে নেবেন)
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
+  const axiosSecure = useAuth();
+
+  // ইউজার ডাটা অ্যাক্সেস (এখানে data কে session নামে রিনেম করা হয়েছে)
+  const { data: session, status } = useSession();
   
-  if (!product) return <div className="text-center py-5 font-semibold text-gray-500">PRODUCT CARD LOADING....</div>;
-  
+  const userInitial = session?.user?.name ? session.user.name.charAt(0).toUpperCase() : "U";
+  // console.log("user data product card ", userInitial);
+
   const { title, price, image, _id } = product;
 
   // স্টেটস
@@ -18,17 +25,54 @@ const ProductCard = ({ product }) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [showModal, setShowModal] = useState(false);
   
-  // মডালের ভেতরের স্টেটগুলো এখানেই থাকবে যাতে কার্ড ট্র্যাক রাখতে পারে
+  // মডালের ভেতরের স্টেটগুলো
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  // সেশন লোডিং হ্যান্ডেল
+  if (status === "loading") {
+    return <p className="text-center py-2">Loading...</p>;
+  }
+
+  // এখানে আগে 'data' লিখা ছিল যা ভুল ছিল, এখন 'session?.user' দেওয়া হয়েছে
+  console.log("product card user data", session?.user);
+
+  if (!product) {
+    return (
+      <div className="text-center py-5 font-semibold text-gray-500">
+        PRODUCT CARD LOADING....
+      </div>
+    );
+  }
+
   // ইভেন্ট হ্যান্ডলারস
-  const handleWishlist = (e) => {
+const handleWishlist = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsWishlisted(!isWishlisted);
-  };
 
+    // ১. ইউজার সেশন অথবা axiosSecure না থাকলে রিকোয়েস্ট পাঠাবে না
+    if (!session?.user || !axiosSecure) {
+      toast.success("Please login first or wait until the session loads!");
+      return;
+    }
+
+    setIsWishlisted(!isWishlisted);
+
+    try {
+      // ২. '.POST' পরিবর্তন করে ছোট হাতের '.post' করা হয়েছে
+      const res = await axiosSecure.post("/api/wishlist", {
+        productId: _id,
+        title: title,
+        price: price,
+        image: image,
+        userEmail: session?.user?.email,
+        userName: session?.user?.name
+      });
+      console.log("Wishlist Response:", res.data);
+    } catch (error) {
+      console.error("Wishlist Error:", error);
+    }
+  };
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -82,8 +126,8 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
       </Link>
-{/* Products Details model  */}
-      {/* --- আলাদা করা কুইক ভিউ মডালটি এখানে বসানো হলো --- */}
+
+      {/* Quick View Modal */}
       <ProductModel
         showModal={showModal}
         onClose={() => setShowModal(false)}
