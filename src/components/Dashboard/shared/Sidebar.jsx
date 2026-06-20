@@ -4,11 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo/Logo';
 
-// টগল করার জন্য isOpen এবং onClose প্রপ্স যুক্ত করা হয়েছে (মোবাইল রেসপনসিভনেসের জন্য)
 const Sidebar = ({ isOpen, onClose }) => {
   const pathname = usePathname();
 
-  // প্রফেশনাল ক্যাটাগরি এবং সঠিক রাউটিং পাথ (href) সহ লিস্ট
   const menuGroups = [
     {
       groupName: "Core",
@@ -84,35 +82,33 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* 📱 মোবাইলের জন্য ব্যাকড্রপ ওভারলে (সাইডবার ওপেন থাকলে পেছনে ডার্ক শ্যাডো পড়বে) */}
+      {/* 📱 ব্যাকড্রপ ওভারলে (মোবাইলের জন্য) */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm transition-opacity"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
           onClick={onClose}
         />
       )}
 
-      {/* 🏢 মেইন সাইডবার কন্টেইনার (মোবাইলে ড্রয়ার অ্যানিমেশন এবং ডেস্কটপে ফিক্সড থাকবে) */}
+      {/* 🏢 মেইন সাইডবার কন্টেইনার */}
       <aside className={`
-        fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0f111a] text-gray-300 flex flex-col shadow-2xl font-sans border-r border-gray-800/40 select-none transition-transform duration-300 ease-in-out
+        fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0f111a] text-gray-300 flex flex-col shadow-2xl font-sans border-r border-gray-800/60 select-none transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         md:translate-x-0 md:static md:h-screen
       `}>
         
-        {/* লোগো সেকশন এবং মোবাইলের জন্য ক্লোজ বাটন */}
-        <div className="p-6 border-b border-gray-800/50 flex items-center justify-between">
+        {/* লোগো সেকশন */}
+        <div className="p-6 border-b border-gray-800/60 flex items-center justify-between h-[73px]">
           <div className="flex items-center gap-3">
-           
             <h2 className="m-0 text-xl font-bold tracking-wide text-white">
-              {/* Logo */}
               <Logo/>
             </h2>
           </div>
           
-          {/* মোবাইল ক্লোজ বাটন (✕) */}
+          {/* মোবাইল ক্লোজ বাটন */}
           <button 
             onClick={onClose}
-            className="md:hidden text-gray-400 hover:text-white p-1 rounded-lg hover:bg-gray-800/50"
+            className="md:hidden text-gray-400 hover:text-white p-1 rounded-lg hover:bg-gray-800/50 transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -124,22 +120,21 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="flex-1 py-6 px-4 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
           {menuGroups.map((group) => (
             <div key={group.groupName} className="flex flex-col gap-1.5">
-              <span className="px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500/80">
+              <span className="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600">
                 {group.groupName}
               </span>
               
               {group.items.map((item) => {
-                // usePathname দিয়ে স্বয়ংক্রিয় অ্যাক্টিভ রুট ম্যাচিং লজিক
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={onClose} // মোবাইলে লিংকে ক্লিক করলে সাইডবার ক্লোজ হবে
+                    onClick={onClose} // মোবাইলে লিংকে ক্লিক করলে ক্লোজ হবে
                     className={`flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none group
                       ${isActive 
-                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' 
-                        : 'text-gray-400 hover:bg-gray-800/40 hover:text-white'
+                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' 
+                        : 'text-gray-400 hover:bg-gray-800/30 hover:text-white'
                       }`}
                   >
                     <span className={`mr-3 transition-colors duration-200 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>
@@ -152,7 +147,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             </div>
           ))}
 
-          {/* লগআউট বাটন */}
+          {/* লগআউট বাটন (সবসময় নিচে থাকবে) */}
           <Link
             href="/auth/logout"
             className="flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none mt-auto text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 group"

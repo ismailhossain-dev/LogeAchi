@@ -127,7 +127,7 @@ const handleWishlist = async (e) => {
         </div>
       </Link>
 
-      {/* Quick View Modal */}
+      {/*Most impotant topit Quick View Modal */}
       <ProductModel
         showModal={showModal}
         onClose={() => setShowModal(false)}
