@@ -119,10 +119,10 @@ const Footer = () => {
                   Email us
                 </p>
                 <a
-                  href="mailto:programmarsabbir@gmail.com"
+                  href="mailto:ismail.dev69k@gmail.com"
                   className="text-slate-300 hover:text-green-400 break-all block transition-colors duration-200"
                 >
-                  programmarsabbir@gmail.com
+                  ismail.dev69k@gmail.com
                 </a>
               </div>
             </li>

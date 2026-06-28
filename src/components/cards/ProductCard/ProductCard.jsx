@@ -1,4 +1,5 @@
 "use client"
+import AddToCartButton from "@/components/buttons/AddToCartButton";
 import WishListButton from "@/components/buttons/WishListButton";
 import ProductModel from "@/components/model/ProductModel";
 import { useAuth } from "@/hooks/useAuth";
@@ -6,17 +7,17 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { BsCart3 } from "react-icons/bs";
+
 import { FiHeart, FiEye } from "react-icons/fi";
-import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
   // const axiosSecure = useAuth();
   const { data: session, status } = useSession();
   const { title, price, image, _id } = product;
+   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   // স্টেটস
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
   
   // মডালের ভেতরের স্টেটগুলো
@@ -32,11 +33,7 @@ const ProductCard = ({ product }) => {
   }
 
   // ইভেন্ট হ্যান্ডলারস
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsAddedToCart(!isAddedToCart);
-  };
+
 
   const openQuickView = (e) => {
     e.preventDefault();
@@ -70,9 +67,7 @@ const ProductCard = ({ product }) => {
               </button>
 
               {/* Add to card button */}
-              <button onClick={handleAddToCart} className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 delay-150 focus:outline-none ${isAddedToCart ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-[#ff6801] hover:text-white'}`}>
-                <BsCart3 className="w-5 h-5 group-hover:scale-110" />
-              </button>
+              <AddToCartButton product={product}/>
             </div>
           </div>
 
