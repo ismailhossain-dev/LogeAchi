@@ -1,5 +1,6 @@
 import ProductCard from "@/components/cards/ProductCard/ProductCard";
 import Banner from "@/components/home/Banner/Banner";
+import OurServices from "@/components/home/OurServices/OurServices";
 
 import Footer from "@/components/shared/Footer/Footer";
 
@@ -24,10 +25,12 @@ const Page = async () => {
 
       <div className="max-w-7xl mx-auto overflow-hidden px-5">
         <div className="max-w-7xl mx-auto overflow-hidden px-5"></div>
-        <section className="">
-          <Title>Trending Products</Title>
+        <section >
+         <div className="my-8">
+           <Title >Trending Products</Title>
+         </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 items-center mb-10">
+          <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-4 md:gap-6">
             {data.result?.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
@@ -35,6 +38,8 @@ const Page = async () => {
         </section>
       </div>
      
+     {/* Our Services Section */}
+     <OurServices/>
       {/* Footer */}
       <Footer />
     </div>

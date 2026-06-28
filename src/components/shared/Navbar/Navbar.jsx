@@ -24,9 +24,10 @@ const Navbar = () => {
   ];
 
   return (
+    // bg-[#1a1a1a] border-white/5
     <>
       {/* 🌟 মেইন নেভিগেশন বার - FIXED POSITION */}
-      <nav className="fixed top-0 left-0 w-full bg-[#1a1a1a]/95 backdrop-blur-md border-b border-white/5 py-4 z-40 shadow-md select-none">
+      <nav className="fixed top-0 left-0 w-full bg-[#0b0f19] border-slate-800/60 /95 backdrop-blur-md border-b  py-4 z-40  shadow-md select-none">
         <div className="flex justify-between items-center max-w-7xl mx-auto px-5 sm:px-8">
           
           {/* ১. ব্র্যান্ড লোগো */}

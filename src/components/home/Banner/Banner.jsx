@@ -46,7 +46,7 @@ const Banner = () => {
                   <Image
                     src={slide.img}
                     alt="Banner"
-                  
+                  loading="eager"
                     fill
                     priority
                     className="object-cover object-center"

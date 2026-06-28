@@ -14,7 +14,8 @@ export async function GET(req) {
       );
     }
 
-    return NextResponse.json(products, {
+    return NextResponse.json( {
+      message: "product get successfully",
       status: 200,
     });
 

@@ -1,172 +1,223 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-// react-icons থেকে প্রয়োজনীয় আইকনগুলো ইমপোর্ট করা হয়েছে
-import { 
-  FaTwitter, 
-  FaInstagram, 
-  FaFacebookF, 
-  FaPinterestP, 
-  FaRegCreditCard, 
-  FaCcVisa, 
-  FaCcPaypal, 
-  FaCcMastercard, 
-  FaCcDiscover, 
-  FaCcAmex 
-} from 'react-icons/fa';
-import { FiMapPin, FiPhone, FiMail } from 'react-icons/fi';
-import { GoChevronUp } from 'react-icons/go';
-import Logo from '@/components/Logo/Logo';
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
+import { GoChevronUp } from "react-icons/go";
+import Logo from "@/components/Logo/Logo"; // পাথটি আপনার প্রোজেক্ট অনুযায়ী চেক করে নিবেন
 
 const Footer = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   // Scroll to top বাটনের ভিজিবিলিটি চেক
   useEffect(() => {
     const checkScrollTop = () => {
-      if (!showScroll && window.pageYOffset > 400) {
+      if (window.scrollY > 400) {
         setShowScroll(true);
-      } else if (showScroll && window.pageYOffset <= 400) {
+      } else {
         setShowScroll(false);
       }
     };
 
-    window.addEventListener('scroll', checkScrollTop);
-    return () => window.removeEventListener('scroll', checkScrollTop);
-  }, [showScroll]);
+    window.addEventListener("scroll", checkScrollTop);
+    return () => window.removeEventListener("scroll", checkScrollTop);
+  }, []);
 
   // Scroll to top হ্যান্ডলার
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // নিউজলেটার সাবমিট হ্যান্ডলার
   const handleSubscribe = (e) => {
     e.preventDefault();
-    alert('Thank you for subscribing!');
+    alert("Thank you for subscribing to BookCourier!");
+    e.target.reset();
   };
 
   return (
-    <footer className="bg-[#f5f5f5] text-gray-600 font-sans relative w-full pt-4 pb-8 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#0b0f19]  text-slate-300 pt-20 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800/60 mt-16 relative w-full font-sans antialiased selection:bg-green-500 selection:text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 max-w-7xl mx-auto">
         
-      
-
-
-
-        {/* ================= BOTTOM SECTION ================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 py-16">
-          
-          {/* Column 1: Customer Service */}
-          <div>
-            <h4 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-5">
-              Customer Service
-            </h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/account" className="hover:text-[#ff6a00] transition-colors duration-200">Account</Link></li>
-              <li><Link href="/cart" className="hover:text-[#ff6a00] transition-colors duration-200">My Cart</Link></li>
-              <li><Link href="/orders" className="hover:text-[#ff6a00] transition-colors duration-200">Order History</Link></li>
-              <li><Link href="/wishlist" className="hover:text-[#ff6a00] transition-colors duration-200">Wishlist</Link></li>
-              <li><Link href="/blog" className="hover:text-[#ff6a00] transition-colors duration-200">Blog</Link></li>
-            </ul>
+        {/* Column 1: Brand & About */}
+        <div className="space-y-6">
+          <div href="/" className="inline-block hover:opacity-90 transition-opacity focus:outline-none">
+            <Logo />
           </div>
+          <p className="text-sm sm:text-base leading-relaxed text-slate-400 max-w-xs">
+            Your premium gateway to the world of literature. We deliver passion, knowledge, and
+            stories right to your doorstep.
+          </p>
 
-          {/* Column 2: My Account */}
-          <div>
-            <h4 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-5">
-              My Account
-            </h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/payment-policy" className="hover:text-[#ff6a00] transition-colors duration-200">Payment Policy</Link></li>
-              <li><Link href="/privacy-policy" className="hover:text-[#ff6a00] transition-colors duration-200">Privacy Policy</Link></li>
-              <li><Link href="/return-policy" className="hover:text-[#ff6a00] transition-colors duration-200">Return Policy</Link></li>
-              <li><Link href="/shipping-policy" className="hover:text-[#ff6a00] transition-colors duration-200">Shipping Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-[#ff6a00] transition-colors duration-200">Terms & Condition</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 3: Useful Links */}
-          <div>
-            <h4 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-5">
-              Useful Links
-            </h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/about" className="hover:text-[#ff6a00] transition-colors duration-200">About Us</Link></li>
-              <li><Link href="/faq" className="hover:text-[#ff6a00] transition-colors duration-200">FAQ's</Link></li>
-              <li><Link href="/blogs" className="hover:text-[#ff6a00] transition-colors duration-200">Blogs</Link></li>
-              <li><Link href="/return-policy" className="hover:text-[#ff6a00] transition-colors duration-200">Return Policy</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Top Categories */}
-          <div>
-            <h4 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-5">
-              Top Categories
-            </h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/category/cloth" className="hover:text-[#ff6a00] transition-colors duration-200">Cloth</Link></li>
-              <li><Link href="/category/electronic" className="hover:text-[#ff6a00] transition-colors duration-200">Electronic</Link></li>
-              <li><Link href="/category/furniture" className="hover:text-[#ff6a00] transition-colors duration-200">Furniture</Link></li>
-              <li><Link href="/category/watch" className="hover:text-[#ff6a00] transition-colors duration-200">Watch</Link></li>
-              <li><Link href="/category/jewellery" className="hover:text-[#ff6a00] transition-colors duration-200">Jewellery</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 5: Contact Info & Payments */}
-          <div className="flex flex-col gap-6">
-            <div>
-              <h4 className="text-sm font-bold text-gray-800 uppercase tracking-wider mb-4">
-                Contact Information
-              </h4>
-              <p className="text-sm leading-relaxed text-gray-500">
-                Have questions or need help? Get in touch with our support team available 24/7.
-              </p>
-            </div>
-            
-            {/* Payment Method Logos */}
-           <div className="flex flex-col items-center lg:items-start gap-4">
-            <h3 className="text-lg font-bold text-gray-800 uppercase tracking-wider">
-              Follow us
-            </h3>
-            <div className="flex gap-3">
-              {/* Pinterest */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaPinterestP className="w-5 h-5" />
+          {/* Social Icons */}
+          <div className="flex items-center gap-3 pt-2">
+            {[
+              { Icon: FaFacebookF, to: "https://web.facebook.com/md.sabbir.926093" },
+              { Icon: FaInstagram, to: "https://www.instagram.com/sabbir.69k/" },
+              { Icon: FaXTwitter, to: "https://x.com" },
+              {
+                Icon: FaLinkedinIn,
+                to: "https://www.linkedin.com/in/mohammad-ismail-hossain-475183396/",
+              },
+            ].map((social, idx) => (
+              <a
+                key={idx}
+                href={social.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:bg-green-500 hover:text-white hover:border-green-500 hover:-translate-y-1 transition-all duration-350 shadow-sm"
+              >
+                <social.Icon size={16} />
               </a>
-              {/* Twitter */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaTwitter className="w-5 h-5" />
-              </a>
-              {/* Instagram */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaInstagram className="w-5 h-5" />
-              </a>
-              {/* Facebook */}
-              <a href="#" className="w-10 h-10 bg-white rounded-md flex items-center justify-center shadow-sm hover:shadow-md text-gray-500 hover:text-[#ff6a00] hover:-translate-y-0.5 transition-all duration-300">
-                <FaFacebookF className="w-4 h-4" />
-              </a>
-            </div>
+            ))}
           </div>
-          </div>
-
         </div>
 
-        {/* Final Copyright Bar */}
-        <div className="border-t border-gray-200 pt-8 text-center text-xs text-gray-400">
-          <p>© {new Date().getFullYear()} Besto Store. All rights reserved.</p>
+        {/* Column 2: Quick Links */}
+        <div className="lg:pl-8">
+          <h3 className="text-white text-base font-bold tracking-wider uppercase mb-7 relative inline-block">
+            Quick Explore
+            <span className="absolute -bottom-2 left-0 w-8 h-[3px] bg-green-500 rounded-full"></span>
+          </h3>
+          <ul className="space-y-3.5 text-sm sm:text-base">
+            {[
+              { name: "Home", path: "/" },
+              { name: "All Collection", path: "/all-collection" },
+              { name: "Categories", path: "/categories" },
+              { name: "Blogs", path: "/Blogs" },
+              { name: "Contact Us", path: "/contact" },
+            ].map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.path}
+                  className="text-slate-400 hover:text-green-400 flex items-center gap-2 group transition-colors duration-200"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 opacity-0 -ml-3 group-hover:ml-0 group-hover:opacity-100 transition-all duration-200"></span>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
+        {/* Column 3: Contact Info */}
+        <div>
+          <h3 className="text-white text-base font-bold tracking-wider uppercase mb-7 relative inline-block">
+            Contact Detail
+            <span className="absolute -bottom-2 left-0 w-8 h-[3px] bg-green-500 rounded-full"></span>
+          </h3>
+          <ul className="space-y-4 text-sm sm:text-base">
+            <li className="flex items-start gap-4 group">
+              <div className="mt-0.5 w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-green-500 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all duration-300">
+                <FiMail size={16} />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-0.5">
+                  Email us
+                </p>
+                <a
+                  href="mailto:programmarsabbir@gmail.com"
+                  className="text-slate-300 hover:text-green-400 break-all block transition-colors duration-200"
+                >
+                  programmarsabbir@gmail.com
+                </a>
+              </div>
+            </li>
+            <li className="flex items-start gap-4 group">
+              <div className="mt-0.5 w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-green-500 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all duration-300">
+                <FiPhone size={16} />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-0.5">
+                  Call us
+                </p>
+                <a href="tel:+8801619408991" className="text-slate-300 hover:text-green-400 transition-colors duration-200">
+                  +880 1619 408 991
+                </a>
+              </div>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="mt-0.5 w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-green-500">
+                <FiMapPin size={16} />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-0.5">
+                  Our Studio
+                </p>
+                <span className="text-slate-300">Dhaka, Bangladesh</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 4: Newsletter */}
+        <div>
+          <h3 className="text-white text-base font-bold tracking-wider uppercase mb-7 relative inline-block">
+            Newsletter
+            <span className="absolute -bottom-2 left-0 w-8 h-[3px] bg-green-500 rounded-full"></span>
+          </h3>
+          <form onSubmit={handleSubscribe} className="relative mt-2">
+            <input
+              type="email"
+              required
+              placeholder="Your email address"
+              className="w-full bg-slate-900 border border-slate-800/80 rounded-xl py-3.5 pl-4 pr-12 text-sm outline-none focus:border-green-500/50 text-white placeholder-slate-500 transition-all"
+            />
+            <button 
+              type="submit" 
+              aria-label="Subscribe"
+              className="absolute right-1.5 top-1.5 bottom-1.5 px-3.5 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors flex items-center justify-center shadow-md active:scale-95"
+            >
+              <FiSend size={16} />
+            </button>
+          </form>
+          <p className="text-[11px] text-slate-500 mt-4 leading-relaxed italic">
+            * Join our mailing list for the latest book arrivals and exclusive offers.
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
+        <p className="text-xs sm:text-sm font-medium text-slate-500 text-center md:text-left">
+          © {currentYear}{" "}
+          <Link href="/" className="text-slate-400 hover:text-green-500 transition-colors duration-200">
+            BookCourier
+          </Link>
+          . All rights reserved.
+        </p>
+
+        <div className="flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+          <Link href="/privacy" className="hover:text-green-500 transition-colors duration-200">Privacy</Link>
+          <Link href="/terms" className="hover:text-green-500 transition-colors duration-200">Terms</Link>
+          <Link href="/faq" className="hover:text-green-500 transition-colors duration-200">FAQ</Link>
+        </div>
+
+        <p className="text-xs sm:text-sm font-medium text-slate-500 italic text-center md:text-right">
+          Developed with ❤️ by{" "}
+          <a
+            href="https://github.com/ismailhossain-dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-500 font-bold not-italic hover:underline decoration-2 underline-offset-4"
+          >
+            Sabbir
+          </a>
+        </p>
       </div>
 
       {/* ================= SCROLL TO TOP BUTTON ================= */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 p-2.5 bg-[#ff6a00] text-white rounded-full shadow-lg hover:bg-[#e05d00] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ${
-          showScroll ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-75 pointer-events-none'
+        className={`fixed bottom-6 right-6 z-50 p-3 bg-green-500 text-white rounded-full shadow-xl hover:bg-green-600 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ${
+          showScroll ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-75 pointer-events-none"
         }`}
         aria-label="Scroll to top"
       >
-        <GoChevronUp className="w-6 h-6" />
+        <GoChevronUp className="w-5 h-5" />
       </button>
     </footer>
   );

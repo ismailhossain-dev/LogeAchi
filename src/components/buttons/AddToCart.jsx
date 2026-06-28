@@ -2,9 +2,11 @@
 import Link from 'next/link';
 import React from 'react';
 
-const AddToCart = ({stock, id}) => {
+const AddToCart = ({product}) => {
+    const {stock} = product;
+    // console.log("add to cart button ", product);
     return (
-        <Link href={`/checkout/${id}`} className='flex flex-col sm:flex-row items-center gap-3 w-full'>
+        <Link href={`/checkout`} className='flex flex-col sm:flex-row items-center gap-3 w-full'>
 
                <button
                 type="button"

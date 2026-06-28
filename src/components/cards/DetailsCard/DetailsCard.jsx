@@ -274,7 +274,7 @@ const DetailsCard = ({ product }) => {
             </div>
             {/* Add to Cart button  */}
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-              <AddToCart stock={stock} id={_id} />
+              <AddToCart product={product} />
 
               <button
                 type="button"

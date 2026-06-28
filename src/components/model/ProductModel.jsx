@@ -109,7 +109,7 @@ const ProductModel = ({
                   setIsAddedToCart(true);
                   onClose();
                 }}
-                className="flex-1 h-11 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 border border-gray-200 focus:outline-none active:scale-98"
+                className="btn flex items-center gap-2"
               >
                 <BsCart3 className="text-sm" /> Add To Cart
               </button>
@@ -119,7 +119,7 @@ const ProductModel = ({
                   alert(`Proceeding to buy ${quantity} unit(s) of size ${selectedSize || 'Not Selected'}`);
                   onClose();
                 }}
-                className="flex-1 h-11 bg-[#ff6801] hover:bg-[#e05b00] text-white font-bold text-xs rounded-xl transition-all shadow-sm hover:shadow-md flex items-center justify-center focus:outline-none tracking-wide active:scale-98"
+                className="btn"
               >
                 Buy Now
               </button>
