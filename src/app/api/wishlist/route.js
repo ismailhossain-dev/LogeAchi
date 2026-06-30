@@ -1,11 +1,10 @@
-
 import { dbConnect } from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
     try {
         const wishlistUser = await req.json();
-        console.log("wishlist user", wishlistUser)
+        // console.log("wishlist user", wishlistUser)
     
        
         const isWishListExist = await dbConnect("wishlist").findOne({ title: wishlistUser.title });

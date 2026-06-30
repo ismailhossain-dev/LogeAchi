@@ -10,8 +10,8 @@ export default async function ProductDetails({ params }) {
     `http://localhost:3000/api/homeProducts/${id}`
   );
 
-  const product = await res.json();
-  console.log(product);
+  const detailsUser = await res.json();
+  const product = detailsUser.result;
 
 
   return (

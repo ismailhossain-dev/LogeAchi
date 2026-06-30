@@ -1,17 +1,48 @@
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import React, { useState } from 'react';
 import { BsCart3 } from "react-icons/bs";
+import { useSession } from "next-auth/react";
 const AddToCartButton = ({product}) => {
+
 
 const [isAddedToCart, setIsAddedToCart] = useState(false);
 
 const axiosSecure = useAxiosSecure()
+// provider er mardome kaj ta korchi but eta astese next auth teke 
+const { data: session , status} = useSession()
 
+ if (status === "loading") {
+    return <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
+  }
 
-      const handleAddToCart = (e) => {
+  //check user ache kin nai
+
+  if (!session?.user) {
+        toast.error("Please login first to add to cart!");
+        return;
+  }
+
+  // console.log("user", session)
+
+  const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsAddedToCart(!isAddedToCart);
+
+    try {
+      const res = axiosSecure.post("/api/cart", {
+        productId: product._id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        userEmail: session?.user?.email,
+        userName: session?.user?.name,
+        createdAt: new Date().toISOString(),
+      });
+      
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
     return (
         <div>

@@ -15,7 +15,7 @@ export async function GET(req, { params }) {
       );
     }
 
-    return NextResponse.json(product, { status: 200 });
+    return NextResponse.json( {message: "details api get successfully", result: product, status: 200 });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
