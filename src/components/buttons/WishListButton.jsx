@@ -45,7 +45,8 @@ const WishListButton = ({ product }) => {
        createdAt: new Date().toISOString(),
       });
 
-      if (res.status === 200) {
+      //axios er mardome data sent korle eta data mardome response dei 
+      if (res.data.result?.acknowledged) {
      toast.success("Product added to wishlist!");
      setIsWishlisted(true); 
 
@@ -72,7 +73,7 @@ const WishListButton = ({ product }) => {
     <div>
       <button
         onClick={handleWishlist}
-        className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 delay-75 focus:outline-none ${
+        className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 translate-x-8 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 delay-75 focus:outline-none cursor-pointer ${
           isWishlisted
             ? "bg-[#ff6801] text-white scale-105"
             : "bg-white text-gray-700 hover:bg-gray-100"
