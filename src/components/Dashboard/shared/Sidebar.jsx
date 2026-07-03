@@ -79,23 +79,37 @@ const Sidebar = ({ isOpen, onClose }) => {
       ]
     }
   ];
-
+  // <div 
+  //         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
+  //         onClick={onClose}
+  //       />
   return (
     <>
-      {/* 📱 ব্যাকড্রপ ওভারলে (মোবাইলের জন্য) */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
-          onClick={onClose}
-        />
-      )}
+
 
       {/* 🏢 মেইন সাইডবার কন্টেইনার */}
-      <aside className={`
-        fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0f111a] text-gray-300 flex flex-col shadow-2xl font-sans border-r border-gray-800/60 select-none transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-        md:translate-x-0 md:static md:h-screen
-      `}>
+      <aside  className={`
+    fixed top-0 left-0
+    z-50
+    w-[280px]
+    h-screen
+    bg-[#0f111a]
+    border-r border-gray-800/60
+    flex flex-col
+
+    transform
+    transition-transform
+    duration-300
+    ease-in-out
+
+    ${
+      isOpen
+        ? "translate-x-0"
+        : "-translate-x-full"
+    }
+
+    md:translate-x-0
+  `}>
         
         {/* লোগো সেকশন */}
         <div className="p-6 border-b border-gray-800/60 flex items-center justify-between h-[73px]">

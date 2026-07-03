@@ -1,24 +1,38 @@
-import Navbar from '@/components/Dashboard/shared/Navbar';
-import Sidebar from '@/components/Dashboard/shared/Sidebar';
-import React from 'react';
+"use client";
+
+import Navbar from "@/components/Dashboard/shared/Navbar";
+import Sidebar from "@/components/Dashboard/shared/Sidebar";
+import React, { useState } from "react";
 
 const Layout = ({ children }) => {
+  //etar mardome mobile menu ta setup koresi 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="flex h-screen w-full bg-[#090a0f] overflow-hidden font-sans">
+    <div className="flex h-screen w-full bg-[#090a0f] overflow-hidden">
 
-      <div className="hidden md:block shrink-0">
-        <Sidebar />
-      </div>
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+        />
+      )}
 
-      <div className="flex flex-col flex-1 h-full overflow-hidden">
-      
-        <Navbar />
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
 
-        <main className="flex-1 overflow-x-hidden overflow-y-auto p-6 text-gray-200">
+      <div className="flex flex-col flex-1 overflow-hidden md:ml-[280px]">
+        <Navbar setIsOpen={setIsOpen} />
+
+        <main className="flex-1 overflow-y-auto p-6">
           {children}
         </main>
-        
       </div>
+
     </div>
   );
 };

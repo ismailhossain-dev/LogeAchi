@@ -1,16 +1,17 @@
 "use client"
 import React from 'react';
 
-const Navbar = ({ onMenuClick }) => {
+const Navbar = ({ setIsOpen }) => {
+
   return (
     <header className="flex justify-between items-center bg-[#0f111a]/80 backdrop-blur-md px-6 py-4 shadow-lg font-sans border-b border-gray-800/60 select-none sticky top-0 z-30">
       
       {/* বাম পাশের অংশ: মোবাইল মেনু বাটন ও টাইটেল */}
       <div className="flex items-center gap-4">
         {/* 📱 শুধুমাত্র মোবাইলে এই বাটনটি দেখাবে যা সাইডবার ওপেন করবে */}
-        <button 
+        <button     onClick={() => setIsOpen(true)}
           className="block md:hidden text-gray-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-gray-800/50 outline-none"
-          onClick={onMenuClick}
+          
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
