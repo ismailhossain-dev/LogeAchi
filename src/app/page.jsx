@@ -18,7 +18,7 @@ const Page = async () => {
   
 
   return (
-    <div>
+    <div className="bg-[#0f172a]">
     
 
       {/* header */}

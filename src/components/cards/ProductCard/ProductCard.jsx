@@ -11,7 +11,7 @@ import { FiEye } from "react-icons/fi";
 
 const ProductCard = ({ product }) => {
   // const axiosSecure = useAuth();
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
   const { title, price, image, _id } = product;
    const [isAddedToCart, setIsAddedToCart] = useState(false);
 
@@ -72,8 +72,8 @@ const ProductCard = ({ product }) => {
 
           {/* Product Info */}
           <div className="text-center mt-4">
-            <h3 className="text-[16px] text-gray-800 font-medium line-clamp-1">{title}</h3>
-            <p className="text-[17px] font-bold mt-2 text-secondary">${price}</p>
+            <h3 className="text-[16px] text-secondary font-medium line-clamp-1">{title}</h3>
+            <p className="text-[17px] font-bold mt-2  text-secondary">${price}</p>
           </div>
         </div>
       </Link>

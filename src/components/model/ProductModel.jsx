@@ -49,16 +49,16 @@ const ProductModel = ({
           </div>
 
           {/* ডান পাশ: প্রোডাক্ট ইনফরমেশন ও ফর্ম */}
-          <div className="p-5 sm:p-7 flex flex-col justify-between bg-white md:max-h-[500px] md:overflow-y-auto">
+          <div className="p-5 sm:p-7 flex flex-col justify-between md:max-h-[500px] md:overflow-y-auto bg-[#0f172a]">
             <div className="space-y-4">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#ff6801] bg-[#ff6801]/10 px-2.5 py-1 rounded-md">Quick Shop</span>
-                <h2 className="text-lg md:text-2xl font-bold text-gray-900 mt-2.5 leading-tight">{title}</h2>
-                <p className="text-xl md:text-2xl font-extrabold text-[#ff6801] mt-1.5">${price}</p>
+                <h2 className="text-lg md:text-2xl font-bold text-secondary mt-2.5 leading-tight">{title}</h2>
+                <p className="text-xl md:text-2xl font-extrabold text-secondary mt-1.5">${price}</p>
               </div>
               
               {/* ডেসক্রিপশন */}
-              <p className="text-xs text-gray-500 leading-relaxed line-clamp-3 md:line-clamp-none">
+              <p className="text-xs text-gray-400 leading-relaxed line-clamp-3 md:line-clamp-none">
                 {description || "Discover the perfect blend of style and comfort with this premium product. Crafted with care using high-quality materials to ensure long-lasting durability."}
               </p>
               
@@ -67,7 +67,7 @@ const ProductModel = ({
               {/* সিলেক্ট সাইজ গ্রুপ */}
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">Select Size</span>
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Select Size</span>
                   {selectedSize && <span className="text-xs font-semibold text-[#ff6801]">Selected: {selectedSize}</span>}
                 </div>
                 <div className="flex flex-wrap gap-1.5">
@@ -89,7 +89,7 @@ const ProductModel = ({
 
               {/* সিলেক্ট কোয়ান্টিটি গ্রুপ */}
               <div>
-                <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-2">Select Quantity</span>
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2">Select Quantity</span>
                 <div className="flex items-center w-28 h-9 border border-gray-200 rounded-md overflow-hidden bg-gray-50">
                   <button onClick={decreaseQty} className="flex-1 h-full flex items-center justify-center hover:bg-gray-200 text-gray-600 transition-colors">
                     <FiMinus className="text-xs" />

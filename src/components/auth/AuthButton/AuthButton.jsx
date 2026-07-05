@@ -18,7 +18,7 @@ const AuthButton = () => {
       title: "Personal Space",
       items: [
         {
-          name: 'Overview Dashboard',
+          name: 'Overview ',
           href: '/user',
           icon: <FiGrid className="w-4 h-4" />
         },

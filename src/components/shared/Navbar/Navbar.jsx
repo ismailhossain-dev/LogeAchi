@@ -80,8 +80,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* 🧱 অদৃশ্য স্পেসার দেওয়াল */}
-      <div className="h-20 sm:h-24 w-full" />
+  {/* nabar button margin  */}
+
+      <div className="bg-[#0f172a] h-20 sm:h-20 w-full" />
 
       {/* --- 📱 মোবাইল রেসপন্সিভ সাইডবার ড্রয়ার --- */}
       <div 

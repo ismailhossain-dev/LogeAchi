@@ -7,7 +7,7 @@ import AddToCart from "@/components/buttons/AddToCart";
 const DetailsCard = ({ product }) => {
   if (!product) {
     return (
-      <div className="min-h-[450px] flex items-center justify-center">
+      <div className="min-h-[450px]  flex items-center justify-center">
         <div className="animate-pulse flex flex-col items-center gap-3">
           <div className="w-12 h-12 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
           <p className="text-sm font-medium text-gray-500 tracking-wider uppercase">

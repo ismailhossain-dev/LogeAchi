@@ -23,16 +23,8 @@ const Navbar = ({ setIsOpen }) => {
       </div>
 
       {/* মাঝখানের অংশ: প্রফেশনাল ডার্ক সার্চ বার (ডেস্কটপের জন্য) */}
-      <div className="hidden md:flex items-center bg-gray-950/40 px-4 py-2 rounded-xl w-[320px] transition-all duration-300 focus-within:ring-2 focus-within:ring-indigo-500/30 border border-gray-800/60 focus-within:border-indigo-500/50">
-        <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <input 
-          type="text" 
-          placeholder="Search items, orders..." 
-          className="border-none bg-transparent outline-none w-full ml-2.5 text-sm text-gray-200 placeholder-gray-500 focus:ring-0"
-        />
-      </div>
+   
+   
 
       {/* ডান পাশের অংশ: নোটিফিকেশন ও প্রোফাইল */}
       <div className="flex items-center gap-4 md:gap-6">

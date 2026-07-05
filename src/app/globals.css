@@ -12,7 +12,7 @@
 /* shadcn custom theme */
 @theme {
   /* Clean, neutral backgrounds */
-  --color-background: hsl(0 0% 100%);       /* White */
+  --color-background: #0f172a;      /*eta page.jsx use korchi*/
   --color-foreground: hsl(222.2 84% 4.9%);  /* Near Black */
   --color-card: hsl(0 0% 100%);
   --color-card-foreground: hsl(222.2 84% 4.9%);
@@ -20,14 +20,14 @@
   --color-popover-foreground: hsl(222.2 84% 4.9%);
 
   /* 🎨 YOUR 2 CUSTOM COLORS (Light Mode) */
-  --color-primary: #1e2942;         /* সুন্দর একটি অরেঞ্জ-রেড শেড (আপনার .btn এর সাথে মিল রেখে) */
+  --color-primary: blue;         /* সুন্দর একটি অরেঞ্জ-রেড শেড (আপনার .btn এর সাথে মিল রেখে) */
   --color-primary-foreground: hsl(0 0% 100%);
 
-  --color-secondary: hsl(16 100% 50%);       /* আপনার দেওয়া সেকেন্ডারি অ্যাম্বার কালার */
-  --color-secondary-foreground: hsl(0 0% 100%);
+  --color-secondary: #edf2ea;       /* আপনার দেওয়া সেকেন্ডারি অ্যাম্বার কালার */
+  --color-secondary-foreground: red;
 
   /* Neutral UI Elements */
-  --color-muted: hsl(210 40% 96.1%);
+  --color-muted: ; /* pragraph ba choto text er jonno eta use korbo */
   --color-muted-foreground: hsl(215.4 16.3% 46.9%);
   --color-accent: hsl(210 40% 96.1%);
   --color-accent-foreground: hsl(222.2 47.4% 11.2%);

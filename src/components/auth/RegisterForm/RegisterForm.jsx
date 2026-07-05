@@ -190,7 +190,7 @@ const RegisterForm = () => {
               {/* সাবমিট বাটন (সলিড ব্ল্যাক থিম) */}
               <button
                 type="submit"
-                className="w-full py-3.5 mt-4 bg-black hover:bg-orange-600 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-orange-600/10 active:scale-[0.99]"
+                className="w-full py-3.5 mt-4 bg-black hover:bg-orange-600 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-orange-600/10 active:scale-[0.99] cursor-pointer"
               >
                 Create Account
               </button>
