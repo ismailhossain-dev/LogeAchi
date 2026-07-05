@@ -34,3 +34,48 @@ export async function POST(req) {
         }, { status: 500 });
     }
 }
+
+
+
+//query params er mardome data fetch most important 
+
+//url =http://localhost:3000/api/wishlist?email=sabbirvai69k@gmail.com
+
+//alhandulillah data fatch successfully
+export async function GET(req) {
+  try {
+    //searchParams url teke data ta nei
+    const { searchParams } = new URL(req.url);
+    const email = searchParams.get("email");
+
+    if (!email) {
+      return NextResponse.json(
+        { message: "Email is not found" },
+        { status: 400 }
+      );
+    }
+
+    const collection = await dbConnect("wishlist");
+//databader email sathe match kore find korbo
+    const result = await collection
+      .find({ userEmail: email })
+      .toArray();
+
+    return NextResponse.json(
+      {
+        result,
+        message: "wishlist fetched successfully",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: "wishlist fetch failed",
+        error: error.message,
+      },
+      { status: 500 }
+    );
+  }
+}
+

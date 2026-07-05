@@ -3,6 +3,7 @@ import "./globals.css";
 import NavbarWrapper from "@/components/shared/Navbar/NavbarWrapper";
 import NextAuthProvider from "@/provider/NextAuthProvider";
   import { ToastContainer, toast } from 'react-toastify';
+import TanStackQueryProvider from "@/provider/TanStackQueryProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,14 +27,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    // NextAuthProvider use for user
     <NextAuthProvider>
       <html lang="en" className={`${poppins.className} h-full antialiased`}>
-        <body className="min-h-full flex flex-col">
+        {/* use for data fetach Delete */}
+       <TanStackQueryProvider>
+         <body className="min-h-full flex flex-col">
             <ToastContainer />
           <NavbarWrapper />
        
           <main>{children}</main>
         </body>
+       </TanStackQueryProvider>
       </html>
     </NextAuthProvider>
   );

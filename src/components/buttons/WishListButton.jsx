@@ -46,7 +46,7 @@ const WishListButton = ({ product }) => {
       });
 
       //axios er mardome data sent korle eta data mardome response dei 
-      if (res.data.result?.acknowledged) {
+      if (res.data.result?.acknowledged === true) {
      toast.success("Product added to wishlist!");
      setIsWishlisted(true); 
 

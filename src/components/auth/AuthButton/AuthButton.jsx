@@ -20,13 +20,11 @@ const AuthButton = () => {
         {
           name: 'Overview Dashboard',
           href: '/user',
-          desc: 'View your main analytics',
           icon: <FiGrid className="w-4 h-4" />
         },
         {
           name: 'My Profile',
           href: '/user/my-profile',
-          desc: 'Manage account settings',
           icon: <FiUser className="w-4 h-4" />
         }
       ]
@@ -37,13 +35,11 @@ const AuthButton = () => {
         {
           name: 'My Orders',
           href: '/user/my-orders',
-          desc: 'Track purchases & history',
           icon: <FiShoppingBag className="w-4 h-4" />
         },
         {
           name: 'My Wishlist',
           href: '/user/my-wishlist',
-          desc: 'Items you saved for later',
           icon: <FiHeart className="w-4 h-4" />
         }
       ]
@@ -113,9 +109,7 @@ const AuthButton = () => {
                         </span>
                         <div className="flex flex-col min-w-0">
                           <span className="text-sm font-medium leading-none">{route.name}</span>
-                          <span className="text-[11px] text-gray-500 group-hover:text-gray-400 transition-colors mt-1.5 truncate leading-tight">
-                            {route.desc}
-                          </span>
+                         
                         </div>
                       </Link>
                     ))}

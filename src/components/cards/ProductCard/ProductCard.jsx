@@ -2,13 +2,12 @@
 import AddToCartButton from "@/components/buttons/AddToCartButton";
 import WishListButton from "@/components/buttons/WishListButton";
 import ProductModel from "@/components/model/ProductModel";
-import { useAuth } from "@/hooks/useAuth";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-import { FiHeart, FiEye } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
 
 const ProductCard = ({ product }) => {
   // const axiosSecure = useAuth();
