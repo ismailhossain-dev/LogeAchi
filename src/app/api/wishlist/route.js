@@ -4,19 +4,22 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     try {
         const wishlistUser = await req.json();
-        // console.log("wishlist user", wishlistUser)
     
-       
-        const isWishListExist = await dbConnect("wishlist").findOne({ title: wishlistUser.title });
+        const productId = wishlistUser.productId || wishlistUser.id;
+
+        const isWishListExist = await dbConnect("wishlist").findOne({ 
+            email: wishlistUser.email,
+            productId: productId // এই লাইনটি চেক করবে একই ইউজার একই প্রোডাক্ট বারবার দিচ্ছে কিনা
+        });
 
         if (isWishListExist) {
             return NextResponse.json({
                 message: "This item already exists in your wishlist",
                 status: 400
-            }, { status: 400 }); // এখানে null রিটার্ন না করে একটি সঠিক Response পাঠানো ভালো
+            }, { status: 400 });
         }
 
-    
+        // ২. নতুন আইটেম ইনসার্ট করা
         const result = await dbConnect("wishlist").insertOne(wishlistUser);
         
         return NextResponse.json({

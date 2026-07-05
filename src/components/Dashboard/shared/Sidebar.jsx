@@ -9,7 +9,6 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const menuGroups = [
     {
-      groupName: "Core",
       items: [
         { 
           name: 'Dashboard', 
@@ -32,7 +31,6 @@ const Sidebar = ({ isOpen, onClose }) => {
       ]
     },
     {
-      groupName: "Shopping",
       items: [
         { 
           name: 'My Orders', 
@@ -64,7 +62,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       ]
     },
     {
-      groupName: "Preferences",
+
       items: [
         { 
           name: 'Settings', 
@@ -79,10 +77,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       ]
     }
   ];
-  // <div 
-  //         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
-  //         onClick={onClose}
-  //       />
+
   return (
     <>
 
@@ -132,10 +127,10 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         {/* নেভিগেশন মেনু গ্রুপসমূহ */}
         <div className="flex-1 py-6 px-4 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
-          {menuGroups.map((group) => (
-            <div key={group.groupName} className="flex flex-col gap-1.5">
+          {menuGroups.map((group, index) => (
+            <div key={index} className="flex flex-col gap-1.5">
               <span className="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600">
-                {group.groupName}
+               
               </span>
               
               {group.items.map((item) => {

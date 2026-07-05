@@ -1,7 +1,9 @@
 "use client"
+import InvoiceTable from '@/components/Dashboard/ui/InvoiceTable';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { Heart, Trash2 } from "lucide-react";
 import React from 'react';
 
 const dashboarWishListPage = () => {
@@ -36,7 +38,12 @@ console.log(wishlist);
 
     return (
         <div className='text-white'>
-            dashboarWishListPage
+          {/* shadcn table use */}
+          
+            <div>
+              
+              {wishlist.map((wish)=> <InvoiceTable key={wish._id} wish={wish}></InvoiceTable>)}
+            </div>
         </div>
     );
 };

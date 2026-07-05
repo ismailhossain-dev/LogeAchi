@@ -5,7 +5,6 @@ import OurServices from "@/components/home/OurServices/OurServices";
 import Footer from "@/components/shared/Footer/Footer";
 
 import Title from "@/components/Title/Title";
-import InvoiceTable from "@/components/Dashboard/ui/InvoiceTable";
 
 
 const Page = async () => {
@@ -27,7 +26,6 @@ const Page = async () => {
 
        {/* shadcn table */}
 
-    <InvoiceTable/>
       <div className="max-w-7xl mx-auto overflow-hidden px-5">
         <div className="max-w-7xl mx-auto overflow-hidden px-5"></div>
         <section >

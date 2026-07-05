@@ -16,7 +16,7 @@ const WishListButton = ({ product }) => {
 
   if (!product) return null;
 
-  const { _id, id, title, price, image } = product;
+  const { _id, id, title, price, image, size } = product;
   const actualId = _id || id; 
 
   const handleWishlist = async (e) => {
@@ -40,6 +40,8 @@ const WishListButton = ({ product }) => {
         title: title,
         price: price,
         image: image,
+        price: price, 
+        size:size,
         userEmail: session?.user?.email,
         userName: session?.user?.name,
        createdAt: new Date().toISOString(),

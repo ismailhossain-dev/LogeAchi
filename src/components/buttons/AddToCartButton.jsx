@@ -2,6 +2,7 @@ import useAxiosSecure from '@/hooks/useAxiosSecure';
 import React, { useState } from 'react';
 import { BsCart3 } from "react-icons/bs";
 import { useSession } from "next-auth/react";
+import { toast } from 'react-toastify';
 const AddToCartButton = ({product}) => {
 
 
@@ -17,10 +18,10 @@ const { data: session , status} = useSession()
 
   //check user ache kin nai
 
-  if (!session?.user) {
-        toast.error("Please login first to add to cart!");
-        return;
-  }
+  // if (!session?.user) {
+  //       toast.error("Please login first to add to cart!");
+  //       return;
+  // }
 
   // console.log("user", session)
 
