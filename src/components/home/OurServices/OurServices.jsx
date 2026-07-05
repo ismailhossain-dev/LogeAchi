@@ -29,19 +29,19 @@ const OurServices = () => {
       title: "Cash on Delivery",
       description: "Shop with confidence. Check and receive your product at your doorstep before payment."
     },
-    {
-      id: 5,
-      icon: <TbAward className="text-3xl" />,
-      title: "Premium Quality",
-      description: "100% premium fabric and flawless stitching guaranteed. What you see is what you get."
-    },
+    // {
+    //   id: 5,
+    //   icon: <TbAward className="text-3xl" />,
+    //   title: "Premium Quality",
+    //   description: "100% premium fabric and flawless stitching guaranteed. What you see is what you get."
+    // },
   
-    {
-      id: 6,
-      icon: <FiHeadphones className="text-3xl" />,
-      title: "24/12 Dedicated Support",
-      description: "Get instant solutions to your queries through Live Chat, WhatsApp, or direct call support."
-    }
+    // {
+    //   id: 6,
+    //   icon: <FiHeadphones className="text-3xl" />,
+    //   title: "24/12 Dedicated Support",
+    //   description: "Get instant solutions to your queries through Live Chat, WhatsApp, or direct call support."
+    // }
   ];
 
   return (
@@ -58,7 +58,7 @@ const OurServices = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
         {services.map((service) => (
           <div 
             key={service.id} 

@@ -4,7 +4,7 @@ import Logo from '@/components/Logo/Logo';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
-import { FiHeart, FiChevronRight } from 'react-icons/fi'; // অ্যারো আইকন ইম্পোর্ট করা হয়েছে
+import { FiChevronRight } from 'react-icons/fi'; // অ্যারো আইকন ইম্পোর্ট করা হয়েছে
 import { MdMenu, MdClose } from "react-icons/md";
 
 const Navbar = () => {
@@ -44,8 +44,6 @@ const Navbar = () => {
                 className="group relative flex items-center gap-1 py-2 text-white/80 hover:text-white transition-colors"
               >
                 <span>{item.name.toUpperCase()}</span>
-                {/* ➡️ স্মুথ মুভিং অ্যারো আইকন */}
-                {/* <FiChevronRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-orange-500 transform group-hover:translate-x-0.5 transition-transform duration-200" /> */}
                 
                 {/* বটম বর্ডার অ্যানিমেশন */}
                 <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-orange-500 transition-all duration-200 group-hover:w-full" />
@@ -55,10 +53,10 @@ const Navbar = () => {
           
           {/* ৩. রাইট সাইড অ্যাকশন বাটন এবং ইউজার প্রোফাইল */}
           <div className='flex items-center gap-4 sm:gap-5 text-white text-xl sm:text-2xl'>
-            {/* উইশলিস্ট আইকন */}
-            <div className="relative cursor-pointer hover:text-orange-500 transition-colors p-1.5 hover:bg-white/5 rounded-full">
+           
+            {/* <div className="relative cursor-pointer hover:text-orange-500 transition-colors p-1.5 hover:bg-white/5 rounded-full">
               <FiHeart className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+            </div> */}
             
             {/* কার্ট আইকন */}
             <div className="relative cursor-pointer hover:text-orange-500 transition-colors p-1.5 hover:bg-white/5 rounded-full">
