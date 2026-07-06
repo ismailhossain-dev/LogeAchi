@@ -6,6 +6,7 @@ import { User, Mail, Lock, ArrowLeft, Sparkles, EyeOff, LockIcon, Eye } from "lu
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { postUser } from "@/actions/server/auth";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
 // import { postUser } from "@/actions/server/auth";
 
 const RegisterForm = () => {
@@ -195,6 +196,9 @@ const RegisterForm = () => {
                 Create Account
               </button>
             </form>
+
+            {/* google login */}
+            <GoogleLogin/>
 
             {/* লগইন ফুটার লিঙ্ক */}
             <p className="mt-8 text-center text-xs font-semibold text-slate-500">

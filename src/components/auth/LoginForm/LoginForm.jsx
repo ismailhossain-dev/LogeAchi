@@ -7,11 +7,14 @@ import Link from "next/link";
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { Lock, Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
+import {  Eye, EyeOff } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 const LoginForm = () => {
   const router = useRouter()
+  const searchParams = useSearchParams();
+const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -26,10 +29,10 @@ const LoginForm = () => {
       password: data.password,
       redirect: false,
     });
-    console.log(" login form result ",result);
+
+    // console.log(" login form result ",result);
         if (result?.ok) {
-      router.push("/");
-      router.refresh();
+        router.push(callbackUrl);
     }
   };
 
