@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
       <html lang="en" className={`${poppins.className} h-full antialiased`}>
         {/* use for data fetach Delete */}
        <TanStackQueryProvider>
-         <body className="min-h-full flex flex-col">
+         <body className="min-h-full flex flex-col bg-[#0f172a]">
             <ToastContainer />
           <NavbarWrapper />
        
