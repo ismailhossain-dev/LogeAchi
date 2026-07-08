@@ -34,3 +34,20 @@ export async function POST(req) {
     );
   }
 }
+
+
+export async function GET(req) {
+  try{
+    const {searchParams} = new URL(req.url);
+    // searchParams er mardome data ta nei like `${seesion?.email}` eta niye 
+    const email = searchParams.get("email");
+    if(!email){
+      return NextResponse.json({message: "Email is not found"}, {status: 400})
+    }
+    const cartItems = await dbConnect("cart").find({userEmail: email}).toArray();
+    return NextResponse.json({message: "Cart items fetched successfully", result: cartItems}, {status: 200})
+  }catch(error){
+    console.log(error);
+    return NextResponse.json({message: "Cart API failed", error: error.message}, {status: 500})
+  }
+}

@@ -51,11 +51,12 @@ const WishListButton = ({ product }) => {
       if (res.data.result?.acknowledged === true) {
      toast.success("Product added to wishlist!");
      setIsWishlisted(true); 
+     return;
 
       }
 
       if(res.status === 400) {
-      toast.warning("This item is already in your wishlist!");
+      return toast.warning("This item is already in your wishlist!");
         
       }
      

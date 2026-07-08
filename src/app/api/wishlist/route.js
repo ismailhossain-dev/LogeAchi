@@ -47,7 +47,7 @@ export async function POST(req) {
 //alhandulillah data fatch successfully
 export async function GET(req) {
   try {
-    //searchParams url teke data ta nei
+    //searchParams url teke data ta nei like `${seesion?.email}` eta niye take
     const { searchParams } = new URL(req.url);
     const email = searchParams.get("email");
 

@@ -28,14 +28,14 @@ const Banner = () => {
           effect={"fade"}
           fadeEffect={{ crossFade: true }}
           speed={1500}
-          loop={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
+          // loop={true}
+          // autoplay={{
+          //   delay: 5000,
+          //   disableOnInteraction: false,
+          // }}
+          // pagination={{
+          //   clickable: true,
+          // }}
           className="w-full h-full mySwiper"
           style={{ width: "100%" }}
         >

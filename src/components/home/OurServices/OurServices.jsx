@@ -1,7 +1,9 @@
+"use client";
+
 import Title from '@/components/Title/Title';
 import React from 'react';
-import { FiTruck, FiRefreshCw, FiShield, FiHeadphones } from 'react-icons/fi';
-import { TbTruckDelivery, TbAward, TbCreditCard } from 'react-icons/tb';
+import { FiTruck, FiRefreshCw, FiShield } from 'react-icons/fi';
+import { TbTruckDelivery } from 'react-icons/tb';
 
 const OurServices = () => {
   const services = [
@@ -32,29 +34,33 @@ const OurServices = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full font-sans antialiased">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-14">
+      <div className="text-center max-w-2xl mx-auto mb-16">
         <Title>Our Premium Services</Title>
+        <p className="text-xs sm:text-sm text-slate-400 mt-3 tracking-wide uppercase">
+          Why Shop With Us
+        </p>
       </div>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {services.map((service) => (
           <div 
             key={service.id} 
-            className="group flex flex-col p-6 bg-[#121c34] rounded-2xl border border-transparent shadow-lg  transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            className="group flex flex-col p-6 bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-slate-800/60 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1.5 hover:border-orange-500/40 hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.1)]"
           >
             {/* Icon Container */}
-            <div className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 bg-[#ff6801] text-white">
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 bg-slate-800 text-orange-500 border border-slate-700/50 group-hover:bg-orange-600 group-hover:text-white group-hover:border-transparent group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-orange-600/20">
               {service.icon}
             </div>
 
             {/* Service Details */}
-            <h3 className="text-lg font-bold text-secondary mt-5 flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-black text-white mt-6 tracking-tight transition-colors duration-300 group-hover:text-orange-500">
               {service.title}
             </h3>
-            <p className="text-xs sm:text-sm text-gray-400 mt-2.5 leading-relaxed flex-grow">
+            
+            <p className="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed font-medium flex-grow">
               {service.description}
             </p>
           </div>

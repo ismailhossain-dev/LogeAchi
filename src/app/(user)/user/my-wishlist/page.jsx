@@ -3,7 +3,7 @@ import InvoiceTable from '@/components/Dashboard/ui/InvoiceTable';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { Heart, Trash2 } from "lucide-react";
+
 import React from 'react';
 
 const dashboarWishListPage = () => {

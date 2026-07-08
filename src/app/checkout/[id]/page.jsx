@@ -1,32 +1,27 @@
-
 import CheckOutForm from '@/components/Forms/CheckOutForm/CheckOutForm';
 import Footer from '@/components/shared/Footer/Footer';
 import Navbar from '@/components/shared/Navbar/Navbar';
 import React from 'react';
-//params er mardome uporer url tar teke id access kortesi most import work
-const checkoutPage = async({params}) => {
 
-const {id} = await params; 
+const checkoutPage = async ({ params }) => {
+  const { id } = await params; 
 
-// console.log("checkout url id ", id);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/homeProducts/${id}`);
+  const data = await res.json();
+  const checkoutData = data.result; 
 
-const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/homeProducts/${id}`)
+  return (
+    <div className="bg-[#0f172a] min-h-screen flex flex-col justify-between">
+      <Navbar />
+      
+      {/* এখানে প্রোডাক্টের ডাটা প্রপ্স হিসেবে ফর্মে পাঠানো হচ্ছে */}
+      <main className="flex-grow">
+        <CheckOutForm productData={checkoutData} />
+      </main>
 
-const data = await res.json();
-
-const checkoutData = data.result; 
-
-
-// console.log(checkoutData);
-
-
-    return (
-        <div >
-            <Navbar/>
-          <CheckOutForm/>
-          <Footer/>
-        </div>
-    );
+      <Footer />
+    </div>
+  );
 };
 
 export default checkoutPage;

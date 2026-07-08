@@ -23,15 +23,6 @@ const ProductCard = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
 
-  if (!product) {
-    return (
-      <div className="text-center py-5 font-semibold text-gray-500">
-        PRODUCT CARD LOADING....
-      </div>
-    );
-  }
-
-  // ইভেন্ট হ্যান্ডলারস
 
 
   const openQuickView = (e) => {

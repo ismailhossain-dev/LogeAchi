@@ -6,7 +6,7 @@
 
 /* 🛠️ Custom Utility Class */
 .btn {
-  @apply bg-[#ff6801] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#e05b00] transition duration-200;
+  @apply bg-[#ff6801] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#e05b00] transition duration-200 cursor-pointer;
 }
 
 /* shadcn custom theme */
