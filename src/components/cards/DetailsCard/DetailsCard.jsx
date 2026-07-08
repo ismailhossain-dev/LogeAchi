@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import AddToCart from "@/components/buttons/AddToCart";
+import Link from "next/link";
 
 const DetailsCard = ({ product }) => {
   if (!product) {
@@ -135,7 +135,7 @@ const DetailsCard = ({ product }) => {
             </div>
 
             {/* প্রোডাক্ট টাইটেল */}
-            <h1 className="text-2xl sm:text-3xl xl:text-4xl font-extrabold tracking-tight text-neutral-900 leading-tight mb-4">
+            <h1 className="text-2xl sm:text-3xl xl:text-4xl font-extrabold tracking-tight  leading-tight mb-4 text-secondary">
               {title}
             </h1>
 
@@ -154,7 +154,7 @@ const DetailsCard = ({ product }) => {
 
             {/* ডেসক্রিপশন */}
             <div className="mb-6">
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-secondary leading-relaxed font-normal">
                 {description || "No description provided for this product."}
               </p>
             </div>
@@ -192,7 +192,7 @@ const DetailsCard = ({ product }) => {
             {sizes?.length > 0 && (
               <div className="mb-6">
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-bold tracking-wider text-neutral-800 uppercase">
+                  <span className="text-xs font-bold tracking-wider text-white uppercase">
                     Select Size
                   </span>
                   {selectedSize && (
@@ -222,7 +222,7 @@ const DetailsCard = ({ product }) => {
 
             {/* কোয়ান্টিটি সিলেক্টর */}
             <div className="mb-8">
-              <span className="text-xs font-bold tracking-wider text-neutral-800 uppercase block mb-3">
+              <span className="text-xs font-bold tracking-wider text-white uppercase block mb-3">
                 Quantity
               </span>
               <div className="flex items-center w-32 h-11 border border-neutral-200 bg-white rounded-xl shadow-sm p-1.5">
@@ -274,36 +274,20 @@ const DetailsCard = ({ product }) => {
             </div>
             {/* Add to Cart button  */}
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-              <AddToCart product={product} />
+                <Link href={`/checkout`} product={product} className='flex flex-col sm:flex-row items-center gap-3 w-full'>
 
-              <button
+               <button
                 type="button"
-                className="w-full sm:w-14 h-14 border border-neutral-200 bg-white hover:border-neutral-400 text-neutral-600 hover:text-neutral-900 rounded-xl flex items-center justify-center transition-all duration-200 shadow-sm transform active:scale-[0.99]"
-                title="Add to Wishlist"
+                disabled={!stock}
+                className="btn w-full sm:flex-1 h-14  disabled:cursor-not-allowed "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.8}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                  />
-                </svg>
+                {stock ? 'Add to Cart' : 'Out of Stock'}
               </button>
+     
+        </Link>
             </div>
 
-            {/* SKU বা অতিরিক্ত বিবরণ */}
-            {sku && sku !== "N/A" && (
-              <p className="mt-6 text-xs font-semibold text-neutral-400 uppercase tracking-wider">
-                SKU: <span className="text-neutral-600 font-medium">{sku}</span>
-              </p>
-            )}
+           
           </div>
         </div>
       </div>

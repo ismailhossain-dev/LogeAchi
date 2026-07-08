@@ -1,5 +1,6 @@
 import ProductCard from "@/components/cards/ProductCard/ProductCard";
 import Banner from "@/components/home/Banner/Banner";
+import Gallery from "@/components/home/Gallery/Gallery";
 import OurServices from "@/components/home/OurServices/OurServices";
 
 import Footer from "@/components/shared/Footer/Footer";
@@ -18,11 +19,12 @@ const Page = async () => {
   
 
   return (
-    <div className="bg-[#0f172a]">
+    <div className="bg-[#0f172a] ">
     
 
       {/* header */}
        <Banner/>
+    
 
        {/* shadcn table */}
 
@@ -43,6 +45,10 @@ const Page = async () => {
      
      {/* Our Services Section */}
      <OurServices/>
+
+     {/* gallery */}
+
+     <Gallery/>
       {/* Footer */}
       <Footer />
     </div>
