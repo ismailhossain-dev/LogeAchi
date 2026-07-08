@@ -6,9 +6,7 @@ import Navbar from "@/components/shared/Navbar/Navbar";
 export default async function ProductDetails({ params }) {
   const { id } = await params;
 
-  const res = await fetch(
-    `http://localhost:3000/api/homeProducts/${id}`
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/homeProducts/${id}`)
 
   const detailsUser = await res.json();
   const product = detailsUser.result;

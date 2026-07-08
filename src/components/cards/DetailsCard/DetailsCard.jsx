@@ -274,7 +274,7 @@ const DetailsCard = ({ product }) => {
             </div>
             {/* Add to Cart button  */}
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-                <Link href={`/checkout`} product={product} className='flex flex-col sm:flex-row items-center gap-3 w-full'>
+                <Link href={`/checkout/${_id}`}  className='flex flex-col sm:flex-row items-center gap-3 w-full'>
 
                <button
                 type="button"
