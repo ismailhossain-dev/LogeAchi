@@ -1,5 +1,5 @@
 "use client"
-import InvoiceTable from '@/components/Dashboard/ui/InvoiceTable';
+import WishListTable from '@/components/Dashboard/ui/WishListTable';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
@@ -14,9 +14,11 @@ const dashboarWishListPage = () => {
       <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
     }
 
-    console.log(session);
+    // console.log(session);
 
     //url = http://localhost:3000/api/wishlist?email=sabbirvai69k@gmail.com
+
+  //tanstack use because i need retetch for data delete
 const {
   data: wishlistData,
   isLoading,
@@ -34,7 +36,7 @@ const {
 
 const wishlist = wishlistData?.result || [];
 
-console.log(wishlist);
+// console.log(wishlist);
 
     return (
         <div className='text-white'>
@@ -42,7 +44,7 @@ console.log(wishlist);
           
             <div>
               
-              {wishlist.map((wish)=> <InvoiceTable key={wish._id} wish={wish}></InvoiceTable>)}
+             <WishListTable wishlist={wishlist} refetch={refetch}></WishListTable>
             </div>
         </div>
     );

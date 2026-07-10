@@ -1,4 +1,5 @@
 import { dbConnect } from "@/lib/dbConnect";
+import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -82,3 +83,32 @@ export async function GET(req) {
   }
 }
 
+//wishlist delete api 
+
+export async function DELETE(req) {
+  try {
+    const id = await req.json();
+
+    console.log("wishlist backend id", id);
+    if(!id ) {
+      return NextResponse.json({ message: "Invalid or missing ID" }, { status: 400 });
+    }
+
+    const result = await dbConnect("wishlist").deleteOne({_id: new ObjectId(id)});
+
+    return NextResponse.json({
+      message: "Wishlist deleted successfully",
+      result,
+    }, { status: 200 });
+    
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Wishlist delete failed",
+        error: error.message,
+      },
+      { status: 500 }
+    );
+  }
+}

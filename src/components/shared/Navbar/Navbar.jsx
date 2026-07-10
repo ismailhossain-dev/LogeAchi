@@ -1,5 +1,4 @@
 "use client";
-
 import AuthButton from '@/components/auth/AuthButton/AuthButton';
 import Logo from '@/components/Logo/Logo';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
@@ -40,11 +39,11 @@ const Navbar = () => {
   // 🛠️ delete cart item
 const handleDeleteCartItem = async (itemId) => {
   try {
-    // 🛠️ ইউআরএল ফিক্সড থাকবে, ডাটা যাবে বডিতে
     const res = await axiosSecure.delete('/api/cart', { data: { id: itemId } });
     
     if (res.status === 200) {
       toast.success("Item removed from cart");
+      // কার্টে কোনো পরিবর্তন (অ্যাড/ডিলিট) হলে, এই ইউজারের কার্ট ডেটা পেজ রিলোড ছাড়াই অটোমেটিক রিফেচ (আপডেট) করবে
       queryClient.invalidateQueries(["cart", session?.user?.email]);
     }
   } catch (error) {

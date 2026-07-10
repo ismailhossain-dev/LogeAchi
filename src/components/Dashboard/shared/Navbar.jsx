@@ -1,8 +1,17 @@
 "use client"
+import { useSession } from 'next-auth/react';
 import React from 'react';
 
 const Navbar = ({ setIsOpen }) => {
 
+  const {data: session, status} = useSession()
+
+  if(status === "loading"){
+    return <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
+  }
+
+
+  console.log("dashboard navbar session", session);
   return (
     <header className="flex justify-between items-center bg-[#0f111a]/80 backdrop-blur-md px-6 py-4 shadow-lg font-sans border-b border-gray-800/60 select-none sticky top-0 z-30">
       
@@ -44,8 +53,8 @@ const Navbar = ({ setIsOpen }) => {
             alt="User Profile" 
           />
           <div className="hidden sm:flex flex-col">
-            <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors leading-tight">Arif Rahman</span>
-            <span className="text-[10px] text-gray-500 mt-0.5 font-bold tracking-wider uppercase">Admin</span>
+            <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors leading-tight">{session?.user?.name}</span>
+            <span className="text-[10px] text-gray-500 mt-0.5 font-bold tracking-wider uppercase">Customer</span>
           </div>
         </div>
       </div>
