@@ -9,21 +9,19 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiChevronRight, FiTrash2 } from 'react-icons/fi'; 
-// 🛠️ ভুল ইম্পোর্টটি (react-none) এখান থেকে রিমুভ করা হয়েছে
 import { MdMenu as MdMenuIcon, MdClose as MdCloseIcon } from "react-icons/md";
-// 🛠️ TanStack Query ইমপোর্ট করা হলো
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // মোবাইল মেনু স্টেট
-  const [isCartOpen, setIsCartOpen] = useState(false); // কার্ট সাইডবার স্টেট
+  const [isOpen, setIsOpen] = useState(false); 
+  const [isCartOpen, setIsCartOpen] = useState(false); 
   const pathname = usePathname();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const { data: session, status, isLoading: isSessionLoading } = useSession();
 
-  // 🛠️ TanStack Query Structure
+
   const {
     data: cartData,
     isLoading: isCartLoading,
@@ -39,19 +37,21 @@ const Navbar = () => {
 
   const cartItems = cartData?.result || [];
 
-  // 🛠️ কার্ট আইটেম ডিলিট করার ফাংশন
-  const handleDeleteCartItem = async (itemId) => {
-    try {
-      const res = await axiosSecure.delete(`/api/cart/${itemId}`);
-      if (res.data?.success || res.status === 200) {
-        toast.success("Item removed from cart");
-        queryClient.invalidateQueries(["cart", session?.user?.email]); // লাইভ ডাটা রিফ্রেশ
-      }
-    } catch (error) {
-      console.error("Delete error:", error);
-      toast.error("Failed to remove item");
+  // 🛠️ delete cart item
+const handleDeleteCartItem = async (itemId) => {
+  try {
+    // 🛠️ ইউআরএল ফিক্সড থাকবে, ডাটা যাবে বডিতে
+    const res = await axiosSecure.delete('/api/cart', { data: { id: itemId } });
+    
+    if (res.status === 200) {
+      toast.success("Item removed from cart");
+      queryClient.invalidateQueries(["cart", session?.user?.email]);
     }
-  };
+  } catch (error) {
+    console.error("Delete error:", error);
+    toast.error("Failed to remove item");
+  }
+};
 
   const handleMenu = () => {
     setIsOpen(!isOpen);
@@ -149,6 +149,7 @@ const Navbar = () => {
         </div>
       </nav>
 
+{/* navbar hide margin */}
       <div className="bg-[#0f172a] h-20 w-full" />
 
       {/* ব্যাকড্রপ ওভারলে */}
@@ -159,7 +160,7 @@ const Navbar = () => {
         }`} 
       />
 
-      {/* 🛒 কার্ট সাইডবার প্যানেল */}
+      
       <div className={`fixed top-0 right-0 h-full w-[380px] bg-[#0f172a] border-l border-slate-800/60 z-50 p-6 flex flex-col justify-between text-white shadow-2xl transition-transform duration-300 ease-in-out ${
         isCartOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
@@ -176,7 +177,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* 🛠️ কার্ট আইটেম ডাইনামিক লিস্ট */}
+          {/* cart sidebar */}
           <div className="mt-6 space-y-4 overflow-y-auto max-h-[calc(100vh-220px)] pr-1">
             {isCartLoading ? (
               <p className="text-sm text-slate-400 text-center py-8">কার্ট লোড হচ্ছে...</p>
@@ -197,7 +198,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   
-                  {/* 🛠️ ডিলিট বাটন অ্যাকশন */}
+                  {/* 🛠️ delet icon or button */}
                   <button 
                     onClick={() => handleDeleteCartItem(item._id)}
                     className="text-slate-400 hover:text-red-500 p-2 rounded-lg hover:bg-white/5 transition-colors focus:outline-none cursor-pointer"

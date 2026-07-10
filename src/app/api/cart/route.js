@@ -1,4 +1,5 @@
 import { dbConnect } from "@/lib/dbConnect";
+import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -36,6 +37,7 @@ export async function POST(req) {
 }
 
 
+//query params get api
 export async function GET(req) {
   try{
     const {searchParams} = new URL(req.url);
@@ -51,3 +53,27 @@ export async function GET(req) {
     return NextResponse.json({message: "Cart API failed", error: error.message}, {status: 500})
   }
 }
+
+
+//cart delete api 
+
+export async function DELETE(req) {
+  try {
+    // 🛠️ ক্লায়েন্ট সাইড থেকে পাঠানো বডি থেকে id নেওয়া হচ্ছে
+    const { id } = await req.json(); 
+    // console.log("ডিলিট করার আইডি:", id);
+
+    if (!id || !ObjectId.isValid(id)) {
+      return NextResponse.json({ message: "Invalid or missing ID" }, { status: 400 });
+    }
+
+    const result = await dbConnect("cart").deleteOne({ _id: new ObjectId(id) });
+
+    return NextResponse.json({ message: "Cart item deleted successfully", result }, { status: 200 });
+    
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "API failed", error: error.message }, { status: 500 });
+  }
+}
+
