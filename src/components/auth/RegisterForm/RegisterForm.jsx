@@ -5,14 +5,19 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { User, Mail, Lock, ArrowLeft, Sparkles, EyeOff, Eye, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { postUser } from "@/actions/server/auth";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
+import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const router = useRouter();
+  //amra etar mardome cheek korbo use kono page teke register page asche
+  const params = useSearchParams();
+  const callBackUrl = params.get("callbackUrl") || "/";
   
   const {
     register,
@@ -41,9 +46,15 @@ const RegisterForm = () => {
     const result = await postUser(data);
 
     if (result?.insertedId) {
-      alert("Successfully Registered | Please login");
-      router.push("/login");
-      console.log("User created successfully");
+      // router.push("/login");
+      //========auto signin=========
+      const result = await signIn("credentials", 
+        { email: data.email,
+        password: data.password,
+        callbackUrl: callBackUrl });
+
+        toast.success("Successfully Registered");
+      // console.log("User created successfully");
     }
   };
 
@@ -120,7 +131,7 @@ const RegisterForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               
               {/* Premium Image Upload Input */}
-              <div className="flex flex-col gap-1.5">
+              {/* <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-300 tracking-wide">Profile Picture</label>
                 <div className="relative group w-full h-24 flex items-center justify-center border border-dashed border-slate-700 hover:border-orange-500 rounded-xl bg-slate-950/50 p-4 transition-all duration-300 cursor-pointer overflow-hidden">
                   <input
@@ -155,7 +166,7 @@ const RegisterForm = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </div> */}
 
               {/* Full Name Input Box */}
               <div className="flex flex-col gap-1.5">

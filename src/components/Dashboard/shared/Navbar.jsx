@@ -6,9 +6,12 @@ const Navbar = ({ setIsOpen }) => {
 
   const {data: session, status} = useSession()
 
+
+
   if(status === "loading"){
     return <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
   }
+  console.log("dasborad navbar user", session);
 
 
   console.log("dashboard navbar session", session);

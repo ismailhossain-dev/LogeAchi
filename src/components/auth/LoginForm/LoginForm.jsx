@@ -7,6 +7,7 @@ import { Mail, ArrowLeft, Sparkles, Lock, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -184,6 +185,11 @@ const LoginForm = () => {
                 Login Account
               </button>
             </form>
+
+            {/* google login */}
+            <div className="mt-4">
+              <GoogleLogin />
+            </div>
 
             {/* রেজিস্টার ফুটার লিঙ্ক */}
             <p className="mt-6 text-center text-xs font-semibold text-slate-400">

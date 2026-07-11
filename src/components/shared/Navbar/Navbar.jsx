@@ -79,15 +79,16 @@ const handleDeleteCartItem = async (itemId) => {
 
   const navbarLinks = [
     { id: 1, name: "Home", href: "/" },
-    { id: 2, name: "Shop", href: "/all-collection" },
-    { id: 3, name: "Collection", href: "/collection" },
-    { id: 4, name: "Blogs", href: "/blogs" }
+    { id: 2, name: "SHOP", href: "/all-collection" },
+    { id: 3, name: "MENS", href: "/collection" },
+    { id: 4, name: "WOMENS", href: "/womens" },
+    { id: 5, name: "ABOUT US", href: "/about-us" }
   ];
 
   return (
     <>
       {/* 🌟 মেইন নেভিগেশন বার */}
-      <nav className="fixed top-0 left-0 w-full bg-[#0b0f19] border-slate-800/60 backdrop-blur-md border-b py-4 z-40 shadow-md select-none">
+      <nav className="fixed top-0 left-0 w-full bg-[#0f172a] border-slate-800/60 backdrop-blur-md border-b py-4 z-40 shadow-md select-none">
         <div className="flex justify-between items-center max-w-7xl mx-auto px-5 sm:px-8">
           
           {/* ব্র্যান্ড লোগো */}
