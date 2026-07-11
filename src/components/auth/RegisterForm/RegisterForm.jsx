@@ -3,26 +3,38 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { User, Mail, Lock, ArrowLeft, Sparkles, EyeOff, Eye, Image as ImageIcon } from "lucide-react";
+import {
+  User,
+  Mail,
+  Lock,
+  ArrowLeft,
+  Sparkles,
+  EyeOff,
+  Eye,
+  Image as ImageIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { postUser } from "@/actions/server/auth";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import axios from "axios";
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
+
+  // ✅ বাগ এড়ানোর জন্য সরাসরি ইমেজ ফাইল অবজেক্ট ট্র্যাক করার স্টেট
+  const [rawImageFile, setRawImageFile] = useState(null);
+
   const router = useRouter();
-  //amra etar mardome cheek korbo use kono page teke register page asche
   const params = useSearchParams();
   const callBackUrl = params.get("callbackUrl") || "/";
-  
+
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -30,46 +42,81 @@ const RegisterForm = () => {
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      // react-hook-form এ ফাইলের ভ্যালু সেট করার জন্য
-      setValue("profileImage", file);
-      
+      console.log("Selected file inside handler:", file); // ডেবাগিং লগ
+      setRawImageFile(file); // ফিজিক্যাল ফাইল অবজেক্টটি স্টেটে স্টোর করা হলো
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.reader.result || reader.result);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  // main function for register form submit
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
-    const result = await postUser(data);
+    console.log("Text Form Data:", data);
+    console.log("Image File from State:", rawImageFile);
 
-    if (result?.insertedId) {
-      // router.push("/login");
-      //========auto signin=========
-      const result = await signIn("credentials", 
-        { email: data.email,
+    // ফাইল সিলেক্ট করা হয়েছে কিনা তা রানটাইমে কঠোরভাবে চেক করা
+    // if (!rawImageFile) {
+    //   toast.error("Please upload a profile picture first!");
+    //   return;
+    // }
+
+    // const formData = new FormData();
+    // formData.append("image", rawImageFile);
+
+    try {
+    //   const IMAGE_API_URL = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`;
+
+    //   // Axios এর কোনো কাস্টম কনফিগারেশন সমস্যা এড়াতে standard fetch ব্যবহার করা
+    //   const imgResponse = await fetch(IMAGE_API_URL, {
+    //     method: "POST",
+    //     body: formData,
+    //   });
+
+    //   const imgResult = await imgResponse.json();
+
+    //   if (!imgResponse.ok || !imgResult.data) {
+    //     throw new Error(imgResult.error?.message || "ImgBB upload failed");
+    //   }
+
+    //   console.log("ImgBB Response Data:", imgResult);
+    //   const imageUrl = imgResult.data.url;
+
+      // আপনার ব্যাকএন্ডে পাঠানোর ডেটা অবজেক্ট
+      const userData = {
+        name: data.name,
+        email: data.email,
         password: data.password,
-        callbackUrl: callBackUrl });
+        // profileImage: imageUrl,
+      };
 
+      const result = await postUser(userData);
+
+      if (result?.insertedId) {
+        await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          callbackUrl: callBackUrl,
+        });
         toast.success("Successfully Registered");
-      // console.log("User created successfully");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      toast.error(error.message || "Registration failed!");
     }
   };
 
   return (
-    // আপনার ফুল ওয়েবসাইটের ডার্ক ব্যাকগ্রাউন্ড (#0f172a) এর সাথে ম্যাচিং মেইন কন্টেইনার
     <div className="min-h-screen w-full bg-[#0f172a] flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased text-slate-200">
-      
-      {/* সেন্ট্রাল কন্টেইনার কার্ড - গ্লাস-মরফিজম প্রিমিয়াম লুক */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="flex w-full max-w-5xl min-h-[700px] bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_25px_70px_-15px_rgba(0,0,0,0.7)] border border-slate-800"
       >
-        
         {/* Left Side: Cinematic Hero Image */}
         <div className="hidden lg:block relative flex-1 min-w-[450px] bg-slate-950">
           <img
@@ -77,7 +124,6 @@ const RegisterForm = () => {
             alt="Fashion Hero"
             className="w-full h-full object-cover opacity-80"
           />
-          {/* গ্রেডিয়েন্ট ওভারলে */}
           <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-12">
             <motion.div
               initial={{ x: -20, opacity: 0 }}
@@ -97,14 +143,15 @@ const RegisterForm = () => {
 
         {/* Right Side: Form Section */}
         <div className="flex-1 flex flex-col justify-center p-6 sm:p-10 lg:p-12 bg-slate-900/40 relative">
-          
-          {/* Go Back বাটন */}
-          <button 
+          <button
             type="button"
             onClick={() => router.back()}
             className="absolute top-6 left-6 sm:left-10 flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-orange-500 transition-colors group"
           >
-            <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft
+              size={16}
+              className="group-hover:-translate-x-0.5 transition-transform"
+            />
             Go Back
           </button>
 
@@ -114,7 +161,6 @@ const RegisterForm = () => {
             transition={{ delay: 0.3 }}
             className="max-w-md mx-auto w-full mt-8"
           >
-            {/* টপ হেডার ও ব্যাজ */}
             <div className="mb-6">
               <div className="inline-flex items-center gap-1.5 bg-slate-800/80 border border-slate-700/50 text-slate-300 px-3 py-1 rounded-md mb-2.5">
                 <Sparkles size={12} className="text-orange-500" />
@@ -127,12 +173,12 @@ const RegisterForm = () => {
               </h3>
             </div>
 
-            {/* মেইন রেজিস্টার ফর্ম */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              
               {/* Premium Image Upload Input */}
               {/* <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-300 tracking-wide">Profile Picture</label>
+                <label className="text-xs font-bold text-slate-300 tracking-wide">
+                  Profile Picture
+                </label>
                 <div className="relative group w-full h-24 flex items-center justify-center border border-dashed border-slate-700 hover:border-orange-500 rounded-xl bg-slate-950/50 p-4 transition-all duration-300 cursor-pointer overflow-hidden">
                   <input
                     type="file"
@@ -155,13 +201,21 @@ const RegisterForm = () => {
                   ) : (
                     <div className="flex items-center gap-3 text-slate-400 z-0 pointer-events-none">
                       <div className="p-2.5 bg-slate-900 rounded-lg border border-slate-800 group-hover:border-orange-500/50 transition-colors">
-                        <ImageIcon size={20} className="text-slate-400 group-hover:text-orange-500" />
+                        <ImageIcon
+                          size={20}
+                          className="text-slate-400 group-hover:text-orange-500"
+                        />
                       </div>
                       <div className="text-left">
                         <p className="text-xs font-semibold text-slate-300">
-                          <span className="text-orange-500">Click to upload</span> profile image
+                          <span className="text-orange-500">
+                            Click to upload
+                          </span>{" "}
+                          profile image
                         </p>
-                        <p className="text-[11px] text-slate-500 mt-0.5">Supports PNG, JPG (Max 5MB)</p>
+                        <p className="text-[11px] text-slate-500 mt-0.5">
+                          Supports PNG, JPG (Max 5MB)
+                        </p>
                       </div>
                     </div>
                   )}
@@ -170,7 +224,9 @@ const RegisterForm = () => {
 
               {/* Full Name Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-300 tracking-wide">Full Name</label>
+                <label className="text-xs font-bold text-slate-300 tracking-wide">
+                  Full Name
+                </label>
                 <div className="relative flex items-center">
                   <User size={16} className="absolute left-4 text-slate-500" />
                   <input
@@ -189,7 +245,9 @@ const RegisterForm = () => {
 
               {/* Mail Address Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-300 tracking-wide">Mail address</label>
+                <label className="text-xs font-bold text-slate-300 tracking-wide">
+                  Mail address
+                </label>
                 <div className="relative flex items-center">
                   <Mail size={16} className="absolute left-4 text-slate-500" />
                   <input
@@ -214,7 +272,9 @@ const RegisterForm = () => {
 
               {/* Password Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-300 tracking-wide">Lock password</label>
+                <label className="text-xs font-bold text-slate-300 tracking-wide">
+                  Lock password
+                </label>
                 <div className="relative flex items-center">
                   <Lock size={16} className="absolute left-4 text-slate-500" />
                   <input
@@ -253,12 +313,10 @@ const RegisterForm = () => {
               </button>
             </form>
 
-            {/* Google Login Component */}
             <div className="mt-4">
               <GoogleLogin />
             </div>
 
-            {/* লগইন ফুটার লিঙ্ক */}
             <p className="mt-6 text-center text-xs font-semibold text-slate-400">
               Already a member?{" "}
               <Link
@@ -270,7 +328,6 @@ const RegisterForm = () => {
             </p>
           </motion.div>
         </div>
-        
       </motion.div>
     </div>
   );
