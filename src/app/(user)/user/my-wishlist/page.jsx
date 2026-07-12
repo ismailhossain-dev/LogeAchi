@@ -1,10 +1,9 @@
 "use client"
-import WishListTable from '@/components/Dashboard/ui/WishListTable';
+
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-
-import React from 'react';
+import WishListTable from '@/components/Dashboard/Table/WishListTable';
 
 const dashboarWishListPage = () => {
     const axiosSecure = useAxiosSecure()

@@ -5,6 +5,8 @@ export async function POST (req){
    try {
     const cheekoutData = await req.json();
 
+   //product ekta takle er add hobe na just quantity update hobe eta ekane korbo 
+
     const result = await dbConnect("orders").insertOne(cheekoutData)
 
     return NextResponse.json({

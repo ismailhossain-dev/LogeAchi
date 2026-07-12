@@ -2,6 +2,7 @@
 
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -11,6 +12,7 @@ function CheckOutForm({ productData }) {
   const { _id, title, image, price, size = [] } = productData || {};
   const { data: session, status } = useSession();
   const axiosSecure = useAxiosSecure();
+  const router = useRouter()
 
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -39,7 +41,7 @@ function CheckOutForm({ productData }) {
 
   const onSubmit = async(formData) => {
 
-    console.log(formData)
+    // console.log(formData)
 
 
     // Combines user details with relevant product metrics
@@ -58,19 +60,19 @@ function CheckOutForm({ productData }) {
       const res = await axiosSecure.post ("/api/checkout", {
         
         name: formData.fullName , 
-        email: formData.email , 
+        email:session?.user?.email, 
         number:formData.phoneNumber , 
         address:formData.fullAddress ,
         city: formData.city,
         division: formData.state, 
-        zipcode: formData.zipCode , 
-
-        loginEmail:session?.user?.email, 
+        zipcode: formData.zipCode ,
+        status: "pending", 
         createdAt: new Date().toISOString(),
       })
 
         if (res.data.result?.acknowledged === true) {
            toast.success("Order Conform!");
+          //  router.push("/user/my-orders")
            return;
       
             }
@@ -170,7 +172,7 @@ function CheckOutForm({ productData }) {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               {/* Personal Info Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1  gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs font-bold text-slate-300">
                     Full Name *
@@ -190,28 +192,7 @@ function CheckOutForm({ productData }) {
                   )}
                 </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">
-                    Email Address *
-                  </label>
-                  <input
-                    {...register("email", {
-                      required: "Email address is required",
-                      pattern: {
-                        value: /^\S+@\S+$/i,
-                        message: "Please enter a valid email address",
-                      },
-                    })}
-                    type="email"
-                    placeholder="example@mail.com"
-                    className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
-                  />
-                  {errors.email && (
-                    <span className="text-red-400 text-xs">
-                      {errors.email.message}
-                    </span>
-                  )}
-                </div>
+               
               </div>
 
               {/* Contact Info Row */}
