@@ -1,15 +1,24 @@
+import { dbConnect } from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
+//query params use
+//http://localhost:3000/api/user?email=lywyzuxaji@mailinator.com
 export async function GET(req) {
     try {
-        const userData = await req.json();
-        console.log("backend user get,,,,,,,,,,,,,,, ")
+    const {searchParams} = new URL(req.url);
+  const email = searchParams.get("email");
+
+    console.log("backend profile email", email)
+     if(!email){
+      return NextResponse.json({message: "Email is not found"}, {status: 400})
+    }
+    const result = await dbConnect("users").findOne({email:email})
 
 
-        return NextResponse.json({
+    return NextResponse.json({
             message: "User get successfully",
-            status: 2000
-        })
+            result
+        }, {status: 200})
         
     } catch (error) {
         console.log(error);

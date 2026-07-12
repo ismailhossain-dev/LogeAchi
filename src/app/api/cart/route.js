@@ -38,6 +38,7 @@ export async function POST(req) {
 
 
 //query params get api
+//http://localhost:3000/api/user?email=lywyzuxaji@mailinator.com
 export async function GET(req) {
   try{
     const {searchParams} = new URL(req.url);

@@ -42,8 +42,8 @@ const WishListButton = ({ product }) => {
         image: image,
         price: price, 
         size:size,
-        userEmail: session?.user?.email,
-        userName: session?.user?.name,
+        email: session?.user?.email,
+        name: session?.user?.name,
        createdAt: new Date().toISOString(),
       });
 

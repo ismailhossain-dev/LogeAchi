@@ -33,6 +33,8 @@ export default function WishListTable({ wishlist = [], refetch }) {
     }
   }, [wishlist]);
 
+
+
   // Quantity পরিবর্তনের ফাংশন
   const updateQuantity = (id, change) => {
     setItems(prevItems =>

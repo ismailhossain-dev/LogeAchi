@@ -14,8 +14,6 @@ const dashboarWishListPage = () => {
       <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
     }
 
-    // console.log(session);
-
     //url = http://localhost:3000/api/wishlist?email=sabbirvai69k@gmail.com
 
   //tanstack use because i need retetch for data delete
@@ -32,6 +30,8 @@ const {
 );
     return res.data;
   },
+  //session and email na match kole query run hobe na 
+  enabled: !!session?.user?.email, 
 });
 
 const wishlist = wishlistData?.result || [];

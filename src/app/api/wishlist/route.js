@@ -5,18 +5,21 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     try {
         const wishlistUser = await req.json();
+
+        // console.log("whihlist user " , wishlistUser)
     
-        const productId = wishlistUser.productId || wishlistUser.id;
+        const productId = wishlistUser.productId ||
+         wishlistUser.id;
 
-        const isWishListExist = await dbConnect("wishlist").findOne({ 
-            email: wishlistUser.email,
-            productId: productId // এই লাইনটি চেক করবে একই ইউজার একই প্রোডাক্ট বারবার দিচ্ছে কিনা
-        });
-
+        //cheek wishlist have 
+        const isWishListExist = await dbConnect("wishlist").findOne({
+         email: wishlistUser.email,
+         //eki product user 2bar wishlist e add korte parbe na 
+          productId: productId
+      })
         if (isWishListExist) {
             return NextResponse.json({
                 message: "This item already exists in your wishlist",
-                status: 400
             }, { status: 400 });
         }
 

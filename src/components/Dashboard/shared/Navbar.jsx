@@ -11,10 +11,9 @@ const Navbar = ({ setIsOpen }) => {
   if(status === "loading"){
     return <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
   }
-  console.log("dasborad navbar user", session);
+  // console.log("dasborad navbar user", session);
 
 
-  console.log("dashboard navbar session", session);
   return (
     <header className="flex justify-between items-center bg-[#0f111a]/80 backdrop-blur-md px-6 py-4 shadow-lg font-sans border-b border-gray-800/60 select-none sticky top-0 z-30">
       
