@@ -3,8 +3,10 @@
 import { dbConnect } from "@/lib/dbConnect";
 import bcrypt from "bcrypt";
 
+
+//register post function
 export const postUser = async (payload) => {
-  const { name, email, password } = payload;
+  const { name, email, password, image } = payload;
 
   try {
     const collection = dbConnect("users");
@@ -23,6 +25,7 @@ export const postUser = async (payload) => {
       providerId: "credentials",
       name,
       email,
+      image,
       password: await bcrypt.hash(password, 14),
       createdAt: new Date(),
       updatedAt: new Date(),
