@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BsCart3 } from "react-icons/bs";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
+import { Calendar } from "lucide-react";
 
 const ProductModel = ({ 
   showModal, 
@@ -24,61 +25,78 @@ const ProductModel = ({
   const increaseQty = () => setQuantity(quantity + 1);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
-      {/* ব্যাকড্রপ ওভারলে (ব্লার ব্যাকগ্রাউন্ড) */}
-      <div className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity" onClick={onClose} />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+      {/* ব্যাকড্রপ ওভারলে */}
+      <div className="fixed inset-0" onClick={onClose} />
 
-      {/* মডাল মেইন বক্স */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] md:max-h-[85vh] overflow-y-auto md:overflow-hidden z-10 transform transition-all animate-in fade-in zoom-in-95 duration-200">
+      {/* মডাল মেইন বক্স (সর্বোচ্চ বড় এবং লাক্সারি লুকের জন্য max-w-4xl করা হয়েছে) */}
+      <div className="bg-[#070b13] border border-slate-800/80 w-full max-w-[600px] md:max-w-3xl rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 duration-300 z-10">
         
-        {/* ক্লোজ বাটন (X) */}
+        {/* 🔮 Background Premium Glow */}
+        <div className="absolute top-0 right-0 w-[250px] h-[250px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
+
+        {/* ক্লোজ বাটন */}
         <button 
           onClick={onClose}
-          className="absolute top-3 right-3 z-30 w-9 h-9 bg-white/90 hover:bg-red-500 hover:text-white text-gray-800 rounded-full flex items-center justify-center transition-all shadow-md border border-gray-100 focus:outline-none active:scale-95"
+          className="absolute top-5 right-5 p-2.5 bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white rounded-xl transition cursor-pointer z-20 hover:scale-105 active:scale-[0.95]"
           aria-label="Close modal"
         >
-          <MdClose className="text-xl font-bold" />
+          <MdClose size={18} />
         </button>
 
-        {/* মডাল লেআউট গ্রিড */}
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+        {/* গ্রিড লেআউট (Mobile-এ উপরে-নিচে, Desktop-এ পাশাপাশি সমান সাইজ) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
           
-          {/* বাম পাশ: প্রোডাক্ট ইমেজ */}
-          <div className="relative w-full h-64 sm:h-80 md:h-full min-h-[260px] md:min-h-[450px] bg-[#fdfdfd] flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-100">
-            <Image src={image} alt={title} fill className="object-cover" priority />
-          </div>
+          {/* 🖼️ বাম পাশ: প্রিমিয়াম বিগ ইমেজ প্রিভিউ */}
+       <div className="md:col-span-5 flex items-center justify-center w-full">
+  {/* মোবাইল স্ক্রিনে ফিক্সড হাইট h-[380px] এবং md স্ক্রিন থেকে প্রিমিয়াম aspect-[3/5] কাজ করবে */}
+  <div className="w-full h-[380px] md:h-auto md:aspect-[3/5] rounded-2xl overflow-hidden bg-slate-950 border border-slate-700/50 p-1 shadow-2xl relative group">
+    <Image 
+      src={image} 
+      alt={title} 
+      fill 
+      className="object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" 
+      priority 
+      sizes="(max-w-768px) 100vw, 40vw"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-transparent to-transparent pointer-events-none" />
+  </div>
+</div>
 
-          {/* ডান পাশ: প্রোডাক্ট ইনফরমেশন ও ফর্ম */}
-          <div className="p-5 sm:p-7 flex flex-col justify-between md:max-h-[500px] md:overflow-y-auto bg-[#0f172a]">
+          {/* 📝 ডান পাশ: প্রোডাক্ট ইনফরমেশন ও ফর্ম কন্ট্রোল */}
+          <div className="md:col-span-7 flex flex-col justify-between space-y-6">
+            
             <div className="space-y-4">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#ff6801] bg-[#ff6801]/10 px-2.5 py-1 rounded-md">Quick Shop</span>
-                <h2 className="text-lg md:text-2xl font-bold text-secondary mt-2.5 leading-tight">{title}</h2>
-                <p className="text-xl md:text-2xl font-extrabold text-secondary mt-1.5">${price}</p>
-              </div>
               
+              <h2 className="text-xl sm:text-3xl font-black text-white tracking-wide leading-tight">
+                {title}
+              </h2>
+              
+              
+
               {/* ডেসক্রিপশন */}
-              <p className="text-xs text-gray-400 leading-relaxed line-clamp-3 md:line-clamp-none">
+              <p className="text-xs text-slate-400 leading-relaxed">
                 {description || "Discover the perfect blend of style and comfort with this premium product. Crafted with care using high-quality materials to ensure long-lasting durability."}
               </p>
-              
-              <hr className="border-gray-100" />
+            </div>
 
-              {/* সিলেক্ট সাইজ গ্রুপ */}
+            {/* 🏷️ সাইজ এবং কোয়ান্টিটি সিলেক্টর এরিয়া */}
+            <div className="space-y-4 border-t border-slate-800/40 pt-4">
+              {/* সিলেক্ট সাইজ */}
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Select Size</span>
-                  {selectedSize && <span className="text-xs font-semibold text-[#ff6801]">Selected: {selectedSize}</span>}
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Select Size</span>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {sizes.map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`min-w-[40px] h-9 px-2.5 text-xs font-semibold rounded-md border transition-all flex items-center justify-center ${
+                      className={`min-w-[42px] h-9 px-3 text-xs font-bold rounded-lg border transition-all flex items-center justify-center cursor-pointer ${
                         selectedSize === size
-                          ? "bg-gray-900 text-white border-gray-900 shadow-sm"
-                          : "bg-white text-gray-700 border-gray-200 hover:border-gray-900"
+                          ? "bg-blue-600 text-white border-blue-500 shadow-[0_0_12px_rgba(37,99,235,0.3)]"
+                          : "bg-[#070b13] text-slate-300 border-slate-800 hover:border-slate-600"
                       }`}
                     >
                       {size}
@@ -87,46 +105,49 @@ const ProductModel = ({
                 </div>
               </div>
 
-              {/* সিলেক্ট কোয়ান্টিটি গ্রুপ */}
+              {/* সিলেক্ট কোয়ান্টিটি */}
               <div>
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2">Select Quantity</span>
-                <div className="flex items-center w-28 h-9 border border-gray-200 rounded-md overflow-hidden bg-gray-50">
-                  <button onClick={decreaseQty} className="flex-1 h-full flex items-center justify-center hover:bg-gray-200 text-gray-600 transition-colors">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Quantity Requested</span>
+                <div className="flex items-center w-28 h-9 border border-slate-800 rounded-xl p-1 bg-[#070b13]">
+                  <button onClick={decreaseQty} className="flex-1 h-full flex items-center justify-center hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition cursor-pointer">
                     <FiMinus className="text-xs" />
                   </button>
-                  <span className="flex-1 text-center font-bold text-xs text-gray-800">{quantity}</span>
-                  <button onClick={increaseQty} className="flex-1 h-full flex items-center justify-center hover:bg-gray-200 text-gray-600 transition-colors">
+                  <span className="flex-1 text-center font-mono text-xs font-bold text-white">{quantity}</span>
+                  <button onClick={increaseQty} className="flex-1 h-full flex items-center justify-center hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition cursor-pointer">
                     <FiPlus className="text-xs" />
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* অ্যাকশন বাটন গ্রুপ */}
-            <div className="flex flex-col sm:flex-row gap-2.5 pt-5 mt-auto">
-              <button
-                onClick={() => {
-                  setIsAddedToCart(true);
-                  onClose();
-                }}
-                className="btn flex items-center gap-2"
-              >
-                <BsCart3 className="text-sm" /> Add To Cart
-              </button>
-              
-              <button
-                onClick={() => {
-                  alert(`Proceeding to buy ${quantity} unit(s) of size ${selectedSize || 'Not Selected'}`);
-                  onClose();
-                }}
-                className="btn"
-              >
-                Buy Now
-              </button>
-            </div>
-          </div>
+            {/* 💰 প্রাইসিং সামারি এবং অ্যাকশন বাটন কার্ড */}
+            <div className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-5 space-y-4 shadow-inner relative">
+              <div className="flex justify-between items-end">
+                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Price</span>
+                <span className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 font-mono">
+                  ৳{price * quantity}
+                </span>
+              </div>
 
+              {/* বাটন গ্রুপ */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                <button
+                  onClick={() => {
+                    setIsAddedToCart(true);
+                    onClose();
+                  }}
+                  className="flex-1 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.2)] cursor-pointer active:scale-[0.99]"
+                >
+                  <BsCart3 className="text-sm" /> Add To Cart
+                </button>
+                
+              
+              </div>
+            </div>
+            
+          </div>
         </div>
+
       </div>
     </div>
   );

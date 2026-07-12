@@ -62,10 +62,8 @@ export async function GET(req) {
       );
     }
 
-    const collection = await dbConnect("wishlist");
-//databader email sathe match kore find korbo
-    const result = await collection
-      .find({ userEmail: email })
+  const result = await dbConnect("wishlist")
+      .find({ email: email })
       .toArray();
 
     return NextResponse.json(

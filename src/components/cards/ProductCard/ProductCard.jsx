@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
           {/* Product Info */}
           <div className="text-center mt-4">
             <h3 className="text-[16px] text-secondary font-medium line-clamp-1">{title}</h3>
-            <p className="text-[17px] font-bold mt-2  text-secondary">${price}</p>
+            <p className="text-[17px] font-bold mt-2  text-secondary">৳ {price}</p>
           </div>
         </div>
       </Link>
