@@ -37,7 +37,7 @@ export async function GET(req){
       return NextResponse.json({message: "Email is not found"}, {status: 400})
     }
 
-    const result = await dbConnect("orders").find.toArray()
+    const result = await dbConnect("orders").findOne({email: email})
         
     return NextResponse.json({
         message: "cheekout data get successfully",

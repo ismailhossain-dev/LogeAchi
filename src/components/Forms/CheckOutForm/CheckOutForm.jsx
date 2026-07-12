@@ -58,7 +58,9 @@ function CheckOutForm({ productData }) {
 
     try {
       const res = await axiosSecure.post ("/api/checkout", {
-        
+         productTitle: title,
+        productPrice: price,
+        productSize: selectedSize,
         name: formData.fullName , 
         email:session?.user?.email, 
         number:formData.phoneNumber , 
@@ -67,12 +69,13 @@ function CheckOutForm({ productData }) {
         division: formData.state, 
         zipcode: formData.zipCode ,
         status: "pending", 
+      
         createdAt: new Date().toISOString(),
       })
 
         if (res.data.result?.acknowledged === true) {
            toast.success("Order Conform!");
-          //  router.push("/user/my-orders")
+           router.push("/user/my-orders")
            return;
       
             }
