@@ -167,7 +167,7 @@ const handleDeleteCartItem = async (itemId) => {
         <div>
           <div className="flex items-center justify-between pb-4 border-b border-slate-800/60">
             <h3 className="text-lg font-black text-white tracking-tight flex items-center gap-2">
-              <BsCart3 className="text-orange-500" /> আপনার কার্ট ({cartItems.length})
+              <BsCart3 className="text-orange-500" /> Your Cart ({cartItems.length})
             </h3>
             <button 
               onClick={handleCart}
@@ -180,10 +180,10 @@ const handleDeleteCartItem = async (itemId) => {
           {/* cart sidebar */}
           <div className="mt-6 space-y-4 overflow-y-auto max-h-[calc(100vh-220px)] pr-1">
             {isCartLoading ? (
-              <p className="text-sm text-slate-400 text-center py-8">কার্ট লোড হচ্ছে...</p>
+              <p className="text-sm text-slate-400 text-center py-8">Cart is Loading...</p>
             ) : cartItems.length === 0 ? (
               <p className="text-sm text-slate-400 text-center py-8">
-                আপনার কার্টটি বর্তমানে খালি আছে।
+               Your shopping cart is currently empty
               </p>
             ) : (
               cartItems.map((item) => (
@@ -217,8 +217,8 @@ const handleDeleteCartItem = async (itemId) => {
             <span>Total Taka</span>
             <span className="text-orange-500 font-bold">৳{totalTaka}</span>
           </div>
-          <Link href="/user/my-cart" className="w-full py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg text-center block cursor-pointer">
-            Order Now
+          <Link href="/user/my-cart" className="w-full py-5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg text-center block cursor-pointer">
+            GO TO CART & CHEEKOUT
           </Link>
         </div>
       </div>

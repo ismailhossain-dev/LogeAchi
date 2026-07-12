@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
-import { GoChevronUp } from "react-icons/go";
+
 import Logo from "@/components/Logo/Logo"; // পাথটি আপনার প্রোজেক্ট অনুযায়ী চেক করে নিবেন
 
 const Footer = () => {
@@ -209,16 +209,7 @@ const Footer = () => {
         </p>
       </div>
 
-      {/* ================= SCROLL TO TOP BUTTON ================= */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 p-3 bg-green-500 text-white rounded-full shadow-xl hover:bg-green-600 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ${
-          showScroll ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-75 pointer-events-none"
-        }`}
-        aria-label="Scroll to top"
-      >
-        <GoChevronUp className="w-5 h-5" />
-      </button>
+     
     </footer>
   );
 };

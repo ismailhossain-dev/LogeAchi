@@ -8,12 +8,16 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [showPassword, setShowPassword] = useState(false);
+
+  //loading button loading dekanor jonno 
+  const [loading , setIsLoading ] = useState(false)
 
   const {
     register,
@@ -22,7 +26,8 @@ const LoginForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
+    // console.log("Form Data:", data);
+    setIsLoading(true)
 
     const result = await signIn("credentials", {
       email: data.email,
@@ -31,8 +36,9 @@ const LoginForm = () => {
     });
 
     if (result?.ok) {
-
+      toast.success("Login successfully")
       router.push(callbackUrl);
+      setIsLoading(false)
     }
   };
 
@@ -178,11 +184,42 @@ const LoginForm = () => {
               </div>
 
               {/* সাবমিট বাটন (রেজিস্ট্রেশনের মতো প্রিমিয়াম অরেঞ্জ থিম) */}
-              <button
+                  <button
                 type="submit"
-                className="w-full py-3.5 mt-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] cursor-pointer"
+                disabled={loading}
+                className={`w-full py-3.5 mt-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] ${
+                  loading ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
+                }`}
               >
-                Login Account
+                {loading ? (
+                  <>
+                    {/* Tailwind CSS এর বিল্ট-ইন স্পিনার অ্যানিমেশন */}
+                    <svg
+                      className="animate-spin h-4 w-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        box-shadow="color"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    <span>Creating Account...</span>
+                  </>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </form>
 

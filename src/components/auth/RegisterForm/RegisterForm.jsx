@@ -24,6 +24,9 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
 
+  //etar mardome create button tate loading dekabo
+  const [loading, setIsLoading] = useState(false);
+
   // ✅ বাগ এড়ানোর জন্য সরাসরি ইমেজ ফাইল অবজেক্ট ট্র্যাক করার স্টেট
   const [rawImageFile, setRawImageFile] = useState(null);
 
@@ -41,7 +44,7 @@ const RegisterForm = () => {
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      //console.log("Selected file inside handler:", file); //cheek when i select image the show consonsole or not 
+      //console.log("Selected file inside handler:", file); //cheek when i select image the show consonsole or not
       setRawImageFile(file); // ফিজিক্যাল ফাইল অবজেক্টটি স্টেটে স্টোর করা হলো
 
       const reader = new FileReader();
@@ -53,27 +56,23 @@ const RegisterForm = () => {
   };
 
   // main function for register form submit
+  // main function for register form submit
   const onSubmit = async (data) => {
-    console.log("Text Form Data:", data);
-    console.log("Image File from State:", rawImageFile);
-
-    // ফাইল সিলেক্ট করা হয়েছে কিনা তা রানটাইমে কঠোরভাবে চেক করা
+    // ফাইল সিলেক্ট করা হয়েছে কিনা তা রানটাইমে কঠোরভাবে চেক করা
     if (!rawImageFile) {
       toast.error("Please upload a profile picture first!");
       return;
     }
 
-    const formData = new FormData(); //FormData coming from js
-    formData.append("image", rawImageFile);
+    // লোডিং স্টেট চালু করা হলো
+    setIsLoading(true);
 
-  
+    const formData = new FormData();
+    formData.append("image", rawImageFile);
 
     try {
       const IMAGE_API_URL = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`;
 
-    
-
-      // Axios এর কোনো কাস্টম কনফিগারেশন সমস্যা এড়াতে standard fetch ব্যবহার করা
       const imgResponse = await fetch(IMAGE_API_URL, {
         method: "POST",
         body: formData,
@@ -85,12 +84,8 @@ const RegisterForm = () => {
         throw new Error(imgResult.error?.message || "ImgBB upload failed");
       }
 
-      //ekane amra main data ta pabo
-      // console.log("ImgBB Response Data:", imgResult);
       const imageUrl = imgResult.data.url;
-      console.log("Uploaded Image URL:", imageUrl);
 
-      // আপনার ব্যাকএন্ডে পাঠানোর ডেটা অবজেক্ট
       const userData = {
         name: data.name,
         email: data.email,
@@ -100,6 +95,7 @@ const RegisterForm = () => {
 
       const result = await postUser(userData);
 
+      // ========== auto login ==============
       if (result?.insertedId) {
         await signIn("credentials", {
           email: data.email,
@@ -111,6 +107,9 @@ const RegisterForm = () => {
     } catch (error) {
       console.error("Error during registration:", error);
       toast.error(error.message || "Registration failed!");
+    } finally {
+      // সাকসেস হোক বা এরর, লোডিং স্টেট এখানে এসে ফলস হবে
+      setIsLoading(false);
     }
   };
 
@@ -180,7 +179,7 @@ const RegisterForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Premium Image Upload Input */}
-               <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-300 tracking-wide">
                   Profile Picture
                 </label>
@@ -225,7 +224,7 @@ const RegisterForm = () => {
                     </div>
                   )}
                 </div>
-              </div> 
+              </div>
 
               {/* Full Name Input Box */}
               <div className="flex flex-col gap-1.5">
@@ -312,9 +311,40 @@ const RegisterForm = () => {
               {/* সাবমিট বাটন */}
               <button
                 type="submit"
-                className="w-full py-3.5 mt-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] cursor-pointer"
+                disabled={loading}
+                className={`w-full py-3.5 mt-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] ${
+                  loading ? "opacity-70 cursor-not-allowed" : "cursor-pointer"
+                }`}
               >
-                Create Account
+                {loading ? (
+                  <>
+                    {/* Tailwind CSS এর বিল্ট-ইন স্পিনার অ্যানিমেশন */}
+                    <svg
+                      className="animate-spin h-4 w-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        box-shadow="color"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    <span>Creating Account...</span>
+                  </>
+                ) : (
+                  "Create Account"
+                )}
               </button>
             </form>
 
