@@ -31,8 +31,9 @@ const Page = async () => {
       <div className="max-w-7xl mx-auto overflow-hidden px-5">
         <div className="max-w-7xl mx-auto overflow-hidden px-5"></div>
         <section >
-         <div className="my-8">
-           <Title >Trending Products</Title>
+         <div className="mt-20 mb-12 italic uppercase space-y-7 ">
+           <Title >Trending <br/> <span className="text-blue-500 font-bold">Collections</span>
+           </Title>
          </div>
 
           <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-4 md:gap-6">

@@ -15,9 +15,9 @@ function Gallery() {
           <span className='text-xs font-semibold tracking-widest text-purple-400 uppercase block mb-2'>
             Visual Showcase
           </span>
-          <h1 className='text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white to-neutral-400 bg-clip-text text-transparent'>
-            Our Gallery
-          </h1>
+          <div className='uppercase italic'>
+            <Title>Our <span className='text-blue-500'>Gallery</span></Title>
+          </div>
         </div>
 
         {/* Right Side: Paragraph */}

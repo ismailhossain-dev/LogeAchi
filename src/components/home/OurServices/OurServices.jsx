@@ -36,8 +36,8 @@ const OurServices = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full font-sans antialiased">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-16">
-        <Title>Our Premium Services</Title>
+      <div className=" italic mb-16 uppercase ">
+        <Title >Our <br/> <span className='text-blue-500 font-bold'>Premium Services</span></Title>
         <p className="text-xs sm:text-sm text-slate-400 mt-3 tracking-wide uppercase">
           Why Shop With Us
         </p>

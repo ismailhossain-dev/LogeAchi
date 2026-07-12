@@ -1,13 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 function CheckOutForm({ productData }) {
-  // যদি সার্ভার থেকে ডাটা আসতে দেরি হয় বা না থাকে, তার জন্য ডিফোল্ট সেফটি চেক
+  // Safe destructuring with fallback values
   const { _id, title, image, price, size = [] } = productData || {};
   
-  const [selectedSize, setSelectedSize] = useState(size[0] || "");
+  const [selectedSize, setSelectedSize] = useState("");
+
+  // Sync selected size if productData updates dynamically
+  useEffect(() => {
+    if (size.length > 0) {
+      setSelectedSize(size[0]);
+    }
+  }, [size]);
 
   const {
     register,
@@ -16,7 +23,7 @@ function CheckOutForm({ productData }) {
   } = useForm();
 
   const onSubmit = (formData) => {
-    // ফর্মের তথ্যের সাথে প্রোডাক্টের আইডি, টাইটেল, দাম এবং সিলেক্টেড সাইজ একসাথে কনসোলে দেখাবে
+    // Combines user details with relevant product metrics
     const finalOrderData = {
       ...formData,
       productId: _id,
@@ -24,7 +31,7 @@ function CheckOutForm({ productData }) {
       productPrice: price,
       productSize: selectedSize,
     };
-    console.log("অর্ডার এবং প্রোডাক্টের সম্পূর্ণ ডেটা:", finalOrderData);
+    console.log("Complete Order & Product Data:", finalOrderData);
   };
 
   return (
@@ -33,37 +40,37 @@ function CheckOutForm({ productData }) {
         
         <div className="flex flex-col lg:flex-row">
           
-          {/* বাম পাশ: প্রোডাক্ট ইনফরমেশন সামারি */}
+          {/* ================= LEFT SIDE: Product Information Summary ================= */}
           <div className="w-full lg:w-5/12 bg-slate-950/50 p-6 sm:p-10 border-b lg:border-b-0 lg:border-r border-slate-800 flex flex-col justify-between">
             <div>
               <h4 className="text-sm font-bold text-orange-500 uppercase tracking-wider mb-6">
-                ১. প্রোডাক্টের বিবরণ
+                1. Product Summary
               </h4>
               
-              {/* প্রোডাক্ট ইমেজ */}
+              {/* Product Image */}
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800 mb-6 bg-slate-900">
                 <img
                   src={image || "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=500"}
-                  alt={title}
+                  alt={title || "Product Preview"}
                   className="w-full h-full object-cover"
                 />
               </div>
 
-              {/* প্রোডাক্ট টাইটেল ও প্রাইস */}
+              {/* Product Title & Price */}
               <div className="space-y-3">
                 <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                  {title || "Men's Polo T-Shirt"}
+                  {title || "Premium Apparel"}
                 </h2>
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl font-extrabold text-orange-500">৳{price || 0}</span>
-                  <span className="text-xs text-slate-400">BDT (VAT অন্তর্ভুক্ত)</span>
+                  <span className="text-xs text-slate-400">BDT (VAT Included)</span>
                 </div>
               </div>
 
-              {/* সাইজ সিলেকশন অপশন */}
+              {/* Size Selection */}
               {size.length > 0 && (
                 <div className="mt-6">
-                  <p className="text-xs font-bold text-slate-400 mb-2.5">সাইজ সিলেক্ট করুন:</p>
+                  <p className="text-xs font-bold text-slate-400 mb-2.5">Select Size:</p>
                   <div className="flex flex-wrap gap-2">
                     {size.map((s) => (
                       <button
@@ -84,50 +91,50 @@ function CheckOutForm({ productData }) {
               )}
             </div>
 
-            {/* সংক্ষিপ্ত রিসিট সামারি */}
+            {/* Price Breakdown Breakdown */}
             <div className="mt-8 pt-6 border-t border-slate-800/80 space-y-3">
               <div className="flex justify-between text-xs text-slate-400">
-                <span>উপমোট (Subtotal)</span>
+                <span>Subtotal</span>
                 <span>৳{price || 0}</span>
               </div>
               <div className="flex justify-between text-xs text-slate-400">
-                <span>ডেলিভারি চার্জ</span>
-                <span className="text-green-400">ফ্রি</span>
+                <span>Delivery Fee</span>
+                <span className="text-green-400">Free</span>
               </div>
               <div className="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800/40">
-                <span>সর্বমোট (Total)</span>
+                <span>Total Amount</span>
                 <span className="text-orange-500 text-base">৳{price || 0}</span>
               </div>
             </div>
           </div>
 
-          {/* ডান পাশ: আপনার বাংলা চেকআউট ফর্ম */}
+          {/* ================= RIGHT SIDE: Shipping Information Form ================= */}
           <div className="w-full lg:w-7/12 p-6 sm:p-10">
             <h3 className="text-xl font-black text-white tracking-tight mb-6 border-b border-slate-800 pb-4">
-              ২. ডেলিভারি ও পেমেন্ট তথ্য
+              2. Shipping & Payment Details
             </h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               
-              {/* ব্যক্তিগত তথ্য সেকশন */}
+              {/* Personal Info Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">আপনার পুরো নাম *</label>
+                  <label className="text-xs font-bold text-slate-300">Full Name *</label>
                   <input
-                    {...register("fullName", { required: "আপনার নাম দেওয়া আবশ্যক" })}
+                    {...register("fullName", { required: "Full name is required" })}
                     type="text"
-                    placeholder="যেমন: মোঃ করিম"
+                    placeholder="e.g. John Doe"
                     className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
                   />
                   {errors.fullName && <span className="text-red-400 text-xs">{errors.fullName.message}</span>}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">ইমেইল ঠিকানা *</label>
+                  <label className="text-xs font-bold text-slate-300">Email Address *</label>
                   <input
                     {...register("email", { 
-                      required: "ইমেইল ঠিকানা দেওয়া আবশ্যক",
-                      pattern: { value: /^\S+@\S+$/i, message: "সঠিক ইমেইল ঠিকানা লিখুন" }
+                      required: "Email address is required",
+                      pattern: { value: /^\S+@\S+$/i, message: "Please enter a valid email address" }
                     })}
                     type="email"
                     placeholder="example@mail.com"
@@ -137,83 +144,71 @@ function CheckOutForm({ productData }) {
                 </div>
               </div>
 
+              {/* Contact Info Row */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-300">মোবাইল নাম্বার *</label>
+                <label className="text-xs font-bold text-slate-300">Phone Number *</label>
                 <input
-                  {...register("phoneNumber", { required: "মোবাইল নাম্বার দেওয়া আবশ্যক" })}
+                  {...register("phoneNumber", { required: "Phone number is required" })}
                   type="tel"
-                  placeholder="যেমন: ০১৭XXXXXXXX"
+                  placeholder="e.g. +88017XXXXXXXX"
                   className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
                 />
                 {errors.phoneNumber && <span className="text-red-400 text-xs">{errors.phoneNumber.message}</span>}
               </div>
 
-              {/* ঠিকানা সেকশন */}
+              {/* Geographic Info Row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">দেশ *</label>
+                  <label className="text-xs font-bold text-slate-300">Division / State *</label>
                   <input
-                    {...register("country", { required: "দেশের নাম দেওয়া আবশ্যক" })}
+                    {...register("state", { required: "Division or state is required" })}
                     type="text"
-                    placeholder="যেমন: বাংলাদেশ"
-                    className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
-                  />
-                  {errors.country && <span className="text-red-400 text-xs">{errors.country.message}</span>}
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">বিভাগ *</label>
-                  <input
-                    {...register("state", { required: "বিভাগের নাম দেওয়া আবশ্যক" })}
-                    type="text"
-                    placeholder="যেমন: ঢাকা"
+                    placeholder="e.g. Dhaka"
                     className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
                   />
                   {errors.state && <span className="text-red-400 text-xs">{errors.state.message}</span>}
                 </div>
-              </div>
 
-              {/* ২-কলামের জেলা এবং পোস্টাল কোড */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">জেলা / শহর *</label>
+                  <label className="text-xs font-bold text-slate-300">City / District *</label>
                   <input
-                    {...register("city", { required: "জেলা অথবা শহরের নাম দেওয়া আবশ্যক" })}
+                    {...register("city", { required: "City or district is required" })}
                     type="text"
-                    placeholder="যেমন: মিরপুর, ঢাকা"
+                    placeholder="e.g. Mirpur"
                     className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
                   />
                   {errors.city && <span className="text-red-400 text-xs">{errors.city.message}</span>}
                 </div>
+              </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-300">পোস্টাল / জিপ কোড (ঐচ্ছিক)</label>
-                  <input
-                    {...register("zipCode")}
-                    type="text"
-                    placeholder="যেমন: ১২১৬"
-                    className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
-                  />
-                </div>
+              {/* ZIP and Full Address Info */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-300">Postal / ZIP Code (Optional)</label>
+                <input
+                  {...register("zipCode")}
+                  type="text"
+                  placeholder="e.g. 1216"
+                  className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all"
+                />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-300">পূর্ণাঙ্গ ঠিকানা *</label>
+                <label className="text-xs font-bold text-slate-300">Full Delivery Address *</label>
                 <textarea
-                  {...register("fullAddress", { required: "পূর্ণাঙ্গ ডেলিভারি ঠিকানা দেওয়া আবশ্যক" })}
+                  {...register("fullAddress", { required: "Full delivery address is required" })}
                   rows={3}
-                  placeholder="বাসা নং, রোড নং, গ্রাম বা এলাকার নাম বিস্তারিত লিখুন..."
+                  placeholder="House No, Road No, Area, Landmark details..."
                   className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800 focus:border-orange-500 rounded-xl text-sm text-slate-200 outline-none transition-all resize-none"
                 />
                 {errors.fullAddress && <span className="text-red-400 text-xs">{errors.fullAddress.message}</span>}
               </div>
 
-              {/* সাবমিট বাটন */}
+              {/* Action Button */}
               <button
                 type="submit"
                 className="w-full py-3.5 mt-2 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] cursor-pointer"
               >
-                অর্ডার নিশ্চিত করুন
+                Confirm Order
               </button>
             </form>
           </div>
