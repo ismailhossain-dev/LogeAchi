@@ -16,8 +16,8 @@ const LoginForm = () => {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [showPassword, setShowPassword] = useState(false);
 
-  //loading button loading dekanor jonno 
-  const [loading , setIsLoading ] = useState(false)
+  // loading state
+  const [loading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -26,26 +26,31 @@ const LoginForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log("Form Data:", data);
-    setIsLoading(true)
+    try {
+      setIsLoading(true);
+      const result = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
 
-    const result = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
-
-    if (result?.ok) {
-      toast.success("Login successfully")
-      router.push(callbackUrl);
-      setIsLoading(false)
+      if (result?.ok) {
+        toast.success("Login successfully");
+        router.push(callbackUrl);
+        router.refresh(); // সেশন ইনস্ট্যান্ট আপডেট করার জন্য রিফ্রেশ
+      } else {
+        toast.error(result?.error || "Invalid credentials. Please try again.");
+      }
+    } catch (err) {
+      toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen w-full bg-[#0f172a] flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased text-slate-200">
       
-     
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -183,8 +188,8 @@ const LoginForm = () => {
                 )}
               </div>
 
-              {/* সাবমিট বাটন (রেজিস্ট্রেশনের মতো প্রিমিয়াম অরেঞ্জ থিম) */}
-                  <button
+              {/* সাবমিট বাটন (রেজিস্ট্রেশনের মতো প্রিমিয়াম অরেঞ্জ থিম) */}
+              <button
                 type="submit"
                 disabled={loading}
                 className={`w-full py-3.5 mt-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] ${
@@ -193,7 +198,6 @@ const LoginForm = () => {
               >
                 {loading ? (
                   <>
-                    {/* Tailwind CSS এর বিল্ট-ইন স্পিনার অ্যানিমেশন */}
                     <svg
                       className="animate-spin h-4 w-4 text-white"
                       xmlns="http://www.w3.org/2000/svg"
@@ -211,14 +215,13 @@ const LoginForm = () => {
                       <path
                         className="opacity-75"
                         fill="currentColor"
-                        box-shadow="color"
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    <span>Creating Account...</span>
+                    <span>Authenticating...</span>
                   </>
                 ) : (
-                  "Create Account"
+                  "Sign In"
                 )}
               </button>
             </form>
