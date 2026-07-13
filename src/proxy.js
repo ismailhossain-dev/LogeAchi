@@ -1,7 +1,8 @@
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 //amra ekbar proxy video ta dekbo in Sha Allah
-const privateRoute = ["/all-collection", "/add-bike", "/checkout"];
+//ekane jei route gola divo agola private route hoye jabe
+const privateRoute = ["/all-collectionss", "/add-bike", "/checkout"];
 
 export async function proxy(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
