@@ -22,13 +22,24 @@ export async function GET(req) {
 
     const totalCart = await dbConnect("cart").countDocuments({userEmail:email,})
 
+    //user name 
+
+  const user = await dbConnect("users").findOne({ email });
+  const userName = user?.name;
+
+  //5 letest order 
+
+ const latestOrders = await dbConnect("orders").find({ email }).         sort({ price: -1 }).limit(5).toArray();               
+
     return NextResponse.json(
       {
         message: "overview data get succesfully",
         totalOrders,
         totalWishlist,
         totalCart,
-        pendingOrders
+        pendingOrders,
+        userName, 
+        latestOrders
       },
       { status: 200 },
     );

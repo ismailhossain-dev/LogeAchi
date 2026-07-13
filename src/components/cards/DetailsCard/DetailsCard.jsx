@@ -277,7 +277,7 @@ const DetailsCard = ({ product }) => {
                   disabled={!stock}
                   className={`w-full h-14 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all duration-300 border cursor-pointer active:scale-[0.99] ${
                     stock
-                      ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white border-transparent shadow-[0_4px_25px_rgba(37,99,235,0.25)]"
+                      ? "btn"
                       : "bg-slate-800 text-slate-500 border-slate-700/40 cursor-not-allowed"
                   }`}
                 >

@@ -59,6 +59,7 @@ function CheckOutForm({ productData }) {
     try {
       const res = await axiosSecure.post ("/api/checkout", {
          productTitle: title,
+         image: image, 
         productPrice: price,
         productSize: selectedSize,
         name: formData.fullName , 

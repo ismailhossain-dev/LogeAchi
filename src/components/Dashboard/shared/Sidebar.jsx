@@ -57,16 +57,16 @@ const Sidebar = ({ isOpen, onClose }) => {
             </svg>
           )
         },
-        { 
-          name: 'Settings', 
-          href: '/dashboard/settings',
-          icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          )
-        }
+        // { 
+        //   name: 'Settings', 
+        //   href: '/dashboard/settings',
+        //   icon: (
+        //     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        //     </svg>
+        //   )
+        // }
       ]
     }
   ];
@@ -112,7 +112,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         {/* নেভিগেশন মেনু গ্রুপসমূহ */}
         <div className="flex-1 py-6 px-4 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
           {menuGroups.map((group, index) => (
-            <div key={index} className="flex flex-col gap-1.5">
+            <div key={index} className="flex flex-col gap-4">
               {/* গ্রুপের টাইটেল */}
               <span className="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-1">
                 {group.groupName}
@@ -145,14 +145,14 @@ const Sidebar = ({ isOpen, onClose }) => {
           {/* লগআউট বাটন (সবসময় নিচে থাকবে) */}
           <Link
             href="/auth/logout"
-            className="flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none mt-auto text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 group"
+            className="flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none mt-auto text-rose-400 bg-rose-500/10 hover:text-rose-300 group"
           >
             <span className="mr-3 text-rose-400/80 group-hover:text-rose-400">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
             </span>
-            <span>Logout</span>
+            <span >Logout</span>
           </Link>
         </div>
       </aside>

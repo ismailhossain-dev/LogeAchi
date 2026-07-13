@@ -1,114 +1,95 @@
-//use client use because amra useSession use kortechi
 "use client"
 import React from 'react';
-import { ShoppingBag, Hourglass, CheckCircle2, Heart, ShoppingCart } from 'lucide-react';
+import { ShoppingBag, Hourglass, CheckCircle2, Heart, ShoppingCart, Loader2 } from 'lucide-react';
 import UserOrderOverviewChart from '@/components/Dashboard/Charts/UserOrderOverviewChart/UserOrderOverviewChart';
 import Link from 'next/link';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useSession } from 'next-auth/react';
 import { useQuery } from '@tanstack/react-query';
+import LatestOrdersTable from '@/components/Dashboard/Table/LatestOrdersTable';
 
 export default function Dashboard() {
   const axiosSecure = useAxiosSecure();
-  const {data: session , status} = useSession()
+  const { data: session, status } = useSession();
 
- 
-
-  //all data fetch
+  // 📊 React Query দিয়ে ড্যাশবোর্ড ডাটা ফেচিং
   const { data, isLoading } = useQuery({
-
-    queryKey: ["dashboard-overview"],
-
+    queryKey: ["dashboard-overview", session?.user?.email],
     queryFn: async () => {
-
-        const res = await axiosSecure.get(`api/dashboardOverview?email=${session.user.email}`
-
-        );
-
-        return res.data;
-
+      const res = await axiosSecure.get(`api/dashboardOverview?email=${session.user.email}`);
+      return res.data;
     },
-    // enabled use kore যতক্ষণ session.user.email না আসে, ততক্ষণ React Query API call করবে না।
     enabled: !!session?.user?.email
+  });
 
-});
-//eta niche use korle kno metter na because amr aenabled use korchi
-console.log(data)
- if(status === "loading") return <p>Loading....</p>
+  // ⏳ Next-Auth সেশন অথবা React Query লোডিং কন্ডিশন
+  if (status === "loading" || isLoading) {
+    return (
+      <div className="min-h-screen bg-[#09090b] flex items-center justify-center gap-3 text-zinc-400 font-medium">
+        <Loader2 className="w-5 h-5 animate-spin text-orange-500" />
+        <span>Syncing Data Systems...</span>
+      </div>
+    );
+  }
 
-  // প্রতিটি কার্ডের জন্য একদম আলাদা এবং পারফেক্ট আইকন সেট করা হয়েছে
- const stats = [
-  {
-    id: 1,
-    title: "Total Orders",
-    href: "/user/my-orders",
-    value: data?.totalOrders || 0,
-    icon: ShoppingBag,
-    iconColor:
-      "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
-    borderColor:
-      "group-hover:border-indigo-500/40 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]",
-  },
-
-  {
-    id: 2,
-    title: "Pending Orders",
-    href: "/user/my-orders",
-    value: data?.pendingOrders || 0,
-    icon: Hourglass,
-    iconColor:
-      "text-amber-400 bg-amber-500/10 border-amber-500/20",
-    borderColor:
-      "group-hover:border-amber-500/40 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]",
-  },
-
-  {
-    id: 3,
-    title: "Delivered",
-    href: "/user/my-orders",
-    value: 0,
-    icon: CheckCircle2,
-    iconColor:
-      "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    borderColor:
-      "group-hover:border-emerald-500/40 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]",
-  },
-
-  {
-    id: 4,
-    title: "Wishlist",
-    href: "/user/my-wishlist",
-    value: data?.totalWishlist || 0,
-    icon: Heart,
-    iconColor:
-      "text-rose-400 bg-rose-500/10 border-rose-500/20",
-    borderColor:
-      "group-hover:border-rose-500/40 group-hover:shadow-[0_0_20px_rgba(244,63,94,0.15)]",
-  },
-
-  {
-    id: 5,
-    title: "Cart",
-    href: "/user/my-cart",
-    value: data?.totalCart || 0,
-    icon: ShoppingCart,
-    iconColor:
-      "text-sky-400 bg-sky-500/10 border-sky-500/20",
-    borderColor:
-      "group-hover:border-sky-500/40 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.15)]",
-  },
-];
+  // প্রতিটি কার্ডের জন্য স্ট্যাটস কনফিগ
+  const stats = [
+    {
+      id: 1,
+      title: "Total Orders",
+      href: "/user/my-orders",
+      value: data?.totalOrders || 0,
+      icon: ShoppingBag,
+      iconColor: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+      borderColor: "group-hover:border-indigo-500/40 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]",
+    },
+    {
+      id: 2,
+      title: "Pending Orders",
+      href: "/user/my-orders",
+      value: data?.pendingOrders || 0,
+      icon: Hourglass,
+      iconColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+      borderColor: "group-hover:border-amber-500/40 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]",
+    },
+    {
+      id: 3,
+      title: "Delivered",
+      href: "/user/my-orders",
+      value: data?.deliveredOrders || 0, // dynamic delivered count
+      icon: CheckCircle2,
+      iconColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+      borderColor: "group-hover:border-emerald-500/40 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]",
+    },
+    {
+      id: 4,
+      title: "Wishlist",
+      href: "/user/my-wishlist",
+      value: data?.totalWishlist || 0,
+      icon: Heart,
+      iconColor: "text-rose-400 bg-rose-500/10 border-rose-500/20",
+      borderColor: "group-hover:border-rose-500/40 group-hover:shadow-[0_0_20px_rgba(244,63,94,0.15)]",
+    },
+    {
+      id: 5,
+      title: "Cart",
+      href: "/user/my-cart",
+      value: data?.totalCart || 0,
+      icon: ShoppingCart,
+      iconColor: "text-sky-400 bg-sky-500/10 border-sky-500/20",
+      borderColor: "group-hover:border-sky-500/40 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.15)]",
+    },
+  ];
 
   return (
-    
     <div className="min-h-screen bg-[#09090b] text-zinc-100 p-4 sm:p-6 md:p-10 lg:p-12 relative overflow-hidden antialiased selection:bg-zinc-800 selection:text-white">
       
       <div className="max-w-7xl mx-auto space-y-10 md:space-y-12 relative z-10 mb-10">
         
-        {/* 🏆 Clean Header Section */}
+        {/* 🏆 Header Section */}
         <header className="space-y-2 border-b border-zinc-800/60 pb-6">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-zinc-100">
-            WELCOME BACK, HLW SABBIR
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-zinc-100 uppercase">
+            WELCOME BACK, {data?.userName || "Collector"}
           </h1>
           <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-bold tracking-widest uppercase text-zinc-500">
             <span>Collector Overview</span>
@@ -117,29 +98,25 @@ console.log(data)
           </div>
         </header>
 
-        {/* 📊 Ultra-Clean 5-Column Stats Grid */}
+        {/* 📊 5-Column Stats Grid */}
         <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 md:gap-6">
           {stats.map((stat) => {
             const IconComponent = stat.icon;
             return (
-              <Link href={stat.href }
+              <Link 
+                href={stat.href}
                 key={stat.id}
                 className={`group relative rounded-2xl border border-zinc-800/80 bg-[#121214] p-6 
                 transition-all duration-400 ease-out hover:-translate-y-1 hover:bg-[#161619] ${stat.borderColor}`}
               >
-                {/* Card Content Layout */}
                 <div className="flex flex-col justify-between h-full space-y-8 relative z-10">
-                  
-                  {/* Top Row: Icon & Dot */}
                   <div className="flex items-center justify-between">
                     <div className={`w-11 h-11 rounded-xl border flex items-center justify-center backdrop-blur-md transition-all duration-500 group-hover:scale-105 ${stat.iconColor}`}>
-                      <IconComponent className="w-5 h-5 transition-transform duration-300" />
+                      <IconComponent className="w-5 h-5" />
                     </div>
-                    {/* Micro dot decoration */}
                     <div className="w-1.5 h-1.5 rounded-full bg-zinc-800 group-hover:bg-zinc-600 transition-colors duration-300" />
                   </div>
 
-                  {/* Bottom Row: Text & Figures */}
                   <div className="space-y-1">
                     <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 group-hover:text-zinc-400 transition-colors duration-300">
                       {stat.title}
@@ -148,20 +125,29 @@ console.log(data)
                       {stat.value}
                     </h3>
                   </div>
-
                 </div>
               </Link>
             );
           })}
         </main>
-        
+
+        {/* 📦 🎯 ফিক্সড লেটেস্ট অর্ডার টেবিল সেকশন */}
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+              Latest Orders
+            </h2>
+          </div>
+          {/* এখানে .map() বাদ দিয়ে সরাসরি সম্পূর্ণ `data` অবজেক্টটি পাস করা হলো */}
+          <LatestOrdersTable data={data} />
+        </section>
+
+        {/* 📉 Chart Section */}
+        <section className="border-t border-zinc-800/60 pt-8">
+          <UserOrderOverviewChart />
+        </section>
+
       </div>
-
-      {/* ekane ami 5ta recnt order show koro */}
-      <p className='text-blue-500 text-3xl font-bold text-center my-20'>ekane ami 5ta recnt order show koro</p>
-
-      {/* 1 years chart */}
-      <UserOrderOverviewChart/>
     </div>
   );
 }

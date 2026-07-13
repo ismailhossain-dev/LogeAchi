@@ -10,7 +10,7 @@ import Link from "next/link";
 
 
 const Page = async () => {
-  const res = await fetch("http://localhost:3000/api/homeProducts");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/homeProducts`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch products");

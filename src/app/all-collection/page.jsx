@@ -10,7 +10,7 @@ const allCollectionPage = async ({ searchParams }) => {
   const searchQuery = params?.search?.toLowerCase() || "";
   const selectedCategory = params?.category || ""; 
 
-  const res = await fetch("http://localhost:3000/api/all-products", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/all-products`, {
     cache: "no-store" 
   });
 
