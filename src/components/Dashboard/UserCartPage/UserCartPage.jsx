@@ -10,11 +10,10 @@ function UserCartPage() {
   const axiosSecure = useAxiosSecure();
   const { data: session, status } = useSession();
 
-  // লোকাল স্টেট: কোয়ান্টিটি এবং সাইজ ক্লায়েন্ট সাইডে স্মুথলি হ্যান্ডেল করার জন্য
+  // লোকাল স্টেট
   const [quantities, setQuantities] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
-//data get or fetch api
-//delete er jonno refetch dorkar tai tanstack query mardome cart delete korchi
+
   const {
     data: cartData,
     isLoading: isCartLoading,
@@ -23,14 +22,13 @@ function UserCartPage() {
     queryKey: ["wishlist", session?.user?.email || ""],
     enabled: status === "authenticated" && !!session?.user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/api/wishlist?email=${session?.user?.email}`);
+      const res = await axiosSecure.get(`/api/cart?email=${session?.user?.email}`);
       return res.data;
     },
   });
 
   const cartItems = cartData?.result || [];
 
-  // কোয়ান্টিটি পরিবর্তনের ফাংশন
   const handleQuantityChange = (id, type, currentQty = 1) => {
     const prevQty = quantities[id] !== undefined ? quantities[id] : currentQty;
     if (type === 'minus' && prevQty <= 1) return;
@@ -41,7 +39,6 @@ function UserCartPage() {
     });
   };
 
-  // সাইজ পরিবর্তনের ফাংশন
   const handleSizeChange = (id, size) => {
     setSelectedSizes({
       ...selectedSizes,
@@ -49,7 +46,6 @@ function UserCartPage() {
     });
   };
 
-  // টোটাল ক্যালকুলেশন (কোয়ান্টিটি গুন্ করে)
   const subtotal = cartItems.reduce((acc, item) => {
     const qty = quantities[item._id] !== undefined ? quantities[item._id] : 1;
     return acc + ((item.price || 0) * qty);
@@ -57,22 +53,21 @@ function UserCartPage() {
   
   const deliveryCharge = cartItems.length > 0 ? 120 : 0;
   const totalAmount = subtotal + deliveryCharge;
-//cart delete api
- const handleDeleteCartItem = async (itemId) => {
-   try {
-     const res = await axiosSecure.delete('/api/cart', { data: { id: itemId } });
-     
-     if (res.status === 200) {
-       toast.success("Item removed from cart");
-       refetch()
-       return; 
+
+  const handleDeleteCartItem = async (itemId) => {
+    try {
+      const res = await axiosSecure.delete('/api/cart', { data: { id: itemId } });
       
-     }
-   } catch (error) {
-     console.error("Delete error:", error);
-     toast.error("Failed to remove item");
-   }
- };
+      if (res.status === 200) {
+        toast.success("Item removed from cart");
+        refetch();
+        return; 
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast.error("Failed to remove item");
+    }
+  };
 
   if (status === "loading" || isCartLoading) {
     return (
@@ -133,8 +128,8 @@ function UserCartPage() {
                     key={item._id} 
                     className="flex flex-col sm:flex-row items-center justify-between p-4 bg-gradient-to-r from-[#0f1524]/60 to-[#0f1524]/30 border border-slate-800/50 rounded-2xl gap-5 hover:border-slate-700/60 transition-all duration-300 shadow-xl group relative overflow-hidden"
                   >
-                    {/* প্রোডাক্ট ইনফো */}
-                    <div className="flex items-center gap-5 w-full sm:w-auto">
+                    {/* বাম পার্ট: প্রোডাক্ট ইমেজ + টাইটেল + সাইজ */}
+                    <div className="flex items-center gap-5 w-full sm:w-auto flex-1 min-w-0">
                       <div className="w-20 h-24 rounded-xl overflow-hidden bg-slate-950 shrink-0 border border-slate-800 relative">
                         <img 
                           src={item.image} 
@@ -142,12 +137,12 @@ function UserCartPage() {
                           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
-                      <div className="space-y-2 truncate flex-1 sm:flex-initial">
-                        <h3 className="text-sm font-bold text-white tracking-wide truncate max-w-[180px] sm:max-w-[260px]">
+                      <div className="space-y-2 flex-1 min-w-0">
+                        <h3 className="text-sm font-bold text-white tracking-wide truncate max-w-full">
                           {item.title}
                         </h3>
                         
-                        {/* সাইজ সিলেক্টর ইনপুট ড্রপডাউন */}
+                        {/* সাইজ সিলেক্টর ড্রপডাউন */}
                         <div className="relative inline-block">
                           <span className="text-[9px] text-slate-500 block uppercase tracking-wider font-bold mb-1">Select Size</span>
                           <div className="relative flex items-center">
@@ -170,10 +165,10 @@ function UserCartPage() {
                       </div>
                     </div>
 
-                    {/* কোয়ান্টিটি, প্রাইস এবং ডিলিট কন্টেইনার */}
-                    <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-slate-800/40 pt-4 sm:pt-0">
+                    {/* ডান পার্ট: কোয়ান্টিটি, প্রাইস এবং ডিলিট বাটন */}
+                    <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-slate-800/40 pt-4 sm:pt-0 shrink-0">
                       
-                      {/* কোয়ান্টিটি বাটন মেকানিজম */}
+                      {/* কোয়ান্টিটি বাটন মেকানিজম */}
                       <div className="space-y-1">
                         <span className="text-[9px] text-slate-500 block uppercase tracking-wider font-bold text-center sm:text-left">Quantity</span>
                         <div className="flex items-center bg-[#070b13] border border-slate-800 rounded-xl p-1 gap-1">
@@ -198,17 +193,17 @@ function UserCartPage() {
                       </div>
 
                       {/* প্রাইসিং প্যানেল */}
-                      <div className="text-right min-w-[70px]">
+                      <div className="text-right min-w-[75px]">
                         <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider block">Subtotal</span>
                         <span className="text-sm font-extrabold text-white font-mono">
                           ৳{item.price * currentQty}
                         </span>
                       </div>
                       
-                      {/* ডিলিট আইকন বাটন */}
+                      {/* ডিলিট বাটন (ফিক্সড: mt-3 সরিয়ে রেসপনসিভ পজিশনিং করা হয়েছে) */}
                       <button 
                         onClick={() => handleDeleteCartItem(item._id)}
-                        className="p-2.5 bg-slate-900/60 border border-slate-800/80 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all cursor-pointer mt-3 sm:mt-0"
+                        className="p-2.5 bg-slate-900/60 border border-slate-800/80 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all cursor-pointer"
                       >
                         <Trash2 size={14} />
                       </button>

@@ -13,7 +13,8 @@ export default function NavbarWrapper() {
     "/all-collection",
     "/about",
     "/mens-collections",
-    "/womens-collections"
+    "/womens-collections",
+    "/about-us"
     
 
   ];

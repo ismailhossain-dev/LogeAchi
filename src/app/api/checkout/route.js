@@ -24,7 +24,7 @@ export async function POST (req){
 }
 
 
-//cheek data get with query 
+//cheek data get with query use
 
 export async function GET(req){
     try {
@@ -37,7 +37,7 @@ export async function GET(req){
       return NextResponse.json({message: "Email is not found"}, {status: 400})
     }
 
-    const result = await dbConnect("orders").findOne({email: email})
+    const result = await dbConnect("orders").find({ email: email }).toArray();
         
     return NextResponse.json({
         message: "cheekout data get successfully",

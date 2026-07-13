@@ -1,57 +1,103 @@
+//use client use because amra useSession use kortechi
+"use client"
 import React from 'react';
 import { ShoppingBag, Hourglass, CheckCircle2, Heart, ShoppingCart } from 'lucide-react';
 import UserOrderOverviewChart from '@/components/Dashboard/Charts/UserOrderOverviewChart/UserOrderOverviewChart';
 import Link from 'next/link';
+import useAxiosSecure from '@/hooks/useAxiosSecure';
+import { useSession } from 'next-auth/react';
+import { useQuery } from '@tanstack/react-query';
 
 export default function Dashboard() {
+  const axiosSecure = useAxiosSecure();
+  const {data: session , status} = useSession()
+
+ 
+
+  //all data fetch
+  const { data, isLoading } = useQuery({
+
+    queryKey: ["dashboard-overview"],
+
+    queryFn: async () => {
+
+        const res = await axiosSecure.get(`api/dashboardOverview?email=${session.user.email}`
+
+        );
+
+        return res.data;
+
+    },
+    // enabled use kore যতক্ষণ session.user.email না আসে, ততক্ষণ React Query API call করবে না।
+    enabled: !!session?.user?.email
+
+});
+//eta niche use korle kno metter na because amr aenabled use korchi
+console.log(data)
+ if(status === "loading") return <p>Loading....</p>
+
   // প্রতিটি কার্ডের জন্য একদম আলাদা এবং পারফেক্ট আইকন সেট করা হয়েছে
-  const stats = [
-    {
-      id: 1,
-      title: 'Total Orders',
-      href: "/user/my-orders",
-      value: '12',
-      icon: ShoppingBag, // অর্ডারের জন্য শপিং ব্যাগ আইকন
-      iconColor: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20',
-      borderColor: 'group-hover:border-indigo-500/40 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]',
-    },
-    {
-      id: 2,
-      title: 'Pending Orders',
-       href: "/user/my-orders",
-      value: '2',
-      icon: Hourglass, // পেন্ডিংয়ের জন্য ওয়েটিং আওয়ারগ্লাস আইকন
-      iconColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
-      borderColor: 'group-hover:border-amber-500/40 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]',
-    },
-    {
-      id: 3,
-      title: 'Delivered',
-        href: "/user/my-orders",
-      value: '10',
-      icon: CheckCircle2, // সাকসেসফুল ডেলিভারির জন্য সার্কেল চেক আইকন
-      iconColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-      borderColor: 'group-hover:border-emerald-500/40 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]',
-    },
-    {
-      id: 4,
-      title: 'Wishlist',
-       href: "user/my-wishlist",
-      value: '4',
-      icon: Heart, // উইশলিস্টের জন্য মডার্ন হার্ট আইকন
-      iconColor: 'text-rose-400 bg-rose-500/10 border-rose-500/20',
-      borderColor: 'group-hover:border-rose-500/40 group-hover:shadow-[0_0_20px_rgba(244,63,94,0.15)]',
-    },
-    {
-      id: 5,
-      title: 'Cart',
-       href: "/user/my-cart",
-      value: '3',
-      icon: ShoppingCart, // কার্টের জন্য শপিং কার্ট আইকন
-      iconColor: 'text-sky-400 bg-sky-500/10 border-sky-500/20',
-      borderColor: 'group-hover:border-sky-500/40 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.15)]',
-    },
-  ];
+ const stats = [
+  {
+    id: 1,
+    title: "Total Orders",
+    href: "/user/my-orders",
+    value: data?.totalOrders || 0,
+    icon: ShoppingBag,
+    iconColor:
+      "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+    borderColor:
+      "group-hover:border-indigo-500/40 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.15)]",
+  },
+
+  {
+    id: 2,
+    title: "Pending Orders",
+    href: "/user/my-orders",
+    value: data?.pendingOrders || 0,
+    icon: Hourglass,
+    iconColor:
+      "text-amber-400 bg-amber-500/10 border-amber-500/20",
+    borderColor:
+      "group-hover:border-amber-500/40 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]",
+  },
+
+  {
+    id: 3,
+    title: "Delivered",
+    href: "/user/my-orders",
+    value: 0,
+    icon: CheckCircle2,
+    iconColor:
+      "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    borderColor:
+      "group-hover:border-emerald-500/40 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]",
+  },
+
+  {
+    id: 4,
+    title: "Wishlist",
+    href: "/user/my-wishlist",
+    value: data?.totalWishlist || 0,
+    icon: Heart,
+    iconColor:
+      "text-rose-400 bg-rose-500/10 border-rose-500/20",
+    borderColor:
+      "group-hover:border-rose-500/40 group-hover:shadow-[0_0_20px_rgba(244,63,94,0.15)]",
+  },
+
+  {
+    id: 5,
+    title: "Cart",
+    href: "/user/my-cart",
+    value: data?.totalCart || 0,
+    icon: ShoppingCart,
+    iconColor:
+      "text-sky-400 bg-sky-500/10 border-sky-500/20",
+    borderColor:
+      "group-hover:border-sky-500/40 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.15)]",
+  },
+];
 
   return (
     

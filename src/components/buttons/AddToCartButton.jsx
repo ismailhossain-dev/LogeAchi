@@ -10,6 +10,7 @@ const AddToCartButton = ({ product }) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const axiosSecure = useAxiosSecure();
   const { data: session, status } = useSession();
+  
 
   if (status === "loading") {
     return <p className="text-center py-2 text-sm text-gray-500">Loading...</p>;
@@ -29,6 +30,7 @@ const AddToCartButton = ({ product }) => {
         productId: product._id,
         title: product.title,
         price: product.price,
+        size: product.size,
         image: product.image,
         userEmail: session?.user?.email,
         userName: session?.user?.name,
