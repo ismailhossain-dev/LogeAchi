@@ -3,14 +3,14 @@ import React from 'react';
 
 function PageNotFound() {
   return (
-    <div className=" min-h-screen w-full bg-[#050508] flex items-center justify-center  relative overflow-hidden font-sans select-none">
+    <div className=" min-h-screen w-full flex items-center justify-center  relative overflow-hidden font-sans select-none">
       
       {/* 🌌 Cyberpunk / Premium Grid Background Overlay */}
       <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px]"></div>
       
       {/* 🔮 Dynamic Ambient Glow Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[600px] bg-gradient-to-tr from-orange-500/5 to-transparent blur-[160px] rounded-full pointer-events-none animate-pulse" style={{ animationDuration: '10s' }} />
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[600px] bg-gradient-to-tr from-orange-500/5 to-transparent blur-[160px]  pointer-events-none animate-pulse" style={{ animationDuration: '10s' }} />
+      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] l pointer-events-none" />
 
       {/* 📦 Ultra-Premium Full Width Glassmorphic Content Card */}
       {/* max-w-xl থেকে পরিবর্তন করে max-w-7xl এবং w-full করা হয়েছে */}
@@ -35,10 +35,7 @@ function PageNotFound() {
 
         {/* Messaging & Descriptions */}
         <div className="space-y-6 mb-12 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-bold text-[#fca311] tracking-[0.25em] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#fca311] animate-ping"></span>
-            Error Code: Route_Not_Found
-          </div>
+         
           
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
             Lost In The Besto?

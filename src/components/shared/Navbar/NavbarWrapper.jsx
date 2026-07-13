@@ -11,8 +11,9 @@ export default function NavbarWrapper() {
   const showNavbarRoutes = [
     "/",
     "/all-collection",
-    "/about"
-  
+    "/about",
+    "/mens-collections",
+    "/womens-collections"
     
 
   ];

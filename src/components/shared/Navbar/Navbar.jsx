@@ -80,8 +80,8 @@ const handleDeleteCartItem = async (itemId) => {
   const navbarLinks = [
     { id: 1, name: "Home", href: "/" },
     { id: 2, name: "SHOP", href: "/all-collection" },
-    { id: 3, name: "MENS", href: "/collection" },
-    { id: 4, name: "WOMENS", href: "/womens" },
+    { id: 3, name: "MENS", href: "/mens-collections" },
+    { id: 4, name: "WOMENS", href: "/womens-collections" },
     { id: 5, name: "ABOUT US", href: "/about-us" }
   ];
 
