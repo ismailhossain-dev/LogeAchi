@@ -7,10 +7,12 @@ import Logo from '@/components/Logo/Logo';
 const Sidebar = ({ isOpen, onClose }) => {
   const pathname = usePathname();
 
+  // ডেটা স্ট্রাকচারটি সঠিকভাবে গ্রুপ এবং আইটেম দিয়ে ফিক্স করা হয়েছে
   const menuGroups = [
     {
+      groupName: 'User Dashboard',
       items: [
-        { 
+        {
           name: 'Overview', 
           href: '/user',
           icon: (
@@ -28,11 +30,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             </svg>
           )
         },
-      ]
-    },
-    {
-      items: [
-        { 
+        {
           name: 'My Orders', 
           href: '/user/my-orders',
           icon: (
@@ -59,11 +57,6 @@ const Sidebar = ({ isOpen, onClose }) => {
             </svg>
           )
         },
-      ]
-    },
-    {
-
-      items: [
         { 
           name: 'Settings', 
           href: '/dashboard/settings',
@@ -73,45 +66,36 @@ const Sidebar = ({ isOpen, onClose }) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           )
-        },
+        }
       ]
     }
   ];
 
   return (
     <>
-
-
       {/* 🏢 মেইন সাইডবার কন্টেইনার */}
-      <aside  className={`
-    fixed top-0 left-0
-    z-50
-    w-[280px]
-    h-screen
-    bg-[#0f111a]
-    border-r border-gray-800/60
-    flex flex-col
-
-    transform
-    transition-transform
-    duration-300
-    ease-in-out
-
-    ${
-      isOpen
-        ? "translate-x-0"
-        : "-translate-x-full"
-    }
-
-    md:translate-x-0
-  `}>
+      <aside className={`
+        fixed top-0 left-0
+        z-50
+        w-[280px]
+        h-screen
+        bg-[#0f111a]
+        border-r border-gray-800/60
+        flex flex-col
+        transform
+        transition-transform
+        duration-300
+        ease-in-out
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        md:translate-x-0
+      `}>
         
         {/* লোগো সেকশন */}
         <div className="p-6 border-b border-gray-800/60 flex items-center justify-between h-[73px]">
           <div className="flex items-center gap-3">
-            <h2 className="m-0 text-xl font-bold tracking-wide text-white">
+            <div className="m-0 text-xl font-bold tracking-wide text-white">
               <Logo/>
-            </h2>
+            </div>
           </div>
           
           {/* মোবাইল ক্লোজ বাটন */}
@@ -129,20 +113,22 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="flex-1 py-6 px-4 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
           {menuGroups.map((group, index) => (
             <div key={index} className="flex flex-col gap-1.5">
-              <span className="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600">
-               
+              {/* গ্রুপের টাইটেল */}
+              <span className="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-1">
+                {group.groupName}
               </span>
               
-              {group.items.map((item) => {
+              {/* অবজেক্টের ভেতরের items অ্যারে সফলভাবে ম্যাপ হচ্ছে */}
+              {group.items?.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={onClose} // মোবাইলে লিংকে ক্লিক করলে ক্লোজ হবে
+                    onClick={onClose}
                     className={`flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none group
                       ${isActive 
-                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' 
+                        ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' 
                         : 'text-gray-400 hover:bg-gray-800/30 hover:text-white'
                       }`}
                   >
@@ -156,7 +142,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             </div>
           ))}
 
-          {/* লগআউট বাটন (সবসময় নিচে থাকবে) */}
+          {/* লগআউট বাটন (সবসময় নিচে থাকবে) */}
           <Link
             href="/auth/logout"
             className="flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none mt-auto text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 group"

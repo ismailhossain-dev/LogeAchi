@@ -1,0 +1,110 @@
+[
+  {
+    "title": "Men's Casual Shirt",
+    "price": 1200,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Men_sCasualShirt-1_npb9xw.avif",
+    "category": "Shirt",
+    "stock": 25,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Comfortable cotton casual shirt for everyday wear."
+  },
+  {
+    "title": "Women's Summer Dress",
+    "price": 1800,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Women_sSummerDress-2_iijovm.avif",
+    "category": "Dress",
+    "stock": 12,
+    "size": ["S", "M", "L"],
+    "description": "Lightweight and stylish summer dress."
+  },
+  {
+    "title": "Unisex Hoodie",
+    "price": 2200,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072213/Unisex_Hoodie-3_yg5suj.avif",
+    "category": "Hoodie",
+    "stock": 40,
+    "size": ["M", "L", "XL"],
+    "description": "Warm and cozy hoodie for winter season."
+  },
+  {
+    "title": "Men's Denim Jeans",
+    "price": 2000,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Men_s_Denim_Jeans-4_hyauov.avif",
+    "category": "Pants",
+    "stock": 30,
+    "size": ["M", "L", "XL"],
+    "description": "Classic denim jeans for everyday use."
+  },
+  {
+    "title": "Women's Kurti",
+    "price": 1500,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072213/Women_s_Kurti-5_olm2ny.avif",
+    "category": "Kurti",
+    "stock": 18,
+    "size": ["S", "M", "L"],
+    "description": "Traditional kurti with modern design."
+  },
+  {
+    "title": "Men's Polo T-Shirt",
+    "price": 900,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Men_s_Polo_T-Shirt-6_pfygco.avif",
+    "category": "T-Shirt",
+    "stock": 50,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Comfortable polo t-shirt for casual wear."
+  },
+  {
+    "title": "Women's Saree",
+    "price": 3500,
+    "image": "https://example.com/images/saree1.jpg",
+    "category": "Saree",
+    "stock": 10,
+    "size": ["Free Size"],
+    "description": "Elegant silk saree for special occasions."
+  },
+  {
+    "title": "Unisex Jacket",
+    "price": 3000,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Women_s_Saree-7_s0gaj4.avif",
+    "category": "Jacket",
+    "stock": 20,
+    "size": ["M", "L", "XL"],
+    "description": "Stylish leather jacket for winter."
+  },
+  {
+    "title": "Men's Shorts",
+    "price": 700,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072212/Unisex_Jacket-8_dp6q61.avif",
+    "category": "Shorts",
+    "stock": 35,
+    "size": ["S", "M", "L"],
+    "description": "Comfortable shorts for summer."
+  },
+  {
+    "title": "Women's Leggings",
+    "price": 800,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072212/Men_s_Shorts-9_muvocd.avif",
+    "category": "Leggings",
+    "stock": 45,
+    "size": ["S", "M", "L"],
+    "description": "Stretchable leggings for everyday comfort."
+  },
+  {
+    "title": "Kids T-Shirt",
+    "price": 500,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072213/Kids_T-Shirt-11_nebbwr.avif",
+    "category": "T-Shirt",
+    "stock": 60,
+    "size": ["XS", "S", "M"],
+    "description": "Soft and comfortable t-shirt for kids."
+  },
+  {
+    "title": "Men's Formal Blazer",
+    "price": 4000,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072216/Women_s_Leggings-10_xymekx.avif",
+    "category": "Blazer",
+    "stock": 8,
+    "size": ["M", "L", "XL"],
+    "description": "Premium formal blazer for special occasions."
+  }
+]

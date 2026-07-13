@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import Image from "next/image";
+import Link from "next/link";
 
 const Banner = () => {
   const banners = [
@@ -73,12 +74,12 @@ const Banner = () => {
                     
                     {/* ৫. বাটনের স্টাইল আপনার লগইন পেজের থিমের সাথে ম্যাচ করে সলিড ব্ল্যাক এবং মডার্ন বর্ডার দেওয়া হয়েছে */}
                     <div className="flex gap-3 pt-20">
-                      <button className="px-6 py-2.5  bg-orange-600 text-white text-xs font-bold tracking-wider uppercase rounded-xl transition-all duration-300 shadow-md hover:shadow-orange-600/10 active:scale-[0.98]">
+                      <Link href="/all-collection" className="px-6 py-2.5  bg-orange-600 text-white text-xs font-bold tracking-wider uppercase rounded-xl transition-all duration-300 shadow-md hover:shadow-orange-600/10 active:scale-[0.98] cursor-pointer">
                         Shop Now
-                      </button>
-                      <button className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold tracking-wider uppercase rounded-xl border border-slate-200 shadow-sm transition-all duration-300 active:scale-[0.98]">
-                        View More
-                      </button>
+                      </Link >
+                      <Link href="/about-us" className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold tracking-wider uppercase rounded-xl border border-slate-200 shadow-sm transition-all duration-300 active:scale-[0.98]">
+                        About US
+                      </Link>
                     </div>
                   </div>
                 </div>

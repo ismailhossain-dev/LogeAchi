@@ -29,8 +29,8 @@ const allCollectionPage = async ({ searchParams }) => {
     <div className="flex flex-col min-h-screen">
       <div className='max-w-7xl mx-auto overflow-hidden px-5 w-full flex-grow '>
         
-       <div  className=' flex justify-between items-center'>
-        <Title>Shop All Collection</Title>
+       <div  className=' flex justify-between items-center italic'>
+        <Title>Shop <br/> <span className='text-blue-500 font-bold '>All Collection</span></Title>
          {/* সার্চ বার কম্পোনেন্ট */}
         <SearchBar/>
        </div>

@@ -1,0 +1,294 @@
+[
+  {
+    "title": "Men's Premium Black T-Shirt",
+    "price": 950,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Men_s_Polo_T-Shirt-6_pfygco.avif",
+    "category": "T-Shirts",
+    "stock": 35,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Premium cotton t-shirt designed for all-day comfort."
+  },
+  {
+    "title": "Men's Oversized White T-Shirt",
+    "price": 1050,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924209/m-T-Shirts-2_xoqgpi.avif",
+    "category": "T-Shirts",
+    "stock": 28,
+    "size": ["M", "L", "XL"],
+    "description": "Modern oversized t-shirt with breathable cotton fabric."
+  },
+  {
+    "title": "Men's Graphic Printed T-Shirt",
+    "price": 1150,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924207/m-T-Shirts-3_dp6syh.avif",
+    "category": "T-Shirts",
+    "stock": 22,
+    "size": ["S", "M", "L"],
+    "description": "Stylish graphic printed t-shirt for casual outfits."
+  },
+  {
+    "title": "Men's Regular Fit Blue T-Shirt",
+    "price": 990,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924211/m-T-Shirts-4_gibakc.avif",
+    "category": "T-Shirts",
+    "stock": 30,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Soft regular fit t-shirt suitable for everyday wear."
+  },
+  {
+    "title": "Men's Football Jersey",
+    "price": 1400,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924203/m-Jerseys-1_cne9hq.avif",
+    "category": "Jerseys",
+    "stock": 18,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Breathable football jersey with lightweight fabric."
+  },
+  {
+    "title": "Men's Basketball Jersey",
+    "price": 1450,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924204/men-Jerseys-2_mr4gyw.jpg",
+    "category": "Jerseys",
+    "stock": 20,
+    "size": ["M", "L", "XL"],
+    "description": "Comfortable basketball jersey for sports and casual wear."
+  },
+  {
+    "title": "Men's Cricket Jersey",
+    "price": 1500,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924204/m-Jerseys-3_xqtsuq.jpg",
+    "category": "Jerseys",
+    "stock": 16,
+    "size": ["S", "M", "L"],
+    "description": "High-quality cricket jersey with moisture-wicking fabric."
+  },
+  {
+    "title": "Men's Esports Gaming Jersey",
+    "price": 1600,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924207/m-Jerseys-4_zbitie.jpg",
+    "category": "Jerseys",
+    "stock": 15,
+    "size": ["M", "L", "XL"],
+    "description": "Premium esports jersey designed for maximum comfort."
+  },
+
+
+  {
+    "title": "Men's Classic White Punjabi",
+    "price": 1850,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924205/m-punjabi-1_xfnldv.jpg",
+    "category": "Punjabi",
+    "stock": 20,
+    "size": ["M", "L", "XL"],
+    "description": "Elegant white cotton Punjabi perfect for festivals and special occasions."
+  },
+  {
+    "title": "Men's Navy Blue Punjabi",
+    "price": 1950,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924205/m-punjabi-2_t17afa.jpg",
+    "category": "Punjabi",
+    "stock": 18,
+    "size": ["M", "L", "XL"],
+    "description": "Premium navy blue Punjabi crafted with breathable cotton fabric."
+  },
+  {
+    "title": "Men's Embroidered Black Punjabi",
+    "price": 2200,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924206/m-punjabi-3_wsq2qv.jpg",
+    "category": "Punjabi",
+    "stock": 15,
+    "size": ["M", "L", "XL", "XXL"],
+    "description": "Stylish embroidered Punjabi designed for weddings and celebrations."
+  },
+  {
+    "title": "Men's Premium Maroon Punjabi",
+    "price": 2100,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924206/m-punjabi-4_kar57i.jpg",
+    "category": "Punjabi",
+    "stock": 22,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Traditional maroon Punjabi with a modern slim-fit design."
+  },
+  {
+    "title": "Men's Cotton Shorts Pant",
+    "price": 850,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072212/Unisex_Jacket-8_dp6q61.avif",
+    "category": "Shorts Pant",
+    "stock": 32,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Soft cotton shorts pant for everyday summer comfort."
+  },
+  {
+    "title": "Men's Sports Shorts Pant",
+    "price": 980,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924206/m-Shorts-Pant-1_dvc6rm.avif",
+    "category": "Shorts Pant",
+    "stock": 25,
+    "size": ["M", "L", "XL"],
+    "description": "Quick-dry sports shorts pant suitable for gym and running."
+  },
+  {
+    "title": "Men's Cargo Shorts Pant",
+    "price": 1250,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924209/m-Shorts-Pant-2_f1bwsi.avif",
+    "category": "Shorts Pant",
+    "stock": 19,
+    "size": ["M", "L", "XL"],
+    "description": "Modern cargo shorts featuring multiple utility pockets."
+  },
+  {
+    "title": "Men's Denim Shorts Pant",
+    "price": 1350,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924207/m-Shorts-Pant-3_qiodlf.avif",
+    "category": "Shorts Pant",
+    "stock": 18,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Stylish denim shorts pant perfect for casual summer outfits."
+  },
+
+  {
+    "title": "Men's Slim Fit Chino Pants",
+    "price": 1750,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1775072214/Men_s_Denim_Jeans-4_hyauov.avif",
+    "category": "Pants",
+    "stock": 24,
+    "size": ["M", "L", "XL"],
+    "description": "Slim fit chino pants made from premium stretch cotton fabric."
+  },
+  {
+    "title": "Men's Black Formal Pants",
+    "price": 1950,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924206/Men-Pants-2_puebus.avif",
+    "category": "Pants",
+    "stock": 20,
+    "size": ["M", "L", "XL", "XXL"],
+    "description": "Classic black formal pants suitable for office and business meetings."
+  },
+  {
+    "title": "Men's Cargo Pants",
+    "price": 2150,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924203/Men-Pants-3_hksqvj.webp",
+    "category": "Pants",
+    "stock": 18,
+    "size": ["M", "L", "XL"],
+    "description": "Modern cargo pants featuring multiple utility pockets and relaxed fit."
+  },
+  {
+    "title": "Men's Jogger Pants",
+    "price": 1650,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924204/Men-Pants-4_o2xlt7.webp",
+    "category": "Pants",
+    "stock": 26,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Comfortable jogger pants ideal for casual wear and workouts."
+  },
+  {
+    "title": "Women's Floral Printed Top",
+    "price": 1250,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924216/Women-Tops-1_ayyghp.avif",
+    "category": "Tops",
+    "stock": 28,
+    "size": ["S", "M", "L"],
+    "description": "Elegant floral printed top crafted from soft breathable fabric."
+  },
+  {
+    "title": "Women's Solid White Top",
+    "price": 1150,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924218/Women-Tops-2_gt37ly.avif",
+    "category": "Tops",
+    "stock": 30,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Minimal solid white top perfect for everyday casual styling."
+  },
+  {
+    "title": "Women's Puff Sleeve Top",
+    "price": 1450,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924218/Women-Tops-3_c2bxmc.avif",
+    "category": "Tops",
+    "stock": 22,
+    "size": ["S", "M", "L"],
+    "description": "Fashionable puff sleeve top designed for a modern look."
+  },
+  {
+    "title": "Women's Ribbed Knit Top",
+    "price": 1350,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924222/Women-Tops-4_yqthem.avif",
+    "category": "Tops",
+    "stock": 24,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Premium ribbed knit top offering comfort and style."
+  },
+  {
+    "title": "Women's Classic White T-Shirt",
+    "price": 950,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924203/Women-T-Shirt-1_xr9qtx.avif",
+    "category": "T-Shirts",
+    "stock": 35,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Classic white cotton t-shirt designed for everyday comfort and style."
+  },
+  {
+    "title": "Women's Oversized Graphic T-Shirt",
+    "price": 1150,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924203/Women-T-Shirt-2_lzzn52.avif",
+    "category": "T-Shirts",
+    "stock": 26,
+    "size": ["M", "L", "XL"],
+    "description": "Oversized graphic printed t-shirt with a trendy streetwear look."
+  },
+  {
+    "title": "Women's Round Neck Cotton T-Shirt",
+    "price": 990,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924205/Women-T-Shirt-3_cmcgvd.avif",
+    "category": "T-Shirts",
+    "stock": 30,
+    "size": ["S", "M", "L"],
+    "description": "Soft round neck cotton t-shirt perfect for daily casual outfits."
+  },
+  {
+    "title": "Women's Striped Casual T-Shirt",
+    "price": 1090,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924205/Women-T-Shirt-4_pskvh4.webp",
+    "category": "T-Shirts",
+    "stock": 24,
+    "size": ["S", "M", "L", "XL"],
+    "description": "Modern striped casual t-shirt made with breathable premium fabric."
+  },
+
+  {
+    "title": "Women's Skinny Blue Jeans",
+    "price": 1850,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924209/Women-Jeans-1_uhdqoe.webp",
+    "category": "Jeans",
+    "stock": 22,
+    "size": ["28", "30", "32", "34"],
+    "description": "Skinny fit blue denim jeans crafted for comfort and style."
+  },
+  {
+    "title": "Women's High Waist Jeans",
+    "price": 2100,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924210/Women-Jeans-2_pjsq7j.webp",
+    "category": "Jeans",
+    "stock": 18,
+    "size": ["28", "30", "32", "34"],
+    "description": "Premium high waist jeans with a modern slim fit design."
+  },
+  {
+    "title": "Women's Wide Leg Jeans",
+    "price": 2250,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924217/Women-Jeans-3_zn7ho6.webp",
+    "category": "Jeans",
+    "stock": 20,
+    "size": ["28", "30", "32", "34"],
+    "description": "Stylish wide leg denim jeans for a fashionable everyday look."
+  },
+  {
+    "title": "Women's Black Straight Fit Jeans",
+    "price": 1950,
+    "image": "https://res.cloudinary.com/ddfgi0gdr/image/upload/v1783924219/Women-Jeans-4_zwwzbo.avif",
+    "category": "Jeans",
+    "stock": 25,
+    "size": ["28", "30", "32", "34", "36"],
+    "description": "Elegant straight fit black jeans suitable for both casual and formal outfits."
+  }
+]

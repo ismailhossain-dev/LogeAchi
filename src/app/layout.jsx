@@ -4,6 +4,7 @@ import NavbarWrapper from "@/components/shared/Navbar/NavbarWrapper";
 import NextAuthProvider from "@/provider/NextAuthProvider";
   import { ToastContainer, toast } from 'react-toastify';
 import TanStackQueryProvider from "@/provider/TanStackQueryProvider";
+import CustomCursor from "@/components/CustomCursor/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,21 +30,27 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     // NextAuthProvider use for user
-    <NextAuthProvider>
+  
       <html lang="en" className={`${poppins.className} h-full antialiased`}>
         {/* use for data fetach Delete */}
-       <TanStackQueryProvider>
+       
         
          <body className="min-h-full flex flex-col bg-[#0f172a]">
-         
+          {/* custome cursor setup done */}
+          <CustomCursor/>
+            <NextAuthProvider>
+         <TanStackQueryProvider>
             <ToastContainer />
           <NavbarWrapper />
        
           <main>{children}</main>
+
+          </TanStackQueryProvider>
+          </NextAuthProvider>
         </body>
      
-       </TanStackQueryProvider>
+      
       </html>
-    </NextAuthProvider>
+   
   );
 }

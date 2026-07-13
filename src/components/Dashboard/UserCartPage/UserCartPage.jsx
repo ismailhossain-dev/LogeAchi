@@ -4,6 +4,7 @@ import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useSession } from 'next-auth/react';
 import { useQuery } from '@tanstack/react-query';
 import { Trash2, ShoppingBag, CreditCard, ArrowRight, Plus, Minus, ChevronDown } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 function UserCartPage() {
   const axiosSecure = useAxiosSecure();
@@ -12,11 +13,12 @@ function UserCartPage() {
   // লোকাল স্টেট: কোয়ান্টিটি এবং সাইজ ক্লায়েন্ট সাইডে স্মুথলি হ্যান্ডেল করার জন্য
   const [quantities, setQuantities] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
-
+//data get or fetch api
+//delete er jonno refetch dorkar tai tanstack query mardome cart delete korchi
   const {
     data: cartData,
     isLoading: isCartLoading,
-    refetch,
+    refetch
   } = useQuery({
     queryKey: ["wishlist", session?.user?.email || ""],
     enabled: status === "authenticated" && !!session?.user?.email,
@@ -55,14 +57,22 @@ function UserCartPage() {
   
   const deliveryCharge = cartItems.length > 0 ? 120 : 0;
   const totalAmount = subtotal + deliveryCharge;
-
-  const handleDeleteItem = async (id) => {
-    try {
-      alert(`Delete clicked for item ID: ${id}`);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+//cart delete api
+ const handleDeleteCartItem = async (itemId) => {
+   try {
+     const res = await axiosSecure.delete('/api/cart', { data: { id: itemId } });
+     
+     if (res.status === 200) {
+       toast.success("Item removed from cart");
+       refetch()
+       return; 
+      
+     }
+   } catch (error) {
+     console.error("Delete error:", error);
+     toast.error("Failed to remove item");
+   }
+ };
 
   if (status === "loading" || isCartLoading) {
     return (
@@ -197,7 +207,7 @@ function UserCartPage() {
                       
                       {/* ডিলিট আইকন বাটন */}
                       <button 
-                        onClick={() => handleDeleteItem(item._id)}
+                        onClick={() => handleDeleteCartItem(item._id)}
                         className="p-2.5 bg-slate-900/60 border border-slate-800/80 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all cursor-pointer mt-3 sm:mt-0"
                       >
                         <Trash2 size={14} />
