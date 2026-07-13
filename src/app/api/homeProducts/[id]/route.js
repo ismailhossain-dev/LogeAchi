@@ -1,3 +1,4 @@
+//this api for single details page
 import { dbConnect } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";

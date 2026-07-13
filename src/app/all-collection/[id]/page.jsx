@@ -4,7 +4,7 @@ import Navbar from "@/components/shared/Navbar/Navbar";
 
 
 export default async function ProductDetails({ params }) {
-  const { id } = await params;
+  const { id } = await params;//url teke id ta access korche
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/homeProducts/${id}`)
 

@@ -7,46 +7,47 @@ const SearchBar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  // URL-এ আগে থেকে কোনো সার্চ কুয়েরি থাকলে তা ইনিশিয়াল স্টেট হিসেবে সেট হবে
   const [text, setText] = useState(searchParams.get("search") || "");
 
-  // যদি ইউজার URL থেকে সার্চ কুয়েরি মুছে দেয়, তবে ইনপুট বক্সও খালি হয়ে যাবে
   useEffect(() => {
     setText(searchParams.get("search") || "");
   }, [searchParams]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    
     if (!text.trim()) {
-      // ইনপুট খালি থাকলে মূল পেজে রিডাইরেক্ট করবে (সব প্রোডাক্ট দেখানোর জন্য)
       router.push("/all-collection");
     } else {
-      // URL-এ সার্চ কুয়েরি যোগ করবে
       router.push(`/all-collection?search=${encodeURIComponent(text.trim())}`);
     }
   };
 
   return (
-   <form onSubmit={handleSearch} className="w-full md:max-w-md px-2">
-  <div className="relative flex items-center w-full bg-white rounded-xl shadow-sm border border-gray-200 focus-within:border-[#ff6801] focus-within:ring-1 focus-within:ring-[#ff6801] transition-all duration-200">
-    {/* বাকি ভেতরের কোড একদম এক থাকবে */}
-    <input
-      type="text"
-      placeholder="Search products by title..."
-      value={text}
-      onChange={(e) => setText(e.target.value)}
-      className="w-full h-11 pl-4 pr-12 rounded-xl text-sm text-gray-800 bg-transparent focus:outline-none"
-    />
-    <button
-      type="submit"
-      className="absolute right-1.5 w-8 h-8 bg-[#ff6801] hover:bg-[#e05b00] text-white rounded-lg flex items-center justify-center transition-colors focus:outline-none active:scale-95"
-      aria-label="Search"
-    >
-      <FiSearch className="text-sm" />
-    </button>
-  </div>
-</form>
+    <form onSubmit={handleSearch} className="w-full md:max-w-sm px-1">
+      <div className="relative flex items-center w-full bg-[#0f172a]/80 backdrop-blur-md rounded-xl border border-blue-500/50 focus-within:border-blue-500/50 focus-within:ring-2 focus-within:ring-blue-500/10 shadow-lg shadow-black/20 transition-all duration-300 group">
+        
+        {/* 🔍 ইনপুট ফিল্ড */}
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          className="w-full h-11 pl-4 pr-12 text-xs md:text-sm text-gray-200 placeholder-gray-500 bg-transparent focus:outline-none tracking-wide"
+        />
+        
+        {/* 🚀 প্রিমিয়াম সার্চ বাটন */}
+        <button
+          type="submit"
+          className="absolute right-2 w-7 h-7 bg-blue-500 hover:bg-blue-600 text-white rounded-lg flex items-center justify-center transition-all duration-200 active:scale-90 shadow-md shadow-blue-500/20 group-focus-within:scale-105"
+          aria-label="Search"
+        >
+          <FiSearch className="text-xs transition-transform duration-300 group-hover:scale-110" />
+        </button>
+
+        {/* 🪄 বাটনের পেছনে হালকা গ্লো ইফেক্ট (যখন ইনপুট অ্যাক্টিভ হবে) */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-500/0 to-blue-500/5 rounded-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      </div>
+    </form>
   );
 };
 

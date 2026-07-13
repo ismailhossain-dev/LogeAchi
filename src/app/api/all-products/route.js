@@ -1,23 +1,11 @@
+
 import { dbConnect } from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
   try {
-    const products = await dbConnect("products")
-      .find()
-      .toArray();
-
-    if (!products || products.length === 0) {
-      return NextResponse.json(
-        { message: "Products not found" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json( {
-      message: "product get successfully",
-      status: 200,
-    });
+ const result = await dbConnect("products").find().toArray()
+  return NextResponse.json ({message: "api/all-collection get successfully", result, status: 200})
 
   } catch (error) {
     console.log(error);

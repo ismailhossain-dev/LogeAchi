@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
     try {
         //.sort({createAt: -1})
-        const result = await dbConnect("products").find().limit(8).toArray()
+        const result = await dbConnect("products").find().limit(10).toArray()
         return NextResponse.json ({message: "api/homeProducts get successfully", result, status: 200})
         
     } catch (error) {

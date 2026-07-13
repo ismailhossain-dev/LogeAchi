@@ -6,6 +6,7 @@ import OurServices from "@/components/home/OurServices/OurServices";
 import Footer from "@/components/shared/Footer/Footer";
 
 import Title from "@/components/Title/Title";
+import Link from "next/link";
 
 
 const Page = async () => {
@@ -31,12 +32,21 @@ const Page = async () => {
       <div className="max-w-7xl mx-auto overflow-hidden px-5">
         <div className="max-w-7xl mx-auto overflow-hidden px-5"></div>
         <section >
-         <div className="mt-20 mb-12 italic uppercase space-y-7 ">
+         <div className="flex justify-between items-center uppercase">
+          {/* title dev */}
+          <div className="mt-20 mb-12 italic uppercase space-y-7 ">
            <Title >Trending <br/> <span className="text-blue-500 font-bold">Collections</span>
            </Title>
+           </div>
+           {/* button div */}
+           <div>
+            <Link href="/all-collection" className="outline border border-[#e05b00]  py-2 px-6 rounded-lg shadow-md text-[#e05b00] transition duration-200 cursor-pointer transform-stroke">Show All Product</Link>
+           </div>
+
+           
          </div>
 
-          <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-4 md:gap-6">
+          <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-5 md:gap-6">
             {data.result?.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
