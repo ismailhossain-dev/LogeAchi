@@ -17,7 +17,6 @@ const Banner = () => {
       // subtitle: "Exclusive Premium Products",
       // desc: "Experience the ultimate sophistication with our curated selection.",
     },
-
   ];
 
   return (
@@ -47,7 +46,7 @@ const Banner = () => {
                   <Image
                     src={slide.img}
                     alt="Banner"
-                  loading="eager"
+                    loading="eager"
                     fill
                     priority
                     className="object-cover object-center"
@@ -63,7 +62,7 @@ const Banner = () => {
                     <span className="inline-block px-3 py-1 rounded-full bg-orange-50 text-orange-600 border border-orange-200 text-xs font-bold tracking-widest uppercase">
                       {slide.subtitle}
                     </span>
-                    
+
                     {/* ৪. টাইটেল এবং ডেসক্রিপশন কালার ডার্ক স্লেট (Slate-900 & Slate-600) করা হয়েছে */}
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight">
                       {slide.title}
@@ -71,14 +70,50 @@ const Banner = () => {
                     <p className="text-sm md:text-base text-slate-600 max-w-md line-clamp-2 font-medium">
                       {slide.desc}
                     </p>
-                    
+
                     {/* ৫. বাটনের স্টাইল আপনার লগইন পেজের থিমের সাথে ম্যাচ করে সলিড ব্ল্যাক এবং মডার্ন বর্ডার দেওয়া হয়েছে */}
-                    <div className="flex gap-3 pt-20">
-                      <Link href="/all-collection" className="px-6 py-2.5  bg-orange-600 text-white text-xs font-bold tracking-wider uppercase rounded-xl transition-all duration-300 shadow-md hover:shadow-orange-600/10 active:scale-[0.98] cursor-pointer">
-                        Shop Now
-                      </Link >
-                      <Link href="/about-us" className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold tracking-wider uppercase rounded-xl border border-slate-200 shadow-sm transition-all duration-300 active:scale-[0.98]">
-                        About US
+                    <div className="flex flex-wrap gap-4 pt-20 items-center justify-start">
+                      {/* 🧡 Shop Now Button (Premium Gradient & Glow Effect) */}
+                      <Link
+                        href="/all-collection"
+                        className="group relative inline-flex items-center justify-center px-8 py-3.5 
+               bg-gradient-to-r from-orange-500 to-red-600 
+               text-white text-xs font-extrabold tracking-widest uppercase rounded-xl 
+               transition-all duration-300 ease-out
+               hover:from-orange-600 hover:to-red-700
+               hover:shadow-[0_0_20px_rgba(234,88,12,0.5)] 
+               active:scale-95 cursor-pointer overflow-hidden"
+                      >
+                        {/* শাইনি গ্লাস ইফেক্ট (Hover করলে একটি লাইট স্লাইড করবে) */}
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+
+                        <span className="relative flex items-center gap-2">
+                          Shop Now
+                          {/* একটি ডানদিকের ছোট অ্যারো যা হোভার করলে ডানপাশে সরবে */}
+                          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                            →
+                          </span>
+                        </span>
+                      </Link>
+
+                      {/* 🤍 About US Button (Modern Glassmorphism & Cyber Outline) */}
+                      <Link
+                        href="/about-us"
+                        className="group relative inline-flex items-center justify-center px-8 py-3.5 
+               bg-slate-900/40 backdrop-blur-md hover:bg-slate-800/60
+               text-slate-200 hover:text-white text-xs font-extrabold tracking-widest uppercase rounded-xl 
+               border border-slate-700 hover:border-orange-500/50 
+               transition-all duration-300 ease-out
+               hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]
+               active:scale-95 cursor-pointer"
+                      >
+                        <span className="relative flex items-center gap-2">
+                          About US
+                          {/* হোভার করলে প্লাস বা অন্য আইকন ঘুরবে */}
+                          <span className="inline-block transition-transform duration-500 group-hover:rotate-180 text-orange-500">
+                            +
+                          </span>
+                        </span>
                       </Link>
                     </div>
                   </div>

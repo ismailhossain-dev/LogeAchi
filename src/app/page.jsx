@@ -49,7 +49,7 @@ const Page = async () => {
             <div>
               <Link
                 href="/all-collection"
-                className="outline border border-[#e05b00] py-2 px-6 rounded-lg shadow-md text-[#e05b00] transition duration-200 cursor-pointer transform-stroke"
+                className="outline border border-[#e05b00] py-2 px-3 rounded-lg shadow-md text-[#e05b00] transition duration-200 cursor-pointer transform-stroke text-[13px] md:text-[17px]"
               >
                 Show All Product
               </Link>

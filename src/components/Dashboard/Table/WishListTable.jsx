@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function WishListTable({ wishlist = [], refetch }) {
   const [items, setItems] = useState([]);
@@ -186,9 +187,9 @@ export default function WishListTable({ wishlist = [], refetch }) {
                         <button onClick={() => handleDelete(item.id, item.title)} className="p-2.5 bg-slate-900/60 border border-slate-800 text-rose-500 hover:bg-rose-500/10 rounded-xl transition cursor-pointer" title="Delete Item">
                           <Trash2 size={14} />
                         </button>
-                        <button onClick={() => handlePurchase(item.title, item.quantity, item.basePrice)} className="p-2.5 bg-slate-900/60 border border-slate-800 text-emerald-400 hover:bg-emerald-500/10 rounded-xl transition cursor-pointer" title="Add to Cart">
+                        <Link href={`/checkout/${item._id}`}  className="p-2.5 bg-slate-900/60 border border-slate-800 text-emerald-400 hover:bg-emerald-500/10 rounded-xl transition cursor-pointer" title="Add to Cart">
                           <ShoppingCart size={14} />
-                        </button>
+                        </Link>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -252,9 +253,9 @@ export default function WishListTable({ wishlist = [], refetch }) {
                     <button onClick={() => handleDelete(item.id, item.title)} className="p-2 bg-slate-900/60 border border-slate-800 text-rose-500 rounded-xl cursor-pointer">
                       <Trash2 size={14} />
                     </button>
-                    <button onClick={() => handlePurchase(item.title, item.quantity, item.basePrice)} className="p-2 bg-slate-900/60 border border-slate-800 text-emerald-400 rounded-xl cursor-pointer">
+                    <Link href={`/checkout/${item._id}`} className="p-2 bg-slate-900/60 border border-slate-800 text-emerald-400 rounded-xl cursor-pointer">
                       <ShoppingCart size={14} />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

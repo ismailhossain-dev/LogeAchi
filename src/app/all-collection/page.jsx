@@ -36,7 +36,7 @@ const allCollectionPage = async ({ searchParams }) => {
     );
   }
 
-  console.log(finalCategory)
+  //console.log(finalCategory)//ekane sob category pabo
 
   return (
     <div className="flex flex-col min-h-screen text-white ">
