@@ -8,6 +8,10 @@ const CustomCursor = () => {
   const followerRef = useRef(null);
 
   useEffect(() => {
+    // 🟢 চেক১: স্ক্রিন ৭৬৮ পিক্সেলের কম হলে অথবা ডিভাইসটি টাচ স্ক্রিন (মোবাইল/ট্যাব) হলে কার্সার রান হবে না
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (window.innerWidth < 768 || isTouchDevice) return;
+
     const cursor = cursorRef.current;
     const follower = followerRef.current;
 
@@ -57,7 +61,7 @@ const CustomCursor = () => {
 
     window.addEventListener('mousemove', moveCursor);
 
-    // Dynamic Select (Supports both Native & MUI components if still in project)
+    // Dynamic Select
     const interactiveElements = document.querySelectorAll('button, a, .hover-target, .MuiButton-root, .MuiIconButton-root');
     interactiveElements.forEach((el) => {
       el.addEventListener('mouseenter', handleMouseEnter);
@@ -84,8 +88,9 @@ const CustomCursor = () => {
   };
 
   return (
-    <>
-      {/* মেইন ডট (Native div) */}
+    // 🟢 Tailwind CSS Class: hidden md:block দিয়ে ছোট স্ক্রিনে ডিভ ২টি হাইড করা হয়েছে
+    <div className="hidden md:block">
+      {/* মেইন ডট */}
       <div
         ref={cursorRef}
         style={{
@@ -96,7 +101,7 @@ const CustomCursor = () => {
           zIndex: 9999,
         }}
       />
-      {/* ফলোয়ার সার্কেল (Native div) */}
+      {/* ফলোয়ার সার্কেল */}
       <div
         ref={followerRef}
         style={{
@@ -107,7 +112,7 @@ const CustomCursor = () => {
           zIndex: 9998,
         }}
       />
-    </>
+    </div>
   );
 };
 

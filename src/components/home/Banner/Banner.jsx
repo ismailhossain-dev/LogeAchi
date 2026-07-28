@@ -22,7 +22,7 @@ const Banner = () => {
   return (
     <div className="w-full overflow-clip px-6 md:px-0">
       {/* ১. সেকশনে একটি হালকা সফট বর্ডার ও শ্যাডো দেওয়া হয়েছে যা লাইট থিমে সুন্দর দেখায় */}
-      <section className="relative max-w-7xl mx-auto h-[420px] overflow-hidden md:rounded-3xl border border-slate-200/60 shadow-sm ">
+      <section className="relative max-w-7xl mx-auto h-[470px] overflow-hidden md:rounded-3xl border border-slate-200/60 shadow-sm ">
         <Swiper
           modules={[Pagination, Autoplay, EffectFade]}
           effect={"fade"}
