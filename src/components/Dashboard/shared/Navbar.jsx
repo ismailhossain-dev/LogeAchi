@@ -55,7 +55,7 @@ const Navbar = ({ setIsOpen }) => {
             alt="User Profile" 
           />
           <div className="hidden sm:flex flex-col">
-            <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors leading-tight">{session?.user?.name}</span>
+            {/* <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors leading-tight">{session?.user?.name}</span> */}
             <span className="text-[10px] text-gray-500 mt-0.5 font-bold tracking-wider uppercase">Customer</span>
           </div>
         </div>

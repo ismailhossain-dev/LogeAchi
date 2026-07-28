@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BsCart3 } from "react-icons/bs";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
+import Link from "next/link";
 
 const ProductModel = ({ 
   showModal, 
@@ -37,7 +38,7 @@ const ProductModel = ({
   // মডাল ওপেন না থাকলে বা ক্লায়েন্ট সাইডে মাউন্ট না হলে কিছুই রেন্ডার হবে না
   if (!showModal || !product || !mounted) return null;
 
-  const { title, price, image, sizes = ["S", "M", "L", "XL"], description } = product;
+  const { title,_id,  price, image, sizes = ["S", "M", "L", "XL"], description } = product;
 
   const decreaseQty = () => quantity > 1 && setQuantity(quantity - 1);
   const increaseQty = () => setQuantity(quantity + 1);
@@ -139,7 +140,7 @@ const ProductModel = ({
               </div>
 
               <div className="flex gap-2">
-                <button
+                <Link href={`/checkout/${_id}`}
                   onClick={() => {
                     setIsAddedToCart(true);
                     onClose();
@@ -147,7 +148,7 @@ const ProductModel = ({
                   className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-[11px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.2)] cursor-pointer active:scale-[0.99]"
                 >
                   <BsCart3 className="text-xs" /> Add To Cart
-                </button>
+                </Link>
               </div>
             </div>
             

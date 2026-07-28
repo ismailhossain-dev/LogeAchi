@@ -41,22 +41,30 @@ const Footer = () => {
   return (
     <footer className="bg-[#0f172a]  text-slate-300 pt-20 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800/60 mt-16 relative w-full font-sans antialiased selection:bg-green-500 selection:text-white">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 max-w-7xl mx-auto">
-        
         {/* Column 1: Brand & About */}
         <div className="space-y-6">
-          <div href="/" className="inline-block hover:opacity-90 transition-opacity focus:outline-none">
+          <div
+            href="/"
+            className="inline-block hover:opacity-90 transition-opacity focus:outline-none"
+          >
             <Logo />
           </div>
           <p className="text-sm sm:text-base leading-relaxed text-slate-400 max-w-xs">
-            Your premium gateway to the world of literature. We deliver passion, knowledge, and
-            stories right to your doorstep.
+            Your premium gateway to the world of literature. We deliver passion,
+            knowledge, and stories right to your doorstep.
           </p>
 
           {/* Social Icons */}
           <div className="flex items-center gap-3 pt-2">
             {[
-              { Icon: FaFacebookF, to: "https://web.facebook.com/md.sabbir.926093" },
-              { Icon: FaInstagram, to: "https://www.instagram.com/sabbir.69k/" },
+              {
+                Icon: FaFacebookF,
+                to: "https://web.facebook.com/md.sabbir.926093",
+              },
+              {
+                Icon: FaInstagram,
+                to: "https://www.instagram.com/sabbir.69k/",
+              },
               { Icon: FaXTwitter, to: "https://x.com" },
               {
                 Icon: FaLinkedinIn,
@@ -84,11 +92,12 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3.5 text-sm sm:text-base">
             {[
-              { name: "Home", path: "/" },
-              { name: "All Collection", path: "/all-collection" },
-              { name: "Categories", path: "/categories" },
-              { name: "Blogs", path: "/Blogs" },
-              { name: "Contact Us", path: "/contact" },
+            
+              {  name: "Home",    path: "/" },
+              {  name: "SHOP",    path: "/all-collection" },
+              {  name: "MENS",    path: "/mens-collections" },
+              {  name: "WOMENS",  path: "/womens-collections" },
+              {  name: "ABOUT US",path: "/about-us" },
             ].map((item) => (
               <li key={item.name}>
                 <Link
@@ -134,7 +143,10 @@ const Footer = () => {
                 <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-0.5">
                   Call us
                 </p>
-                <a href="tel:+8801619408991" className="text-slate-300 hover:text-green-400 transition-colors duration-200">
+                <a
+                  href="tel:+8801619408991"
+                  className="text-slate-300 hover:text-green-400 transition-colors duration-200"
+                >
                   +880 1619 408 991
                 </a>
               </div>
@@ -166,8 +178,8 @@ const Footer = () => {
               placeholder="Your email address"
               className="w-full bg-slate-900 border border-slate-800/80 rounded-xl py-3.5 pl-4 pr-12 text-sm outline-none focus:border-green-500/50 text-white placeholder-slate-500 transition-all"
             />
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               aria-label="Subscribe"
               className="absolute right-1.5 top-1.5 bottom-1.5 px-3.5 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors flex items-center justify-center shadow-md active:scale-95"
             >
@@ -175,7 +187,8 @@ const Footer = () => {
             </button>
           </form>
           <p className="text-[11px] text-slate-500 mt-4 leading-relaxed italic">
-            * Join our mailing list for the latest book arrivals and exclusive offers.
+            * Join our mailing list for the latest book arrivals and exclusive
+            offers.
           </p>
         </div>
       </div>
@@ -184,16 +197,34 @@ const Footer = () => {
       <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
         <p className="text-xs sm:text-sm font-medium text-slate-500 text-center md:text-left">
           © {currentYear}{" "}
-          <Link href="/" className="text-slate-400 hover:text-green-500 transition-colors duration-200">
+          <Link
+            href="/"
+            className="text-slate-400 hover:text-green-500 transition-colors duration-200"
+          >
             BookCourier
           </Link>
           . All rights reserved.
         </p>
 
         <div className="flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-          <Link href="/privacy" className="hover:text-green-500 transition-colors duration-200">Privacy</Link>
-          <Link href="/terms" className="hover:text-green-500 transition-colors duration-200">Terms</Link>
-          <Link href="/faq" className="hover:text-green-500 transition-colors duration-200">FAQ</Link>
+          <Link
+            href="/privacy"
+            className="hover:text-green-500 transition-colors duration-200"
+          >
+            Privacy
+          </Link>
+          <Link
+            href="/terms"
+            className="hover:text-green-500 transition-colors duration-200"
+          >
+            Terms
+          </Link>
+          <Link
+            href="/faq"
+            className="hover:text-green-500 transition-colors duration-200"
+          >
+            FAQ
+          </Link>
         </div>
 
         <p className="text-xs sm:text-sm font-medium text-slate-500 italic text-center md:text-right">
@@ -208,8 +239,6 @@ const Footer = () => {
           </a>
         </p>
       </div>
-
-     
     </footer>
   );
 };
