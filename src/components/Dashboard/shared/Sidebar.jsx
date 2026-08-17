@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo/Logo';
@@ -13,9 +13,37 @@ import {
   HiOutlineShoppingCart, 
   HiOutlineArrowLeftOnRectangle 
 } from 'react-icons/hi2';
+import useAxiosSecure from '@/hooks/useAxiosSecure';
+import { useSession } from 'next-auth/react';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const pathname = usePathname();
+  const axioSecure = useAxiosSecure();
+   const { data: session, status } = useSession();
+const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (status === "authenticated" && session?.user?.email) {
+        try {
+          const res = await axioSecure.get(`/api/dashboardOverview?email=${session.user.email}`);
+          setUserRole(res.data?.role);
+        } catch (error) {
+          console.error("Failed to fetch user role", error);
+        }
+      }
+    };
+
+    fetchUserRole();
+  }, [session, status, axioSecure]);
+
+  if (status === "loading") {
+    return <p className="text-white p-4">Loading...</p>;
+  }
+
+  console.log("hello user role " , userRole)
+
+  
 
   const menuGroups = [
     {

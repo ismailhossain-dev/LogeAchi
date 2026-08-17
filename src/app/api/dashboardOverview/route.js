@@ -27,6 +27,9 @@ export async function GET(req) {
   const user = await dbConnect("users").findOne({ email });
   const userName = user?.name;
 
+  const userRole = await dbConnect("users").findOne({email})
+  const  role = userRole?.role; 
+
   //5 letest order 
 
  const latestOrders = await dbConnect("orders").find({ email }).         sort({ price: -1 }).limit(5).toArray();               
@@ -39,7 +42,8 @@ export async function GET(req) {
         totalCart,
         pendingOrders,
         userName, 
-        latestOrders
+        latestOrders,
+        role
       },
       { status: 200 },
     );
