@@ -11,6 +11,7 @@ import { FiChevronRight, FiTrash2 } from 'react-icons/fi';
 import { MdMenu as MdMenuIcon, MdClose as MdCloseIcon } from "react-icons/md";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import Container from '@/components/Dashboard/shared/container/Container';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); 
@@ -82,14 +83,16 @@ const handleDeleteCartItem = async (itemId) => {
     { id: 2, name: "SHOP", href: "/all-collection" },
     { id: 3, name: "MENS", href: "/mens-collections" },
     { id: 4, name: "WOMENS", href: "/womens-collections" },
-    { id: 5, name: "ABOUT US", href: "/about-us" }
+    { id: 5, name: "ABOUT US", href: "/about-us" },
+    { id: 6, name: "Admin Dashboard", href: "/admin" }
   ];
 
   return (
     <>
       {/* 🌟 মেইন নেভিগেশন বার */}
       <nav className="fixed top-0 left-0 w-full bg-[#0f172a] border-slate-800/60 backdrop-blur-md border-b py-4 z-40 shadow-md select-none">
-        <div className="flex justify-between items-center max-w-7xl mx-auto px-5 sm:px-8">
+      <Container>
+        <div className="flex justify-between items-center ">
           
           {/* ব্র্যান্ড লোগো */}
           <div className="transition-transform duration-200 hover:scale-105">
@@ -147,6 +150,7 @@ const handleDeleteCartItem = async (itemId) => {
             </button>
           </div>
         </div>
+        </Container>
       </nav>
 
 {/* navbar hide margin */}

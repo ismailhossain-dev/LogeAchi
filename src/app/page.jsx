@@ -1,4 +1,5 @@
 import ProductCard from "@/components/cards/ProductCard/ProductCard";
+import Container from "@/components/Dashboard/shared/container/Container";
 import Banner from "@/components/home/Banner/Banner";
 import Gallery from "@/components/home/Gallery/Gallery";
 import OurServices from "@/components/home/OurServices/OurServices";
@@ -36,7 +37,7 @@ const Page = async () => {
       {/* header */}
       <Banner />
 
-      <div className="max-w-7xl mx-auto overflow-hidden px-5">
+      <Container className="overflow-hidden ">
         <section>
           <div className="flex justify-between items-center uppercase">
             {/* title dev */}
@@ -69,7 +70,7 @@ const Page = async () => {
             )}
           </div>
         </section>
-      </div>
+      </Container>
 
       {/* Our Services Section */}
       <OurServices />
