@@ -11,7 +11,8 @@ import {
   HiOutlineClipboardDocumentList, 
   HiOutlineHeart, 
   HiOutlineShoppingCart, 
-  HiOutlineArrowLeftOnRectangle 
+  HiOutlineArrowLeftOnRectangle,
+  HiOutlineChartPie // Admin-er jonno chaile onno icon use korte paren
 } from 'react-icons/hi2';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useSession } from 'next-auth/react';
@@ -19,8 +20,8 @@ import { useSession } from 'next-auth/react';
 const Sidebar = ({ isOpen, onClose }) => {
   const pathname = usePathname();
   const axioSecure = useAxiosSecure();
-   const { data: session, status } = useSession();
-const [userRole, setUserRole] = useState(null);
+  const { data: session, status } = useSession();
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -41,42 +42,70 @@ const [userRole, setUserRole] = useState(null);
     return <p className="text-white p-4">Loading...</p>;
   }
 
-  console.log("hello user role " , userRole)
-
-  
-
-  const menuGroups = [
-    {
-      groupName: 'User Dashboard',
-      items: [
+  // Role onushare dynamic menu groups toiri kora holo
+  const getMenuGroups = () => {
+    // Jodi role 'user' hoy
+    if (userRole === 'user') {
+      return [
         {
-          name: 'Overview', 
-          href: '/user',
-          icon: <HiOutlineHome className="w-5 h-5" />
-        },
-        { 
-          name: 'My Profile', 
-          href: '/user/my-profile',
-          icon: <HiOutlineUser className="w-5 h-5" />
-        },
-        {
-          name: 'My Orders', 
-          href: '/user/my-orders',
-          icon: <HiOutlineClipboardDocumentList className="w-5 h-5" />
-        },
-        { 
-          name: 'My Wishlist', 
-          href: '/user/my-wishlist',
-          icon: <HiOutlineHeart className="w-5 h-5" />
-        },
-        { 
-          name: 'My Cart', 
-          href: '/user/my-cart',
-          icon: <HiOutlineShoppingCart className="w-5 h-5" />
-        },
-      ]
+          groupName: 'User Dashboard',
+          items: [
+            {
+              name: 'Overview', 
+              href: '/user',
+              icon: <HiOutlineHome className="w-5 h-5" />
+            },
+            { 
+              name: 'My Profile', 
+              href: '/user/my-profile',
+              icon: <HiOutlineUser className="w-5 h-5" />
+            },
+            {
+              name: 'My Orders', 
+              href: '/user/my-orders',
+              icon: <HiOutlineClipboardDocumentList className="w-5 h-5" />
+            },
+            { 
+              name: 'My Wishlist', 
+              href: '/user/my-wishlist',
+              icon: <HiOutlineHeart className="w-5 h-5" />
+            },
+            { 
+              name: 'My Cart', 
+              href: '/user/my-cart',
+              icon: <HiOutlineShoppingCart className="w-5 h-5" />
+            },
+          ]
+        }
+      ];
     }
-  ];
+
+    // Jodi role 'admin' hoy (aponi chaile ekhane admin-er menu items add korte paren)
+    if (userRole === 'admin') {
+      return [
+        {
+          groupName: 'Admin Dashboard',
+          items: [
+            {
+              name: 'Admin Overview', 
+              href: '/admin',
+              icon: <HiOutlineChartPie className="w-5 h-5" />
+            },
+            { 
+              name: 'Manage Users', 
+              href: '/admin/manage-users',
+              icon: <HiOutlineUser className="w-5 h-5" />
+            },
+          ]
+        }
+      ];
+    }
+
+    // Default ba jodi role na thake
+    return [];
+  };
+
+  const menuGroups = getMenuGroups();
 
   return (
     <>
