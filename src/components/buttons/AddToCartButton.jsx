@@ -61,7 +61,7 @@ const AddToCartButton = ({ product }) => {
     <div>
       <button 
         onClick={handleAddToCart} 
-       /* 🟢 এখানেও মোবাইলের জন্য ডিফল্ট ভিউ ঠিক করা হয়েছে এবং শুধুমাত্র লার্জ স্ক্রিনে অ্যানিমেশন সেট করা হয়েছে */
+
         className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 focus:outline-none cursor-pointer 
           opacity-100 translate-x-0 
           lg:opacity-0 lg:translate-x-8 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 delay-150 ${

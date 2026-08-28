@@ -4,13 +4,12 @@ import React from 'react'
 function Gallery() {
   return (
     <section className='text-white max-w-7xl mx-auto px-6  font-sans  my-1'>
-      {/* Mobile Reverse Layout Container */}
+  
       <div className='flex flex-col-reverse lg:flex-col gap-12 md:gap-16'>
-        {/* Title */}
-      {/* Title and Description Layout */}
+
       <div className='flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-800 pb-8'>
         
-        {/* Left Side: Title */}
+   
         <div className='max-w-lg'>
           <span className='text-xs font-semibold tracking-widest text-purple-400 uppercase block mb-2'>
             Visual Showcase
@@ -20,7 +19,6 @@ function Gallery() {
           </div>
         </div>
 
-        {/* Right Side: Paragraph */}
         <div className='max-w-md'>
           <p className='text-zinc-400 text-base md:text-lg font-light leading-relaxed'>
             Explore our curated high-end visual collection. A professional showcase of outstanding photography, immersive concepts, and modern creative directions captured through our lens.
@@ -31,7 +29,7 @@ function Gallery() {
       
         <div className='flex flex-col md:flex-row gap-6 md:gap-3 items-stretch'>
           
-          {/* Main Large Image (Left) */}
+ 
           <div className='hidden md:block flex-2 group relative overflow-hidden rounded-[1rem] bg-zinc-900 shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-zinc-800/50'>
 
             <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8'>
@@ -47,10 +45,10 @@ function Gallery() {
             />
           </div>
 
-          {/* Right Images Group */}
+
           <div className='flex-1 flex flex-col sm:flex-row md:flex-col gap-6 md:gap-3'>
             
-            {/* Image 2 (Always Visible) */}
+          
             <div className='flex-1 group relative overflow-hidden rounded-[1rem] bg-zinc-900 shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-zinc-800/50'>
               <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8'>
                 <div>
@@ -65,7 +63,7 @@ function Gallery() {
               />
             </div>
 
-            {/* Image 3 (Hidden on Mobile) */}
+     
             <div className='hidden md:block flex-1 group relative overflow-hidden rounded-[1rem] bg-zinc-900 shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-zinc-800/50'>
               <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8'>
                 <div>

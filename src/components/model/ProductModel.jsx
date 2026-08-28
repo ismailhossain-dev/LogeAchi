@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { createPortal } from "react-dom"; // 🟢 পোর্টাল তৈরি করার জন্য ইম্পোর্ট
+import { createPortal } from "react-dom"; 
 import Image from "next/image";
 import { BsCart3 } from "react-icons/bs";
 import { FiMinus, FiPlus } from "react-icons/fi";
@@ -19,11 +19,11 @@ const ProductModel = ({
 }) => {
   const [mounted, setMounted] = useState(false);
 
-  // Next.js SSR (Server-Side Rendering) হ্যান্ডেল করার জন্য মাউন্ট চেক
+
   useEffect(() => {
     setMounted(true);
     
-    // মডাল যখন ওপেন থাকবে তখন পেছনের মেইন বডি স্ক্রোল হওয়া বন্ধ রাখবে
+
     if (showModal) {
       document.body.style.overflow = "hidden";
     } else {
@@ -35,7 +35,7 @@ const ProductModel = ({
     };
   }, [showModal]);
 
-  // মডাল ওপেন না থাকলে বা ক্লায়েন্ট সাইডে মাউন্ট না হলে কিছুই রেন্ডার হবে না
+
   if (!showModal || !product || !mounted) return null;
 
   const { title,_id,  price, image, sizes = ["S", "M", "L", "XL"], description } = product;
@@ -43,21 +43,19 @@ const ProductModel = ({
   const decreaseQty = () => quantity > 1 && setQuantity(quantity - 1);
   const increaseQty = () => setQuantity(quantity + 1);
 
-  // 🟢 মডালের মূল UI কন্টেন্ট
+
   const modalContent = (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      
-      {/* ব্যাকড্রপ ওভারলে ক্লিক করলে মডাল ক্লোজ হবে */}
+   
       <div className="fixed inset-0 cursor-pointer" onClick={onClose} />
 
-      {/* মডাল মেইন বক্স */}
       <div className="bg-[#070b13] border border-slate-800/80 w-full max-w-[450px] md:max-w-3xl rounded-3xl shadow-2xl relative my-auto animate-in zoom-in-95 duration-200 z-10 overflow-hidden">
         
-        {/* 🔮 Background Premium Glow */}
+       
         <div className="absolute top-0 right-0 w-[250px] h-[250px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
 
-        {/* ক্লোজ বাটন */}
+
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 p-2 bg-slate-900/90 border border-slate-800 text-slate-400 hover:text-white rounded-xl transition cursor-pointer z-30 hover:scale-105 active:scale-[0.95]"
@@ -66,10 +64,10 @@ const ProductModel = ({
           <MdClose size={18} />
         </button>
 
-        {/* কন্টেন্ট গ্রিড লেআউট */}
+  
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 p-5 sm:p-8 max-h-[90vh] md:max-h-[85vh] overflow-y-auto mobile-scrollbar">
           
-          {/* 🖼️ বাম পাশ: ইমেজ */}
+        
           <div className="md:col-span-5 flex items-center justify-center w-full">
             <div className="w-full h-[260px] sm:h-[320px] md:h-auto md:aspect-[3/5] rounded-2xl overflow-hidden bg-slate-950 border border-slate-700/50 p-1 shadow-2xl relative group shrink-0">
               <Image 
@@ -84,7 +82,7 @@ const ProductModel = ({
             </div>
           </div>
 
-          {/* 📝 ডান পাশ: প্রোডাক্ট ইনফো */}
+  
           <div className="md:col-span-7 flex flex-col justify-between space-y-5">
             <div className="space-y-3">
               <h2 className="text-lg sm:text-2xl font-black text-white tracking-wide leading-tight pr-10">
@@ -95,7 +93,6 @@ const ProductModel = ({
               </p>
             </div>
 
-            {/* 🏷️ সাইজ এবং কোয়ান্টিটি */}
             <div className="space-y-3 border-t border-slate-800/40 pt-3">
               <div>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">Select Size</span>
@@ -130,7 +127,7 @@ const ProductModel = ({
               </div>
             </div>
 
-            {/* 💰 প্রাইস ও অ্যাকশন বাটন */}
+        
             <div className="bg-slate-900/40 border border-slate-800/60 rounded-xl p-4 space-y-3 shadow-inner">
               <div className="flex justify-between items-end">
                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Price</span>

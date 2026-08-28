@@ -60,7 +60,6 @@ const AuthButton = () => {
       {status === "authenticated" ? (
         <div className="relative flex items-center">
           
-          {/* 👤 প্রোফাইল ট্রিগার বাটন */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`flex items-center gap-2.5 p-1 pr-3 rounded-full border transition-all duration-300 backdrop-blur-md focus:outline-none
@@ -69,7 +68,6 @@ const AuthButton = () => {
                 : 'bg-white/5 hover:bg-white/10 border-white/10 text-white/90'
               }`}
           >
-            {/* 🖼️ ইউজার প্রোফাইল ইমেজ বা অবতার */}
             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-600 to-amber-500 text-white flex items-center justify-center font-bold text-sm shadow-inner overflow-hidden relative shrink-0">
               {isUserLoading ? (
                 <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
@@ -92,15 +90,11 @@ const AuthButton = () => {
             <FiChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-orange-500" : ""}`} />
           </button>
 
-          {/* 💎 ড্রপডাউন মেনু */}
           {isOpen && (
             <>
-              {/* ব্যাকড্রপ ক্লিক করলে ড্রপডাউন বন্ধ হবে */}
               <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)}></div>
 
               <div className="absolute right-0 top-full mt-2.5 w-64 bg-[#121214] border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl py-3 z-20 origin-top-right animate-in fade-in slide-in-from-top-2 duration-200">
-                
-                {/* ১. ইউজার ইনফো হেডার সেকশন */}
                 <div className="px-4 pb-3 mb-2 border-b border-white/5 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-orange-500/10 text-orange-500 flex items-center justify-center font-bold text-lg border border-orange-500/20 overflow-hidden relative shrink-0">
                     {isUserLoading ? (
@@ -130,7 +124,6 @@ const AuthButton = () => {
                   </div>
                 </div>
 
-                {/* ২. রাউট লুপ */}
                 {dropdownSections.map((section, idx) => (
                   <div key={section.title} className={`${idx > 0 ? 'border-t border-white/5 mt-2.5 pt-2.5' : ''}`}>
                     <span className="block px-4 text-[9px] font-bold uppercase tracking-widest text-gray-500 mb-1.5">
@@ -153,7 +146,6 @@ const AuthButton = () => {
                   </div>
                 ))}
                 
-                {/* ৩. লগআউট বাটন */}
                 <div className="border-t border-white/5 mt-3 pt-2">
                   <button 
                     onClick={() => {
@@ -175,7 +167,6 @@ const AuthButton = () => {
           )}
         </div>
       ) : (
-        /* 🔓 লগইন বাটন */
         <Link
           href="/login"
           className="inline-flex items-center justify-center gap-2 px-5 py-2 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-xs tracking-wider rounded-full transition-all duration-300 shadow-lg shadow-orange-950/20 active:scale-95 border border-orange-500/20"

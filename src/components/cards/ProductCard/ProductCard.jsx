@@ -25,19 +25,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      {/* মেইন প্যারেন্ট কার্ড */}
       <Link href={`/all-collection/${_id}`} className="block w-full max-w-[300px] mx-auto">
         <div className="group flex flex-col justify-center cursor-pointer relative w-full">
           
-          {/* Image Container */}
           <div className="bg-[#f6f6f6] rounded-lg overflow-hidden relative w-full aspect-square flex items-center justify-center shadow-sm">
             
-            {/* 🖼️ মেইন ইমেজ: মোবাইলে অপাসিটি কমবে না, শুধু লার্জ স্ক্রিন (lg:) এ হোভার করলে ওয়ান-অফ হবে */}
             <div className="w-full h-full transition-all duration-500 lg:group-hover:opacity-0 lg:group-hover:scale-95 relative">
               <Image src={image} fill sizes="300px" alt={title} className="object-cover" />
             </div>
 
-            {/* 🖼️ সেকেন্ডারি বা হোভার ইমেজ: মোবাইলে এটি ওপরে ফুল স্ক্রিন বা নরমাল থাকবে না, ডাইরেক্ট ইমেজের মতো আচরণ করবে (বা এটি হাইড করতে চাইলে hidden lg:block করতে পারেন) */}
             <div className="absolute transition-all duration-500 ease-in-out p-1 bg-white rounded-md border border-gray-200
                             bottom-0 left-0 w-full h-full p-0 bg-[#f6f6f6] border-none rounded-lg opacity-0 lg:opacity-100
                             lg:bottom-4 lg:left-4 lg:w-[60px] lg:h-[60px] lg:bg-white lg:rounded-md lg:border lg:border-gray-200
@@ -45,14 +41,10 @@ const ProductCard = ({ product }) => {
               <Image src={image} fill sizes="300px" alt={`${title}-hover`} className="object-cover" />
             </div>
 
-            {/* ⚡ অ্যাকশন আইকন গ্রুপ */}
-            {/* মোবাইলে আইকনগুলো সবসময় দেখা যাবে (opacity-100 translate-x-0) এবং শুধুমাত্র লার্জ স্ক্রিনে (lg:) হোভার ইফেক্ট কাজ করবে */}
             <div className="absolute top-4 right-4 z-20 flex flex-col gap-2.5">
               
-              {/* WishList Button */}
               <WishListButton product={product}/>
 
-              {/* Details model button */}
               <button 
                 onClick={openQuickView} 
                 className="w-10 h-10 bg-white hover:bg-[#ff6801] text-gray-700 hover:text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 focus:outline-none
@@ -62,12 +54,10 @@ const ProductCard = ({ product }) => {
                 <FiEye className="w-5 h-5 group-hover:scale-110" />
               </button>
 
-              {/* Add to cart button */}
               <AddToCartButton product={product}/>
             </div>
           </div>
 
-          {/* Product Info */}
           <div className="text-center mt-4">
             <h3 className="text-[16px] text-secondary font-medium line-clamp-1">{title}</h3>
             <p className="text-[17px] font-bold mt-2 text-secondary">৳ {price}</p>

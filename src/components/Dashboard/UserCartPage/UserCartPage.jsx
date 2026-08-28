@@ -94,7 +94,6 @@ function UserCartPage() {
     <div className="min-h-screen bg-[#070b13] text-slate-300 p-4 sm:p-8 lg:p-12 font-sans antialiased selection:bg-blue-500/20">
       <div className="max-w-6xl mx-auto space-y-10">
         
-        {/* লিকুইড হেডার ডিজাইন */}
         <div className="flex items-center justify-between border-b border-slate-800/60 pb-6">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-gradient-to-br from-blue-500/10 to-indigo-500/5 text-blue-400 rounded-2xl border border-blue-500/20 shadow-inner">
@@ -128,7 +127,6 @@ function UserCartPage() {
                     key={item._id} 
                     className="flex flex-col sm:flex-row items-center justify-between p-4 bg-gradient-to-r from-[#0f1524]/60 to-[#0f1524]/30 border border-slate-800/50 rounded-2xl gap-5 hover:border-slate-700/60 transition-all duration-300 shadow-xl group relative overflow-hidden"
                   >
-                    {/* বাম পার্ট: প্রোডাক্ট ইমেজ + টাইটেল + সাইজ */}
                     <div className="flex items-center gap-5 w-full sm:w-auto flex-1 min-w-0">
                       <div className="w-20 h-24 rounded-xl overflow-hidden bg-slate-950 shrink-0 border border-slate-800 relative">
                         <img 
@@ -142,7 +140,6 @@ function UserCartPage() {
                           {item.title}
                         </h3>
                         
-                        {/* সাইজ সিলেক্টর ড্রপডাউন */}
                         <div className="relative inline-block">
                           <span className="text-[9px] text-slate-500 block uppercase tracking-wider font-bold mb-1">Select Size</span>
                           <div className="relative flex items-center">
@@ -165,10 +162,8 @@ function UserCartPage() {
                       </div>
                     </div>
 
-                    {/* ডান পার্ট: কোয়ান্টিটি, প্রাইস এবং ডিলিট বাটন */}
                     <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 border-slate-800/40 pt-4 sm:pt-0 shrink-0">
                       
-                      {/* কোয়ান্টিটি বাটন মেকানিজম */}
                       <div className="space-y-1">
                         <span className="text-[9px] text-slate-500 block uppercase tracking-wider font-bold text-center sm:text-left">Quantity</span>
                         <div className="flex items-center bg-[#070b13] border border-slate-800 rounded-xl p-1 gap-1">
@@ -192,7 +187,6 @@ function UserCartPage() {
                         </div>
                       </div>
 
-                      {/* প্রাইসিং প্যানেল */}
                       <div className="text-right min-w-[75px]">
                         <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider block">Subtotal</span>
                         <span className="text-sm font-extrabold text-white font-mono">
@@ -200,7 +194,6 @@ function UserCartPage() {
                         </span>
                       </div>
                       
-                      {/* ডিলিট বাটন (ফিক্সড: mt-3 সরিয়ে রেসপনসিভ পজিশনিং করা হয়েছে) */}
                       <button 
                         onClick={() => handleDeleteCartItem(item._id)}
                         className="p-2.5 bg-slate-900/60 border border-slate-800/80 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all cursor-pointer"
@@ -213,7 +206,6 @@ function UserCartPage() {
               })}
             </div>
 
-            {/* RIGHT PANEL: SUMMARY */}
             <div className="lg:col-span-4 bg-gradient-to-b from-[#0f1524]/70 to-[#0f1524]/30 border border-slate-800/50 rounded-2xl p-6 shadow-2xl space-y-6 sticky top-6 backdrop-blur-md">
               <h2 className="text-xs font-bold text-white uppercase tracking-widest pb-3.5 border-b border-slate-800/50 flex items-center gap-2">
                 <CreditCard size={14} className="text-blue-400" />

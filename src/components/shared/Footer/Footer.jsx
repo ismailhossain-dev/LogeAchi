@@ -41,7 +41,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#0f172a]  text-slate-300 pt-20 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-800/60 mt-16 relative w-full font-sans antialiased selection:bg-green-500 selection:text-white">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 max-w-7xl mx-auto">
-        {/* Column 1: Brand & About */}
+
         <div className="space-y-6">
           <div
             href="/"
@@ -54,7 +54,7 @@ const Footer = () => {
             knowledge, and stories right to your doorstep.
           </p>
 
-          {/* Social Icons */}
+
           <div className="flex items-center gap-3 pt-2">
             {[
               {
@@ -84,7 +84,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Column 2: Quick Links */}
         <div className="lg:pl-8">
           <h3 className="text-white text-base font-bold tracking-wider uppercase mb-7 relative inline-block">
             Quick Explore
@@ -112,7 +111,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 3: Contact Info */}
         <div>
           <h3 className="text-white text-base font-bold tracking-wider uppercase mb-7 relative inline-block">
             Contact Detail
@@ -165,7 +163,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 4: Newsletter */}
+  
         <div>
           <h3 className="text-white text-base font-bold tracking-wider uppercase mb-7 relative inline-block">
             Newsletter
@@ -193,7 +191,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+   
       <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
         <p className="text-xs sm:text-sm font-medium text-slate-500 text-center md:text-left">
           © {currentYear}{" "}

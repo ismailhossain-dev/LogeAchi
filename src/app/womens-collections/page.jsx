@@ -42,7 +42,6 @@ const WomensCollectionPage = async ({ searchParams }) => {
 
   return (
     <div className="flex flex-col min-h-screen text-white ">
-      {/* 🛠️ আল্ট্রা-স্মুথ প্রোডাক্ট ফেইড এবং মোবাইলের জন্য প্রিমিয়াম স্ক্রোলবার স্টাইল */}
       <style>{`
         @keyframes ultraSmoothReveal {
           0% {
@@ -60,8 +59,7 @@ const WomensCollectionPage = async ({ searchParams }) => {
           animation: ultraSmoothReveal 0.5s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
           opacity: 0;
         }
-        
-        /* 📱 মোবাইলে ক্যাটাগরি বারের জন্য সুন্দর কাস্টম স্ক্রোলবার */
+     
         .mobile-scrollbar::-webkit-scrollbar {
           height: 5px !important; 
           display: block !important;
@@ -81,16 +79,13 @@ const WomensCollectionPage = async ({ searchParams }) => {
 
       <div className='max-w-7xl mx-auto px-5 w-full flex-grow'>
         
-        {/* হেডার ও সার্চ বার */}
         <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center italic my-8 gap-4 border-b border-white/5 pb-6'>
           <Title>Women's <br/> <span className='text-blue-500 font-bold'>Collection</span></Title>
           <SearchBar />
         </div>
 
-        {/* 🌟 মেইন লেআউট কন্টেইনার */}
         <div className='flex flex-col md:grid md:grid-cols-4 gap-8 my-6 items-start'>
           
-          {/* 📁 ক্যাটাগরি সেকশন */}
           <div className='w-full md:col-span-1 bg-[#0f172a] border border-white/5 md:rounded-xl md:p-2 md:sticky md:top-24 z-10 overflow-x-auto md:overflow-hidden shadow-2xl'>
             
             <h3 className='hidden md:block text-[10px] font-bold uppercase tracking-widest text-gray-500 p-4 pb-2 select-none'>
@@ -114,7 +109,6 @@ const WomensCollectionPage = async ({ searchParams }) => {
                 </span>
               </Link>
 
-              {/* ডায়নামিক ৩টি ফিক্সড ক্যাটাগরি লিস্ট */}
               {finalCategory.map((category, index) => {
                 const isActive = selectedCategory.toLowerCase() === category.toLowerCase();
                 
@@ -138,7 +132,6 @@ const WomensCollectionPage = async ({ searchParams }) => {
             </div>
           </div>
           
-          {/* 📦 ডান পাশের প্রোডাক্ট গ্রিড */}
           <div className='w-full md:col-span-3'>
             {filteredProducts.length > 0 ? (
               <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6'>

@@ -308,7 +308,6 @@ const RegisterForm = () => {
                 )}
               </div>
 
-              {/* সাবমিট বাটন */}
               <button
                 type="submit"
                 disabled={loading}
@@ -318,7 +317,6 @@ const RegisterForm = () => {
               >
                 {loading ? (
                   <>
-                    {/* Tailwind CSS এর বিল্ট-ইন স্পিনার অ্যানিমেশন */}
                     <svg
                       className="animate-spin h-4 w-4 text-white"
                       xmlns="http://www.w3.org/2000/svg"

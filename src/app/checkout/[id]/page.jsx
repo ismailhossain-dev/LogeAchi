@@ -14,7 +14,6 @@ const checkoutPage = async ({ params }) => {
     <div className="bg-[#0f172a] min-h-screen flex flex-col justify-between">
       <Navbar />
       
-      {/* এখানে প্রোডাক্টের ডাটা প্রপ্স হিসেবে ফর্মে পাঠানো হচ্ছে */}
       <main className="flex-grow">
         <CheckOutForm productData={checkoutData} />
       </main>

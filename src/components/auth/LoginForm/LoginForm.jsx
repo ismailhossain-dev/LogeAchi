@@ -65,7 +65,6 @@ const LoginForm = () => {
             alt="Fashion Hero"
             className="w-full h-full object-cover opacity-80"
           />
-          {/* ডার্ক গ্রেডিয়েন্ট ওভারলে */}
           <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-12">
             <motion.div
               initial={{ x: -20, opacity: 0 }}
@@ -86,7 +85,6 @@ const LoginForm = () => {
         {/* Right Side: Form Section */}
         <div className="flex-1 flex flex-col justify-center p-6 sm:p-10 lg:p-12 bg-slate-900/40 relative">
           
-          {/* Go Back বাটন */}
           <Link
             href={"/"}
             className="absolute top-6 left-6 sm:left-10 flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-orange-500 transition-colors group"
@@ -104,7 +102,6 @@ const LoginForm = () => {
             transition={{ delay: 0.3 }}
             className="max-w-md mx-auto w-full mt-8"
           >
-            {/* টপ হেডার ও ব্যাজ */}
             <div className="mb-6">
               <div className="inline-flex items-center gap-1.5 bg-slate-800/80 border border-slate-700/50 text-slate-300 px-3 py-1 rounded-md mb-2.5">
                 <Sparkles size={12} className="text-orange-500" />
@@ -117,7 +114,6 @@ const LoginForm = () => {
               </h3>
             </div>
 
-            {/* মেইন লগইন ফর্ম */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               
               {/* Email Input Box */}
@@ -188,7 +184,6 @@ const LoginForm = () => {
                 )}
               </div>
 
-              {/* সাবমিট বাটন (রেজিস্ট্রেশনের মতো প্রিমিয়াম অরেঞ্জ থিম) */}
               <button
                 type="submit"
                 disabled={loading}
@@ -231,7 +226,6 @@ const LoginForm = () => {
               <GoogleLogin />
             </div>
 
-            {/* রেজিস্টার ফুটার লিঙ্ক */}
             <p className="mt-6 text-center text-xs font-semibold text-slate-400">
               Not a member yet?{" "}
               <Link

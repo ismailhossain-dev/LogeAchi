@@ -5,15 +5,12 @@ function PageNotFound() {
   return (
     <div className=" min-h-screen w-full flex items-center justify-center  relative overflow-hidden font-sans select-none">
       
-      {/* 🌌 Cyberpunk / Premium Grid Background Overlay */}
       <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px]"></div>
       
-      {/* 🔮 Dynamic Ambient Glow Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[600px] bg-gradient-to-tr from-orange-500/5 to-transparent blur-[160px]  pointer-events-none animate-pulse" style={{ animationDuration: '10s' }} />
       <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] l pointer-events-none" />
 
-      {/* 📦 Ultra-Premium Full Width Glassmorphic Content Card */}
-      {/* max-w-xl থেকে পরিবর্তন করে max-w-7xl এবং w-full করা হয়েছে */}
+
       <div className="max-w-7xl w-full text-center bg-gradient-to-b from-white/[0.03] to-transparent backdrop-blur-3xl border border-white/[0.06] p-12  rounded-[40px] shadow-[0_32px_100px_-20px_rgba(0,0,0,0.8)] relative z-10 transition-all duration-500 hover:border-white/[0.12] group">
         
         {/* 404 Large Typography Component */}

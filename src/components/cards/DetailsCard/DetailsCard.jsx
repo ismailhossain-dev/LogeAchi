@@ -68,7 +68,6 @@ const DetailsCard = ({ product }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-start">
           
-          {/* ================= বাম পাশ: ইমেজ গ্যালারি ================= */}
           <div className="lg:col-span-6 flex flex-col gap-5">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-[#1e293b]/30 border border-slate-700/50 p-1.5 shadow-2xl group">
               {mainImage ? (
@@ -86,7 +85,6 @@ const DetailsCard = ({ product }) => {
                 </div>
               )}
 
-              {/* স্ট্যাটাস ব্যাজ ওভারলে */}
               {!stock && (
                 <div className="absolute top-5 left-5 bg-red-600/90 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-xl shadow-lg border border-red-500/30">
                   Sold Out
@@ -95,7 +93,6 @@ const DetailsCard = ({ product }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* থাম্বনেইল লিস্ট */}
             {galleryImages.length > 1 && (
               <div className="grid grid-cols-4 gap-3 sm:gap-4">
                 {galleryImages.map((img, index) => (
@@ -122,11 +119,9 @@ const DetailsCard = ({ product }) => {
             )}
           </div>
 
-          {/* ================= ডান পাশ: প্রোডাক্ট ইনফরমেশন ================= */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-6 lg:space-y-8">
             
             <div className="space-y-4">
-              {/* ক্যাটাগরি ও স্টক স্ট্যাটাস */}
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#1e293b]/60 border border-slate-700/50 text-slate-300 rounded-lg text-xs font-bold tracking-widest uppercase font-mono">
                   <Tag size={12} className="text-blue-400" /> {category}
@@ -144,12 +139,10 @@ const DetailsCard = ({ product }) => {
                 </span>
               </div>
 
-              {/* প্রোডাক্ট মেইন টাইটেল */}
               <h1 className="text-2xl sm:text-4xl font-black tracking-wide text-white leading-tight">
                 {title}
               </h1>
 
-              {/* SKU & Date */}
               <div className="flex items-center gap-4 text-xs font-mono text-slate-400">
                 <span>SKU: <span className="text-slate-200">{sku}</span></span>
                 {date && (
@@ -159,7 +152,6 @@ const DetailsCard = ({ product }) => {
                 )}
               </div>
 
-              {/* থিম ম্যাচিং জোরালো প্রাইস কার্ড */}
               <div className="flex items-center gap-4 bg-[#1e293b]/40 p-4 sm:p-5 rounded-2xl border border-slate-700/50 shadow-inner relative">
                 <div className="flex items-baseline gap-3">
                   <span className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 font-mono">
@@ -174,7 +166,6 @@ const DetailsCard = ({ product }) => {
                 </span>
               </div>
 
-              {/* ডেসক্রিপশন বক্স */}
               <div className="pt-2">
                 <p className="text-sm text-slate-300 leading-relaxed font-normal">
                   {description || "Discover the perfect blend of style and comfort with this premium product. Crafted with care using high-quality materials to ensure long-lasting durability."}
@@ -182,10 +173,8 @@ const DetailsCard = ({ product }) => {
               </div>
             </div>
 
-            {/* কনফিগারেশন সেকশন */}
             <div className="space-y-6 border-t border-slate-800 pt-6">
               
-              {/* কালার সিলেক্টর */}
               {colors?.length > 0 && (
                 <div>
                   <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-3 font-mono">
@@ -209,7 +198,6 @@ const DetailsCard = ({ product }) => {
                 </div>
               )}
 
-              {/* সাইজ সিলেক্টর */}
               {sizes?.length > 0 && (
                 <div>
                   <div className="flex justify-between items-center mb-3">
@@ -241,7 +229,6 @@ const DetailsCard = ({ product }) => {
                 </div>
               )}
 
-              {/* কোয়ান্টিটি সিলেক্টর */}
               <div>
                 <span className="text-xs font-bold tracking-wider text-slate-400 uppercase block mb-3 font-mono">
                   Quantity
@@ -269,7 +256,6 @@ const DetailsCard = ({ product }) => {
               </div>
             </div>
 
-            {/* কার্ট বাটন সেকশন */}
             <div className="pt-4">
               <Link href={`/checkout/${_id}`} className="block w-full">
                 <button

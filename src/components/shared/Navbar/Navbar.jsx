@@ -37,14 +37,14 @@ const Navbar = () => {
 
   const cartItems = cartData?.result || [];
 
-  // 🛠️ delete cart item
+
 const handleDeleteCartItem = async (itemId) => {
   try {
     const res = await axiosSecure.delete('/api/cart', { data: { id: itemId } });
     
     if (res.status === 200) {
       toast.success("Item removed from cart");
-      // কার্টে কোনো পরিবর্তন (অ্যাড/ডিলিট) হলে, এই ইউজারের কার্ট ডেটা পেজ রিলোড ছাড়াই অটোমেটিক রিফেচ (আপডেট) করবে
+  
       queryClient.invalidateQueries(["cart", session?.user?.email]);
     }
   } catch (error) {
@@ -57,17 +57,16 @@ const handleDeleteCartItem = async (itemId) => {
     setIsOpen(!isOpen);
   };
 
-  // কার্ট ওপেন/ক্লোজ করার হ্যান্ডলার
   const handleCart = () => {
     const nextCartState = !isCartOpen;
     setIsCartOpen(nextCartState);
 
     if (nextCartState) {
-      refetch(); // কার্ট ওপেন হলেই লেটেস্ট ডাটা রি-ফেচ হবে
+      refetch(); 
     }
   };
 
-  // কার্টের টোটাল প্রাইজ ক্যালকুলেশন
+
   const totalTaka = cartItems.reduce((total, item) => total + (Number(item.price) || 0), 0);
 
   if (isSessionLoading) {
@@ -89,17 +88,17 @@ const handleDeleteCartItem = async (itemId) => {
 
   return (
     <>
-      {/* 🌟 মেইন নেভিগেশন বার */}
+
       <nav className="fixed top-0 left-0 w-full bg-[#0f172a] border-slate-800/60 backdrop-blur-md border-b py-4 z-40 shadow-md select-none">
       <Container>
         <div className="flex justify-between items-center ">
           
-          {/* ব্র্যান্ড লোগো */}
+
           <div className="transition-transform duration-200 hover:scale-105">
             <Logo />
           </div>
           
-          {/* ডেস্কটপ নেভিগেশন লিংকস */}
+  
           <div className='hidden lg:flex items-center gap-6 font-medium tracking-wide text-sm'>
             {navbarLinks.map((item) => {
               const isActive = pathname === item.href;
@@ -119,17 +118,16 @@ const handleDeleteCartItem = async (itemId) => {
               );
             })}
           </div>
-          
-          {/* রাইট সাইড অ্যাকশন বাটন */}
+    
           <div className='flex items-center gap-4 sm:gap-5 text-white text-xl sm:text-2xl'>
             
-            {/* কার্ট আইকন বাটন */}
+         
             <div 
               onClick={handleCart}
               className="relative cursor-pointer text-white p-1.5 transition-transform active:scale-95"
             >
               <BsCart3 className="w-5 h-5 sm:w-6 sm:h-6" />
-              {/* ডাইনামিক কার্ট কাউন্টার ব্যাজ */}
+       
               {cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-orange-500 text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold text-white">
                   {cartItems.length}
@@ -153,10 +151,10 @@ const handleDeleteCartItem = async (itemId) => {
         </Container>
       </nav>
 
-{/* navbar hide margin */}
+
       <div className="bg-[#0f172a] h-20 w-full" />
 
-      {/* ব্যাকড্রপ ওভারলে */}
+   
       <div 
         onClick={handleCart} 
         className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${
@@ -181,7 +179,6 @@ const handleDeleteCartItem = async (itemId) => {
             </button>
           </div>
 
-          {/* cart sidebar */}
           <div className="mt-6 space-y-4 overflow-y-auto max-h-[calc(100vh-220px)] pr-1">
             {isCartLoading ? (
               <p className="text-sm text-slate-400 text-center py-8">Cart is Loading...</p>
@@ -202,7 +199,6 @@ const handleDeleteCartItem = async (itemId) => {
                     </div>
                   </div>
                   
-                  {/* 🛠️ delet icon or button */}
                   <button 
                     onClick={() => handleDeleteCartItem(item._id)}
                     className="text-slate-400 hover:text-red-500 p-2 rounded-lg hover:bg-white/5 transition-colors focus:outline-none cursor-pointer"
@@ -227,7 +223,7 @@ const handleDeleteCartItem = async (itemId) => {
         </div>
       </div>
 
-      {/* মোবাইল ড্রয়ার সাইডবার */}
+
       <div className={`fixed top-0 right-0 h-full w-[280px] bg-[#101726] border-l border-slate-800/60 z-40 p-6 pt-20 flex flex-col gap-5 text-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>

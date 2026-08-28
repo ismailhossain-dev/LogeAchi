@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo/Logo';
 
-// Heroicons (hi2) theke reliable ebong modern icon import kora holo
 import { 
   HiOutlineHome, 
   HiOutlineUser, 
@@ -12,7 +11,7 @@ import {
   HiOutlineHeart, 
   HiOutlineShoppingCart, 
   HiOutlineArrowLeftOnRectangle,
-  HiOutlineChartPie // Admin-er jonno chaile onno icon use korte paren
+  HiOutlineChartPie 
 } from 'react-icons/hi2';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { useSession } from 'next-auth/react';
@@ -42,9 +41,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     return <p className="text-white p-4">Loading...</p>;
   }
 
-  // Role onushare dynamic menu groups toiri kora holo
   const getMenuGroups = () => {
-    // Jodi role 'user' hoy
     if (userRole === 'user') {
       return [
         {
@@ -80,7 +77,6 @@ const Sidebar = ({ isOpen, onClose }) => {
       ];
     }
 
-    // Jodi role 'admin' hoy (aponi chaile ekhane admin-er menu items add korte paren)
     if (userRole === 'admin') {
       return [
         {
@@ -116,7 +112,6 @@ const Sidebar = ({ isOpen, onClose }) => {
       ];
     }
 
-    // Default ba jodi role na thake
     return [];
   };
 
@@ -124,7 +119,6 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* 🏢 মেইন সাইডবার কন্টেইনার */}
       <aside className={`
         fixed top-0 left-0
         z-50
@@ -141,7 +135,6 @@ const Sidebar = ({ isOpen, onClose }) => {
         md:translate-x-0
       `}>
         
-        {/* লোগো সেকশন */}
         <div className="p-6 border-b border-gray-800/60 flex items-center justify-between h-[73px]">
           <div className="flex items-center gap-3">
             <div className="m-0 text-xl font-bold tracking-wide text-white">
@@ -149,7 +142,6 @@ const Sidebar = ({ isOpen, onClose }) => {
             </div>
           </div>
           
-          {/* মোবাইল ক্লোজ বাটন */}
           <button 
             onClick={onClose}
             className="md:hidden text-gray-400 hover:text-white p-1 rounded-lg hover:bg-gray-800/50 transition-colors"
@@ -160,11 +152,9 @@ const Sidebar = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* নেভিগেশন মেনু গ্রুপসমূহ */}
         <div className="flex-1 py-6 px-4 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
           {menuGroups.map((group, index) => (
             <div key={index} className="flex flex-col gap-4">
-              {/* গ্রুপের টাইটেল */}
               <span className="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-600 mb-1">
                 {group.groupName}
               </span>
@@ -192,7 +182,6 @@ const Sidebar = ({ isOpen, onClose }) => {
             </div>
           ))}
 
-          {/* লগআউট বাটন */}
           <Link
             href="/auth/logout"
             className="flex items-center py-2.5 px-4 rounded-xl text-sm font-medium transition-all duration-200 text-left outline-none mt-auto text-rose-400 bg-rose-500/10 hover:text-rose-300 group"

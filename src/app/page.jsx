@@ -58,7 +58,7 @@ const Page = async () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6">
-            {/* সেফটি চেক: ডাটা অ্যারে থাকলে তবেই ম্যাপ হবে */}
+
             {data?.result && data.result.length > 0 ? (
               data.result.map((product) => (
                 <ProductCard key={product._id} product={product} />

@@ -34,10 +34,8 @@ export default function UserOrderOverviewChart() {
             data={data}
             margin={{ top: 10, right: 5, left: -25, bottom: 0 }}
           >
-            {/* ব্যাকগ্রাউন্ড গ্রিড লাইন (খুবই সূক্ষ্ম ড্যাশড লুক) */}
             <CartesianGrid stroke="#1e1e22" strokeDasharray="3 3" vertical={false} />
             
-            {/* X-Axis: ইংরেজি ১২ মাস */}
             <XAxis 
               dataKey="month" 
               tick={{ fill: '#71717a', fontSize: 12, fontWeight: 500 }}
@@ -46,7 +44,6 @@ export default function UserOrderOverviewChart() {
               dy={10}
             />
             
-            {/* Y-Axis: অর্ডারের সংখ্যা */}
             <YAxis 
               tick={{ fill: '#71717a', fontSize: 12 }}
               axisLine={false}
@@ -54,7 +51,6 @@ export default function UserOrderOverviewChart() {
               allowDecimals={false}
             />
             
-            {/* 🔮 প্রিমিয়াম কাস্টম টুলটিপ (ডার্ক থিম ম্যাচিং) */}
             <Tooltip
               contentStyle={{
                 backgroundColor: '#161619',
@@ -67,7 +63,6 @@ export default function UserOrderOverviewChart() {
               cursor={{ stroke: '#27272a', strokeWidth: 1 }}
             />
 
-            {/* ১. শ্যাডো এরিয়া ইফেক্ট (Total Orders-এর জন্য প্রিমিয়াম গ্লো) */}
             <Area 
               type="monotone" 
               dataKey="orders" 
@@ -77,7 +72,6 @@ export default function UserOrderOverviewChart() {
               strokeWidth={2}
             />
             
-            {/* ২. কার্ভড বার (Delivered Orders-এর সুন্দর ক্যাপসুল বার) */}
             <Bar 
               dataKey="delivered" 
               name="Delivered"
@@ -86,7 +80,6 @@ export default function UserOrderOverviewChart() {
               radius={[4, 4, 0, 0]} 
             />
 
-            {/* 🎨 গ্রেডিয়েন্ট কালার ডেফিনিশন */}
             <defs>
               <linearGradient id="orderGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#6366f1" stopOpacity={0.2}/>

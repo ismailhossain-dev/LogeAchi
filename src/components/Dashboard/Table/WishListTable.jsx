@@ -81,11 +81,11 @@ export default function WishListTable({ wishlist = [], refetch }) {
   return (
     <div className="w-full space-y-8 p-4 sm:p-8 bg-[#070b13] text-slate-300 rounded-2xl border border-slate-800/50 shadow-2xl relative overflow-hidden font-sans antialiased">
       
-      {/* 🔮 Background Premium Glow */}
+
       <div className="absolute top-0 right-0 w-[250px] h-[250px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* 🏷️ Header Section */}
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800/40">
         <div className="flex items-center gap-4">
           <div className="p-3 bg-gradient-to-br from-rose-500/10 to-transparent text-rose-400 rounded-xl border border-rose-500/10">
@@ -109,7 +109,6 @@ export default function WishListTable({ wishlist = [], refetch }) {
         </div>
       ) : (
         <>
-          {/* 🖥️ Desktop & Tablet Layout */}
           <div className="hidden md:block overflow-x-auto">
             <Table>
               <TableHeader>
@@ -127,7 +126,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
                 {items.map((item) => (
                   <TableRow key={item.id} className="border-b border-[#0f1524]/60 hover:bg-[#0f1524]/30 transition-all duration-300 group">
                     
-                    {/* Image */}
+                   
                     <TableCell>
                       <div className="relative overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950 p-0.5 w-14 h-16 shadow-inner">
                         <img src={item.image} alt={item.title} className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500" />

@@ -9,21 +9,21 @@
   @apply bg-[#ff6801] border-[#ff6801] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#e05b00] transition duration-200 cursor-pointer;
 }
 
-/* shadcn custom theme */
+
 @theme {
-  /* Clean, neutral backgrounds */
-  --color-background: #0f172a;      /*eta page.jsx use korchi*/
-  --color-foreground: hsl(222.2 84% 4.9%);  /* Near Black */
+
+  --color-background: #0f172a;     
+  --color-foreground: hsl(222.2 84% 4.9%);  
   --color-card: hsl(0 0% 100%);
   --color-card-foreground: hsl(222.2 84% 4.9%);
   --color-popover: hsl(0 0% 100%);
   --color-popover-foreground: hsl(222.2 84% 4.9%);
 
-  /* 🎨 YOUR 2 CUSTOM COLORS (Light Mode) */
-  --color-primary: blue;         /* সুন্দর একটি অরেঞ্জ-রেড শেড (আপনার .btn এর সাথে মিল রেখে) */
+
+  --color-primary: blue;         
   --color-primary-foreground: hsl(0 0% 100%);
 
-  --color-secondary: #edf2ea;       /* আপনার দেওয়া সেকেন্ডারি অ্যাম্বার কালার */
+  --color-secondary: #edf2ea;      
   --color-secondary-foreground: red;
 
   /* Neutral UI Elements */
@@ -43,23 +43,21 @@
 
 /* 🌙 Dark Mode Settings */
 .dark {
-  --color-background: hsl(222.2 84% 4.9%); /* Dark Slate */
-  --color-foreground: hsl(210 40% 98%);    /* Off-white */
-  --color-card: hsl(222.2 84% 4.9%);
+  --color-background: hsl(222.2 84% 4.9%); 
+  --color-foreground: hsl(210 40% 98%);    
   --color-card-foreground: hsl(210 40% 98%);
   --color-popover: hsl(222.2 84% 4.9%);
   --color-popover-foreground: hsl(210 40% 98%);
 
-  /* 🎨 YOUR 2 CUSTOM COLORS (Dark Mode) */
-  --color-primary: hsl(16 100% 60%);        /* ডার্ক মোডের জন্য একটু ব্রাইট */
+  
+  --color-primary: hsl(16 100% 60%);        
   --color-primary-foreground: hsl(222.2 84% 4.9%);
 
   --color-secondary: hsl(35 92% 55%);       
   --color-secondary-foreground: hsl(222.2 84% 4.9%);
 
-  /* Neutral UI Elements */
   --color-muted: hsl(217.2 32.6% 17.5%);
-  --color-muted-foreground: hsl(215.4 16.3% 65.1%); /* ফিক্সড টাইপো (Maruti রিমুভ করা হয়েছে) */
+  --color-muted-foreground: hsl(215.4 16.3% 65.1%); 
   --color-accent: hsl(217.2 32.6% 17.5%);
   --color-accent-foreground: hsl(210 40% 98%);
   --color-destructive: hsl(0 62.8% 30.6%);

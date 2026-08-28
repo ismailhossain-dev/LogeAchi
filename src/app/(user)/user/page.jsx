@@ -131,18 +131,18 @@ export default function Dashboard() {
           })}
         </main>
 
-        {/* 📦 🎯 ফিক্সড লেটেস্ট অর্ডার টেবিল সেকশন */}
+
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xs font-bold uppercase tracking-widest text-zinc-400">
               Latest Orders
             </h2>
           </div>
-          {/* এখানে .map() বাদ দিয়ে সরাসরি সম্পূর্ণ `data` অবজেক্টটি পাস করা হলো */}
+     
           <LatestOrdersTable data={data} />
         </section>
 
-        {/* 📉 Chart Section */}
+     
         <section className="border-t border-zinc-800/60 pt-8">
           <UserOrderOverviewChart />
         </section>

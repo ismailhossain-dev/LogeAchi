@@ -244,7 +244,6 @@ const UserProfile = () => {
 
         {/* ================= RIGHT SIDE ================= */}
         <div className="md:col-span-8 bg-[#0f1524]/40 border border-slate-800/40 rounded-xl p-6 sm:p-8 relative shadow-xl min-h-[460px] flex flex-col justify-between transition-all duration-300">
-          {/* কন্ডিশনাল রেন্ডারিং: এডিট ফর্ম বনাম প্রোফাইল ভিউ */}
           {isEditing ? (
             /* ================= EDIT FORM WINDOW ================= */
             <form

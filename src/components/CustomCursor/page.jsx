@@ -88,9 +88,7 @@ const CustomCursor = () => {
   };
 
   return (
-    // 🟢 Tailwind CSS Class: hidden md:block দিয়ে ছোট স্ক্রিনে ডিভ ২টি হাইড করা হয়েছে
     <div className="hidden md:block">
-      {/* মেইন ডট */}
       <div
         ref={cursorRef}
         style={{
@@ -101,7 +99,6 @@ const CustomCursor = () => {
           zIndex: 9999,
         }}
       />
-      {/* ফলোয়ার সার্কেল */}
       <div
         ref={followerRef}
         style={{

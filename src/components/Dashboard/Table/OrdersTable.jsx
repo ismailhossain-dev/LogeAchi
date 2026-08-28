@@ -79,7 +79,7 @@ const OrdersTable = () => {
           </div>
         ) : (
           <>
-            {/* ================= 1. MOBILE CARD VIEW (md:hidden) ================= */}
+
             <div className="grid grid-cols-1 gap-4 md:hidden">
               {orders.map((order) => (
                 <div 
