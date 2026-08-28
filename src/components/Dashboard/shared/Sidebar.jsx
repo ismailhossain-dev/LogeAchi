@@ -87,9 +87,24 @@ const Sidebar = ({ isOpen, onClose }) => {
           groupName: 'Admin Dashboard',
           items: [
             {
-              name: 'Admin Overview', 
+              name: 'Overview', 
               href: '/admin',
               icon: <HiOutlineChartPie className="w-5 h-5" />
+            },
+            { 
+              name: 'Manage Orders', 
+              href: '/admin/manage-users',
+              icon: <HiOutlineUser className="w-5 h-5" />
+            },
+            { 
+              name: 'Manage Users', 
+              href: '/admin/manage-users',
+              icon: <HiOutlineUser className="w-5 h-5" />
+            },
+            { 
+              name: 'Manage ', 
+              href: '/admin/manage-users',
+              icon: <HiOutlineUser className="w-5 h-5" />
             },
             { 
               name: 'Manage Users', 
