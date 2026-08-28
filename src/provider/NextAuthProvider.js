@@ -1,4 +1,3 @@
-//sessionProvider use for user authentication and looking evrywhere in the app
 "use client";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
