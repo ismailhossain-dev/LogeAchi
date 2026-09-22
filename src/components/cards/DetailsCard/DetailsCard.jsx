@@ -37,10 +37,9 @@ const DetailsCard = ({ product }) => {
     _id,
   } = product;
 
-  // থাম্বনেইল গ্যালারি সেটআপ
+
   const galleryImages = productImages.length > 0 ? productImages : [image].filter(Boolean);
 
-  // স্টেট ম্যানেজমেন্ট
   const [mainImage, setMainImage] = useState(image);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
@@ -53,7 +52,6 @@ const DetailsCard = ({ product }) => {
     setQuantity(1);
   }, [product._id, title, image]);
 
-  // ওল্ড প্রাইস ক্যালকুলেশন
   const displayedOldPrice = customOldPrice
     ? Number(customOldPrice).toFixed(2)
     : (price * 1.25).toFixed(2);
@@ -61,7 +59,7 @@ const DetailsCard = ({ product }) => {
   return (
     <div className="bg-[#0f172a] min-h-screen text-slate-100 antialiased relative overflow-hidden py-12 sm:py-16">
       
-      {/* 🔮 Integrated Luxury Ambient Glows (Optimized for #0f172a) */}
+  
       <div className="absolute top-10 left-10 w-[400px] h-[400px] bg-blue-500/10 blur-[130px] rounded-full pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-[350px] h-[350px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
 

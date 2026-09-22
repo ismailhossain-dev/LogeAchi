@@ -7,22 +7,20 @@ import Footer from "@/components/shared/Footer/Footer";
 import Title from "@/components/Title/Title";
 import Link from "next/link";
 
-// 🟢 ১. Vercel বিল্ডের সময় স্ট্যাটিকাল ক্র্যাশ এড়াতে পেজটিকে ডাইনামিক করা হলো
 export const dynamic = "force-dynamic";
 
 const Page = async () => {
   let data = { result: [] };
 
-  // 🟢 ২. ট্রাই-ক্যাচ (try-catch) ব্লক দিয়ে ফেচকে সেফ করা হলো যাতে JSON এরর না আসে
   try {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "";
     
     if (appUrl) {
       const res = await fetch(`${appUrl}/api/homeProducts`, {
-        cache: "no-store" // ফ্রেশ ডাটার জন্য
+        cache: "no-store" 
       });
 
-      // রেসপন্স হেডার চেক করা হচ্ছে এটি আসলেই JSON কিনা
+
       const contentType = res.headers.get("content-type");
       if (res.ok && contentType && contentType.includes("application/json")) {
         data = await res.json();

@@ -24,10 +24,10 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
 
-  //etar mardome create button tate loading dekabo
+
   const [loading, setIsLoading] = useState(false);
 
-  // ✅ বাগ এড়ানোর জন্য সরাসরি ইমেজ ফাইল অবজেক্ট ট্র্যাক করার স্টেট
+
   const [rawImageFile, setRawImageFile] = useState(null);
 
   const router = useRouter();
@@ -40,12 +40,11 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm();
 
-  // ইমেজ চেঞ্জ হ্যান্ডলার এবং প্রিভিউ জেনারেটর
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      //console.log("Selected file inside handler:", file); //cheek when i select image the show consonsole or not
-      setRawImageFile(file); // ফিজিক্যাল ফাইল অবজেক্টটি স্টেটে স্টোর করা হলো
+   
+      setRawImageFile(file); 
 
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -55,16 +54,14 @@ const RegisterForm = () => {
     }
   };
 
-  // main function for register form submit
-  // main function for register form submit
   const onSubmit = async (data) => {
-    // ফাইল সিলেক্ট করা হয়েছে কিনা তা রানটাইমে কঠোরভাবে চেক করা
+
     if (!rawImageFile) {
       toast.error("Please upload a profile picture first!");
       return;
     }
 
-    // লোডিং স্টেট চালু করা হলো
+
     setIsLoading(true);
 
     const formData = new FormData();
@@ -108,7 +105,6 @@ const RegisterForm = () => {
       console.error("Error during registration:", error);
       toast.error(error.message || "Registration failed!");
     } finally {
-      // সাকসেস হোক বা এরর, লোডিং স্টেট এখানে এসে ফলস হবে
       setIsLoading(false);
     }
   };

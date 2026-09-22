@@ -8,7 +8,6 @@ const CustomCursor = () => {
   const followerRef = useRef(null);
 
   useEffect(() => {
-    // 🟢 চেক১: স্ক্রিন ৭৬৮ পিক্সেলের কম হলে অথবা ডিভাইসটি টাচ স্ক্রিন (মোবাইল/ট্যাব) হলে কার্সার রান হবে না
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (window.innerWidth < 768 || isTouchDevice) return;
 

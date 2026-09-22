@@ -17,21 +17,20 @@ const WishListButton = ({ product }) => {
   const { _id, id, title, price, image, size } = product;
   const actualId = _id || id;
 
-  // 📡 ১. ইউজারের ডাটাবেজ থেকে সম্পূর্ণ উইশলিস্ট ফেচ করা
   const { data: userWishlist = [] } = useQuery({
     queryKey: ["user-wishlist", session?.user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/api/wishlist?email=${session?.user?.email}`);
-      return res.data; // আশা করা হচ্ছে এটি একটি অ্যারে রিটার্ন করে
+      return res.data; 
     },
-    //eta korle ekta sobida holo jotokon user email pabe totokon data fetch hobe na
+
     enabled: !!session?.user?.email && !!axiosSecure,
   });
 
-  // 🔄 ২. রিলোড বা পেজ লোডের পর ডাটাবেজের তথ্যের সাথে ম্যাচ করানো
+
   useEffect(() => {
     if (userWishlist.length > 0 && actualId) {
-      // আপনার এপিআই রেসপন্স অনুযায়ী `item.productId` অথবা `item._id` চেক করবেন
+ 
       const exists = userWishlist.some(
         (item) => item.productId === actualId || item._id === actualId
       );
@@ -41,7 +40,7 @@ const WishListButton = ({ product }) => {
     }
   }, [userWishlist, actualId]);
 
-  // 🚀 ৩. উইশলিস্টে ডেটা পোস্ট করার হ্যান্ডলার
+
   const handleWishlist = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -58,7 +57,7 @@ const WishListButton = ({ product }) => {
       return;
     }
 
-    // যদি অলরেডি উইশলিস্টেড থাকে, তবে বাটন ক্লিক করলে ইউজারকে অ্যালার্ট করবে
+
     if (isWishlisted) {
       toast.info("This item is already in your wishlist!");
       return;
@@ -78,16 +77,16 @@ const WishListButton = ({ product }) => {
 
       if (res.data.result?.acknowledged === true) {
         toast.success("Product added to wishlist!");
-        setIsWishlisted(true); // 🟢 লোকাল স্টেট সাথে সাথে কালারড করবে
+        setIsWishlisted(true); 
         
-        // React Query এর ক্যাশ রি-ফেচ করবে যাতে রিলোড ছাড়াও অন্য পেজে সিন্ক থাকে
+       
         queryClient.invalidateQueries(["user-wishlist", session?.user?.email]);
         return;
       }
     } catch (error) {
       if (error.response?.status === 400) {
         toast.warning("This item is already in your wishlist!");
-        setIsWishlisted(true); // 🟢 ডাটাবেজে অলরেডি থাকলে কালারড করে দেবে
+        setIsWishlisted(true); 
       } else {
         toast.error("Failed to add to wishlist. Try again!");
       }

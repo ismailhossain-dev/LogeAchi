@@ -37,7 +37,7 @@ const AddToCartButton = ({ product }) => {
         createdAt: new Date().toISOString(),
       });
 
-      // সফলভাবে ইনসার্ট হলে
+  
       if (res.data.result?.acknowledged === true) {
         setIsAddedToCart(true);
         return toast.success("Product added to Cart!");
@@ -46,11 +46,10 @@ const AddToCartButton = ({ product }) => {
     } catch (error) {
       console.error("Error adding to cart:", error);
 
-      // 🛠️ ফিক্সড: যদি ব্যাকএন্ড থেকে ৪০০ (Already Exist) রেসপন্স আসে
       if (error.response?.status === 400) {
-        // ব্যাকএন্ডে যে কাস্টম মেসেজ লিখেছেন সেটি দেখাবে (যেমন: "This item already exists in your cart")
+    
         toast.warning(error.response.data?.message || "This item is already in your cart!");
-        setIsAddedToCart(true); // অলরেডি থাকলে বাটন গ্রিন করে দিতে পারেন
+        setIsAddedToCart(true); 
       } else {
         toast.error(error.response?.data?.message || "Failed to add to cart. Try again!");
       }

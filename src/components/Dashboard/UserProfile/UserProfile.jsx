@@ -27,10 +27,8 @@ const UserProfile = () => {
   const { data: session } = useSession();
   const axiosSecure = useAxiosSecure();
 
-  // ফর্ম ওপেন/ক্লোজ এবং সাবমিট লোডিং স্টেট
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  //get user data using tanstack query
   const {
     data: users,
     isLoading,
@@ -48,7 +46,6 @@ const UserProfile = () => {
 
   const user = users?.result;
 
-  // React Hook Form সেটআপ (ডিফল্ট ভ্যালুসহ)
   const {
     register,
     handleSubmit,
@@ -64,9 +61,9 @@ const UserProfile = () => {
     },
   });
 
-  //=======================form updated function ======================
+
   const onUpdateProfile = async (data) => {
-    // console.log("updated client form data" , data)
+
     setIsSubmitting(true);
     try {
       //
@@ -75,7 +72,7 @@ const UserProfile = () => {
         data,
       );
 
-      //backend teke response ta neya alert dekaitechi
+
       if (res.data.modifiedCount > 0) {
         toast.success(res.data.message);
         await refetch();
@@ -90,7 +87,6 @@ const UserProfile = () => {
     }
   };
 
-  // প্রিমিয়াম স্কেলিটন লোডার
   if (!session?.user?.email || isLoading) {
     return (
       <div className="min-h-screen bg-[#070b13] p-4 sm:p-8 flex items-center justify-center animate-pulse">
@@ -105,7 +101,7 @@ const UserProfile = () => {
     );
   }
 
-  // ডেট ফরম্যাটার হেল্পার
+
   const formatDate = (dateString) => {
     if (!dateString) return "15 Jun 2026";
     return new Date(dateString).toLocaleDateString("en-GB", {
@@ -115,7 +111,7 @@ const UserProfile = () => {
     });
   };
 
-  // একাউন্ট আইডি কপি করার ফাংশন
+
   const handleCopyId = (id) => {
     if (id) {
       navigator.clipboard.writeText(id);

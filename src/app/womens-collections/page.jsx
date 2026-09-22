@@ -20,20 +20,19 @@ const WomensCollectionPage = async ({ searchParams }) => {
 
   const data = await res.json();
   
-  // 🎯 উইমেন্স কালেকশনের জন্য ৩টি নির্দিষ্ট ক্যাটাগরি ফিক্সড করা হলো
   const finalCategory = [ "Tops", "Jeans"];
 
-  // ১. প্রথমে এপিআই থেকে শুধুমাত্র এই ৩টি ক্যাটাগরির প্রোডাক্ট আলাদা করা হলো
+
   let womensProducts = data.result.filter((product) =>
     finalCategory.some(cat => cat.toLowerCase() === product.category.toLowerCase())
   );
 
-  // ২. সার্চ ফিল্টারিং (শুধুমাত্র উইমেন্স কালেকশনের ওপর কাজ করবে)
+
   let filteredProducts = womensProducts.filter((product) =>
     product.title.toLowerCase().includes(searchQuery)
   );
 
-  // ৩. ক্যাটাগরি ফিল্টারিং (যদি কোনো নির্দিষ্ট ক্যাটাগরি সিলেক্ট করা থাকে)
+
   if (selectedCategory) {
     filteredProducts = filteredProducts.filter(
       (product) => product.category.toLowerCase() === selectedCategory.toLowerCase()

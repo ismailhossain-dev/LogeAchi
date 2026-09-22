@@ -2,7 +2,7 @@
 import React from 'react';
 import { ComposedChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-// ১২ মাসের রিয়েল-লাইফ স্যাম্পল ডেটা (টোটাল অর্ডার এবং ডেলিভারড অর্ডার)
+
 const data = [
   { month: 'Jan', orders: 4, delivered: 3 },
   { month: 'Feb', orders: 7, delivered: 6 },

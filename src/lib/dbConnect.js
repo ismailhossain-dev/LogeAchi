@@ -3,7 +3,6 @@ const uri = process.env.MONGODB_URI;
 const dbName = process.env.DBNAME;
 
 
-
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,

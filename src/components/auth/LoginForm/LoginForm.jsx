@@ -37,7 +37,7 @@ const LoginForm = () => {
       if (result?.ok) {
         toast.success("Login successfully");
         router.push(callbackUrl);
-        router.refresh(); // সেশন ইনস্ট্যান্ট আপডেট করার জন্য রিফ্রেশ
+        router.refresh();
       } else {
         toast.error(result?.error || "Invalid credentials. Please try again.");
       }

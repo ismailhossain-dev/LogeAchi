@@ -12,8 +12,7 @@ const ProductCard = ({ product }) => {
   const { title, price, image, _id } = product;
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  
-  // মডালের ভেতরের স্টেটগুলো
+
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
 

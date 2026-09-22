@@ -23,7 +23,7 @@ export async function POST(req) {
             }, { status: 400 });
         }
 
-        // ২. নতুন আইটেম ইনসার্ট করা
+    
         const result = await dbConnect("wishlist").insertOne(wishlistUser);
         
         return NextResponse.json({

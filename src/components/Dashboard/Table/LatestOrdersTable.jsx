@@ -1,7 +1,6 @@
 import React from 'react';
 
 const LatestOrdersTable = ({ data }) => {
-  // ডাটা থেকে latestOrders অ্যারে আলাদা করা হলো
   const orders = data?.latestOrders || [];
 
   return (

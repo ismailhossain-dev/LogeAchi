@@ -12,7 +12,6 @@ export default function Dashboard() {
   const axiosSecure = useAxiosSecure();
   const { data: session, status } = useSession();
 
-  // 📊 React Query দিয়ে ড্যাশবোর্ড ডাটা ফেচিং
   const { data, isLoading } = useQuery({
     queryKey: ["dashboard-overview", session?.user?.email],
     queryFn: async () => {
@@ -22,7 +21,6 @@ export default function Dashboard() {
     enabled: !!session?.user?.email
   });
 
-  // ⏳ Next-Auth সেশন অথবা React Query লোডিং কন্ডিশন
   if (status === "loading" || isLoading) {
     return (
       <div className="min-h-screen bg-[#09090b] flex items-center justify-center gap-3 text-zinc-400 font-medium">
@@ -32,7 +30,6 @@ export default function Dashboard() {
     );
   }
 
-  // প্রতিটি কার্ডের জন্য স্ট্যাটস কনফিগ
   const stats = [
     {
       id: 1,

@@ -10,7 +10,7 @@ function UserCartPage() {
   const axiosSecure = useAxiosSecure();
   const { data: session, status } = useSession();
 
-  // লোকাল স্টেট
+
   const [quantities, setQuantities] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
 

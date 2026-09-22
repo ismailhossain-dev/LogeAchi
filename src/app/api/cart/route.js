@@ -60,9 +60,9 @@ export async function GET(req) {
 
 export async function DELETE(req) {
   try {
-    // 🛠️ ক্লায়েন্ট সাইড থেকে পাঠানো বডি থেকে id নেওয়া হচ্ছে
+ 
     const { id } = await req.json(); 
-    // console.log("ডিলিট করার আইডি:", id);
+
 
     if (!id || !ObjectId.isValid(id)) {
       return NextResponse.json({ message: "Invalid or missing ID" }, { status: 400 });

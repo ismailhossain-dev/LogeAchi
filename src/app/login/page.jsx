@@ -1,11 +1,10 @@
 import LoginForm from '@/components/auth/LoginForm/LoginForm';
 import React, { Suspense } from 'react';
 
-// Next.js কে বলা হচ্ছে এই পেজটি স্ট্যাটিক্যালি প্রিরেন্ডার না করতে
 export const dynamic = "force-dynamic";
 
 const LoginPage = () => {
-    //suspense use for vercel deploy
+
     return (
         <div>
             <Suspense fallback={

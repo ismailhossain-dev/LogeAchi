@@ -15,13 +15,13 @@ import Link from "next/link";
 
 export default function WishListTable({ wishlist = [], refetch }) {
   const [items, setItems] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null); // মোডাল স্টেট
+  const [selectedProduct, setSelectedProduct] = useState(null); // 
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (wishlist && wishlist.length > 0) {
       setItems(wishlist.map((item, index) => {
-        // 🌟 FIX: যদি item.size একটি অ্যারে হয়, তবে তার প্রথম উপাদানটি ডিফল্ট ভ্যালু হিসেবে সেট হবে
+    
         const defaultSize = Array.isArray(item.size) ? item.size[0] : (item.size || "M");
         
         return {
@@ -29,8 +29,8 @@ export default function WishListTable({ wishlist = [], refetch }) {
           productId: item.productId || "",
           title: item.title || "Unknown Product",
           image: item.image,
-          allSizes: Array.isArray(item.size) ? item.size : [item.size || "M"], // ড্রপডাউনের অপশনের জন্য পুরো অ্যারে
-          size: defaultSize, // <select value={...}> এর জন্য সিঙ্গেল স্ট্রিং ভ্যালু
+          allSizes: Array.isArray(item.size) ? item.size : [item.size || "M"], 
+          size: defaultSize, 
           basePrice: item.price || 0,
           quantity: item.quantity || 1,
           date: item.createdAt ? new Date(item.createdAt).toLocaleDateString() : "2026-07-05",
@@ -41,7 +41,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
     }
   }, [wishlist]);
 
-  // Quantity কন্ট্রোল ফাংশন
+ 
   const updateQuantity = (id, change) => {
     setItems(prevItems =>
       prevItems.map(item => {
@@ -54,7 +54,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
     );
   };
 
-  // সাইজ ড্রপডাউন হ্যান্ডলার
+
   const handleSizeChange = (id, newSize) => {
     setItems(prevItems =>
       prevItems.map(item => (item.id === id ? { ...item, size: newSize } : item))
@@ -263,12 +263,10 @@ export default function WishListTable({ wishlist = [], refetch }) {
         </>
       )}
 
-      {/* ================= 💎 XL LUXURY LIVE PRODUCT DETAILS MODAL ================= */}
       {selectedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-[#070b13] border border-slate-800/80 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 duration-300">
-            
-            {/* Close Button */}
+    
             <button 
               onClick={() => setSelectedProduct(null)}
               className="absolute top-5 right-5 p-2.5 bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white rounded-xl transition cursor-pointer z-20 hover:scale-105 active:scale-95"
@@ -276,10 +274,10 @@ export default function WishListTable({ wishlist = [], refetch }) {
               <X size={18} />
             </button>
 
-            {/* Grid Layout (Responsive: Mobile-এ উপরে নিচে, Desktop-এ পাশাপাশি সমান সাইজ) */}
+  
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
               
-              {/* Left Side: Premium Big Image Preview */}
+           
               <div className="md:col-span-5 flex items-center justify-center">
                 <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 p-1 shadow-2xl relative group">
                   <img 
@@ -291,7 +289,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
                 </div>
               </div>
 
-              {/* Right Side: Detailed Product Specs & Checkout Option */}
+        
               <div className="md:col-span-7 flex flex-col justify-between space-y-6">
                 
                 <div className="space-y-4">
@@ -314,7 +312,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
                   </div>
                 </div>
 
-                {/* Pricing and Attributes Table Card */}
+              
                 <div className="bg-slate-900/40 border border-slate-800/60 rounded-2xl p-5 space-y-3 shadow-inner relative">
                   <div className="flex justify-between items-center text-sm border-b border-slate-800/50 pb-2.5">
                     <span className="text-slate-500 font-medium">Selected Size</span>
@@ -341,7 +339,6 @@ export default function WishListTable({ wishlist = [], refetch }) {
                   </div>
                 </div>
 
-                {/* Modal Footer CTA Button */}
                 <div className="pt-2">
                   <button 
                     onClick={() => {

@@ -156,7 +156,7 @@ const ProductModel = ({
     </div>
   );
 
-  // 🟢 createPortal ব্যবহার করে কন্টেন্ট সরাসরি document.body তে পাঠিয়ে দেওয়া হলো
+
   return createPortal(modalContent, document.body);
 };
 

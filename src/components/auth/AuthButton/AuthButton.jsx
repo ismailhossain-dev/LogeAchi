@@ -13,7 +13,7 @@ const AuthButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
 
-  // 🎯 TanStack Query ব্যবহার করে ইউজার ডাটা ফেচিং
+
   const { data: users, isLoading: isUserLoading } = useQuery({
     queryKey: ["user", session?.user?.email || ""], 
     queryFn: async () => {
@@ -23,7 +23,7 @@ const AuthButton = () => {
     enabled: !!session?.user?.email, 
   });
 
-  // Next-Auth সেশন লোডিং হ্যান্ডেলিং
+
   if (status === "loading") {
     return (
       <div className="w-8 h-8 flex items-center justify-center">
@@ -32,12 +32,10 @@ const AuthButton = () => {
     );
   }
 
-  // ডাটা স্ট্রাকচার সেফটি চেক (API রেসপন্স অনুযায়ী)
+
   const userProfileImage = users?.result?.image || users?.image;
   const userName = users?.result?.name || users?.name || session?.user?.name || "User";
   const userEmail = users?.result?.email || users?.email || session?.user?.email || "No Email";
-
-  // ড্রপডাউন মেনু সেকশন
   const dropdownSections = [
     {
       title: "Personal Space",

@@ -6,13 +6,12 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 
-import Logo from "@/components/Logo/Logo"; // পাথটি আপনার প্রোজেক্ট অনুযায়ী চেক করে নিবেন
+import Logo from "@/components/Logo/Logo"; 
 
 const Footer = () => {
   const [showScroll, setShowScroll] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  // Scroll to top বাটনের ভিজিবিলিটি চেক
   useEffect(() => {
     const checkScrollTop = () => {
       if (window.scrollY > 400) {
@@ -26,12 +25,10 @@ const Footer = () => {
     return () => window.removeEventListener("scroll", checkScrollTop);
   }, []);
 
-  // Scroll to top হ্যান্ডলার
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  // নিউজলেটার সাবমিট হ্যান্ডলার
   const handleSubscribe = (e) => {
     e.preventDefault();
     alert("Thank you for subscribing to BookCourier!");
