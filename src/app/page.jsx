@@ -11,7 +11,6 @@ export const dynamic = "force-dynamic";
 
 const Page = async () => {
   let data = { result: [] };
-
   try {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "";
     
@@ -30,10 +29,12 @@ const Page = async () => {
     console.error("Failed to fetch products during build:", error);
   }
 
+
   return (
     <div className="bg-[#0f172a]">
       {/* header */}
       <Banner />
+      
 
       <Container className="overflow-hidden ">
         <section>
