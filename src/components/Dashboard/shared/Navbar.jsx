@@ -57,7 +57,7 @@ const Navbar = ({ setIsOpen }) => {
         <div className="flex items-center gap-3 cursor-pointer group">
           <img
             className="w-9 h-9 rounded-full object-cover border-2 border-indigo-600 p-[1px] group-hover:border-indigo-400 transition-colors shadow-md"
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+            src={session.user?.image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"} 
             alt="User Profile"
           />
           <div className="hidden sm:flex flex-col">
