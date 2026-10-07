@@ -56,38 +56,39 @@ const RegisterForm = () => {
 
   const onSubmit = async (data) => {
 
-    if (!rawImageFile) {
-      toast.error("Please upload a profile picture first!");
-      return;
-    }
+    // if (!rawImageFile) {
+    //   toast.error("Please upload a profile picture first!");
+    //   return;
+    // }
 
 
     setIsLoading(true);
 
-    const formData = new FormData();
-    formData.append("image", rawImageFile);
+    //image upload work
+    // const formData = new FormData();
+    // formData.append("image", rawImageFile);
 
     try {
-      const IMAGE_API_URL = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`;
+      // const IMAGE_API_URL = `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`;
 
-      const imgResponse = await fetch(IMAGE_API_URL, {
-        method: "POST",
-        body: formData,
-      });
+      // const imgResponse = await fetch(IMAGE_API_URL, {
+      //   method: "POST",
+      //   body: formData,
+      // });
 
-      const imgResult = await imgResponse.json();
+      // const imgResult = await imgResponse.json();
 
-      if (!imgResponse.ok || !imgResult.data) {
-        throw new Error(imgResult.error?.message || "ImgBB upload failed");
-      }
+      // if (!imgResponse.ok || !imgResult.data) {
+      //   throw new Error(imgResult.error?.message || "ImgBB upload failed");
+      // }
 
-      const imageUrl = imgResult.data.url;
+      // const imageUrl = imgResult.data.url;
 
       const userData = {
         name: data.name,
         email: data.email,
         password: data.password,
-        image: imageUrl,
+        // image: imageUrl,
       };
 
       const result = await postUser(userData);
@@ -175,7 +176,8 @@ const RegisterForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Premium Image Upload Input */}
-              <div className="flex flex-col gap-1.5">
+               {/*
+             <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-300 tracking-wide">
                   Profile Picture
                 </label>
@@ -221,6 +223,7 @@ const RegisterForm = () => {
                   )}
                 </div>
               </div>
+              {*/}
 
               {/* Full Name Input Box */}
               <div className="flex flex-col gap-1.5">

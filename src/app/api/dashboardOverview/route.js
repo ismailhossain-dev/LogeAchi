@@ -3,9 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(req) {
   try {
-    const { searchParams } = new URL(req.url); //client side er api teke email ta nilam
+    const { searchParams } = new URL(req.url); 
     const email = searchParams.get("email");
-    //countDocuments use korle amra length ta pabo
     const totalOrders = await dbConnect("orders").countDocuments({
       email,
     });

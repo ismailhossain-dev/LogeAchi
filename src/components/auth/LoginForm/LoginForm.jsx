@@ -50,14 +50,12 @@ const LoginForm = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#0f172a] flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans antialiased text-slate-200">
-      
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="flex w-full max-w-5xl min-h-[600px] bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_25px_70px_-15px_rgba(0,0,0,0.7)] border border-slate-800"
       >
-        
         {/* Left Side: Cinematic Hero Image */}
         <div className="hidden lg:block relative flex-1 min-w-[450px] bg-slate-950">
           <img
@@ -84,7 +82,6 @@ const LoginForm = () => {
 
         {/* Right Side: Form Section */}
         <div className="flex-1 flex flex-col justify-center p-6 sm:p-10 lg:p-12 bg-slate-900/40 relative">
-          
           <Link
             href={"/"}
             className="absolute top-6 left-6 sm:left-10 flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-orange-500 transition-colors group"
@@ -115,17 +112,13 @@ const LoginForm = () => {
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              
               {/* Email Input Box */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-300 tracking-wide">
                   Mail address
                 </label>
                 <div className="relative flex items-center">
-                  <Mail
-                    size={16}
-                    className="absolute left-4 text-slate-500"
-                  />
+                  <Mail size={16} className="absolute left-4 text-slate-500" />
                   <input
                     {...register("email", {
                       required: "Email is required",

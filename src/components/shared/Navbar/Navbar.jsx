@@ -83,7 +83,7 @@ const handleDeleteCartItem = async (itemId) => {
     { id: 3, name: "MENS", href: "/mens-collections" },
     { id: 4, name: "WOMENS", href: "/womens-collections" },
     { id: 5, name: "ABOUT US", href: "/about-us" },
-    { id: 6, name: "Admin Dashboard", href: "/admin" }
+    // { id: 6, name: "Admin Dashboard", href: "/admin" }
   ];
 
   return (

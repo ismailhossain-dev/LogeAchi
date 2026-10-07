@@ -6,7 +6,8 @@ import bcrypt from "bcrypt";
 
 //register post function
 export const postUser = async (payload) => {
-  const { name, email, password, image } = payload;
+  // const { name, email, password, image } = payload;
+  const { name, email, password } = payload;
 
   try {
     const collection = dbConnect("users");
@@ -25,7 +26,7 @@ export const postUser = async (payload) => {
       providerId: "credentials",
       name,
       email,
-      image,
+      // image,
       password: await bcrypt.hash(password, 14),
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -57,12 +58,10 @@ export const loginUser = async (payload)=> {
     const {email , password} = payload 
     if(!email, !password) return null
 
-    //check user have or not 
+    //check user exist
     const user = await dbConnect("users").findOne({email}
     );
     if(!user) return null 
-
-    //loginForm sathe mongodb hash password match ache kina dektese
     const isMatched = await bcrypt.compare(password, user.password)
     if(isMatched){
         return user
