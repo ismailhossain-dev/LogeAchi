@@ -5,33 +5,54 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const cartUser = await req.json();
-  const isExist = await dbConnect("cart").findOne({title:cartUser.title, userEmail: cartUser.userEmail});
 
-  if(isExist){
-    return NextResponse.json({
-      message: "This item already exists in your cart",
-      status: 400
-    }, { status: 400 });
-  }
+    const { productId, userEmail } = cartUser;
 
-    const result = await dbConnect("cart").insertOne(cartUser);
-    return NextResponse.json({
-      message: "Cart inserted successfully",
-      result,
-      status: 200
-    }, { status: 200 });
+    if (!productId || !userEmail) {
+      return NextResponse.json(
+        {
+          message: "Product ID and user email are required",
+        },
+        { status: 400 }
+      );
+    }
 
+    const cartCollection = dbConnect("cart");
+
+    const isExist = await cartCollection.findOne({
+      productId,
+      userEmail,
+    });
+
+    if (isExist) {
+      return NextResponse.json(
+        {
+          message: "This item already exists in your cart",
+          isAddedToCart: true,
+        },
+        { status: 400 }
+      );
+    }
+
+    const result = await cartCollection.insertOne(cartUser);
+
+    return NextResponse.json(
+      {
+        message: "Cart inserted successfully",
+        isAddedToCart: true,
+        result,
+      },
+      { status: 201 }
+    );
   } catch (error) {
-    console.log(error);
+    console.error("Cart API Error:", error);
 
     return NextResponse.json(
       {
         message: "Cart API failed",
-        error: error.message,
+        error: error instanceof Error ? error.message : "Unknown error",
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
