@@ -10,9 +10,10 @@ import { toast } from "react-toastify";
 function CheckOutForm({ productData }) {
   // Safe destructuring with fallback values
   const { _id, title, image, price, size = [] } = productData || {};
+  //details data get from database
   const { data: session, status } = useSession();
   const axiosSecure = useAxiosSecure();
-  const router = useRouter()
+  const router = useRouter();
 
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -39,51 +40,34 @@ function CheckOutForm({ productData }) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async(formData) => {
-
+  const onSubmit = async (formData) => {
     // console.log(formData)
 
-
-    // Combines user details with relevant product metrics
-    // const finalOrderData = {
-    //   ...formData,
-    //   productId: _id,
-    //   productTitle: title,
-    //   productPrice: price,
-    //   productSize: selectedSize,
-    // };
-    // console.log("Complete Order & Product Data:", finalOrderData);
-
-    //send data in mongod 
-
     try {
-      const res = await axiosSecure.post ("/api/checkout", {
-         productTitle: title,
-         image: image, 
+      const res = await axiosSecure.post("/api/checkout", {
+        productTitle: title,
+        image: image,
         productPrice: price,
         productSize: selectedSize,
-        name: formData.fullName , 
-        email:session?.user?.email, 
-        number:formData.phoneNumber , 
-        address:formData.fullAddress ,
+        name: formData.fullName,
+        email: session?.user?.email,
+        number: formData.phoneNumber,
+        address: formData.fullAddress,
         city: formData.city,
-        division: formData.state, 
-        zipcode: formData.zipCode ,
-        status: "pending", 
-      
-        createdAt: new Date().toISOString(),
-      })
+        division: formData.state,
+        zipcode: formData.zipCode,
+        status: "pending",
 
-        if (res.data.result?.acknowledged === true) {
-           toast.success("Order Conform!");
-           router.push("/user/my-orders")
-           return;
-      
-            }
-      
-      
+        createdAt: new Date().toISOString(),
+      });
+
+      if (res.data.result?.acknowledged === true) {
+        toast.success("Order Conform!");
+        router.push("/user/my-orders");
+        return;
+      }
     } catch (error) {
-      console.log("checkout data fetch error " , error)
+      console.log("checkout data fetch error ", error);
     }
   };
 
@@ -195,8 +179,6 @@ function CheckOutForm({ productData }) {
                     </span>
                   )}
                 </div>
-
-               
               </div>
 
               {/* Contact Info Row */}
