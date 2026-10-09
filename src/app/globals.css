@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+
+
 @custom-variant dark (&:is(.dark *));
 
 /* 🛠️ Custom Utility Class */
@@ -184,7 +186,5 @@
   body {
     @apply bg-background text-foreground;
   }
-  html {
-    @apply font-sans;
-  }
+
 }

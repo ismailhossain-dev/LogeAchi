@@ -11,7 +11,6 @@ import {
   HiOutlineHeart,
   HiOutlineShoppingCart,
   HiOutlineArrowLeftOnRectangle,
-  HiOutlineChartPie,
 } from "react-icons/hi2";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useSession } from "next-auth/react";
@@ -21,7 +20,9 @@ const Sidebar = ({ isOpen, onClose }) => {
   const axioSecure = useAxiosSecure();
   const { data: session, status } = useSession();
   const [userRole, setUserRole] = useState(null);
-  console.log(session, "user");
+  // console.log(session, "user");
+
+  //fetch to user Role
   useEffect(() => {
     const fetchUserRole = async () => {
       if (status === "authenticated" && session?.user?.email) {
@@ -86,27 +87,32 @@ const Sidebar = ({ isOpen, onClose }) => {
           items: [
             {
               name: "Overview",
-              href: "/admin",
-              icon: <HiOutlineChartPie className="w-5 h-5" />,
+              href: "/dashboard/admin",
+              icon: <HiOutlineHome className="w-5 h-5" />,
             },
             {
               name: "Manage Orders",
-              href: "/admin/manage-users",
-              icon: <HiOutlineUser className="w-5 h-5" />,
+              href: "/dashboard/admin/manage-orders",
+              icon:<HiOutlineClipboardDocumentList className="w-5 h-5" />,
             },
             {
               name: "Manage Users",
-              href: "/admin/manage-users",
+              href: "/dashboard/admin/manage-users",
               icon: <HiOutlineUser className="w-5 h-5" />,
             },
             {
-              name: "Manage ",
-              href: "/admin/manage-users",
-              icon: <HiOutlineUser className="w-5 h-5" />,
+              name: "Manage wishlist ",
+              href: "/dashboard/admin/manage-wishlist",
+              icon: <HiOutlineHeart className="w-5 h-5" />,
             },
             {
-              name: "Manage Users",
-              href: "/admin/manage-users",
+              name: "Manage Cart ",
+              href: "/dashboard/admin/manage-cart",
+              icon: <HiOutlineShoppingCart className="w-5 h-5" />,
+            },
+            {
+              name: "Profile",
+              href: "/dashboard/admin/profile",
               icon: <HiOutlineUser className="w-5 h-5" />,
             },
           ],

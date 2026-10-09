@@ -197,45 +197,7 @@ const UserProfile = () => {
             </div>
           </div>
 
-          {/* Quick Action Buttons */}
-          <div className="grid grid-cols-3 gap-3">
-            <Link
-              href="/dashboard/user/my-orders"
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#0f1524]/40 border border-slate-800/30 hover:bg-[#0f1524]/80 text-slate-400 hover:text-blue-400 transition-all group cursor-pointer"
-            >
-              <ShoppingBag
-                size={16}
-                className="mb-2 group-hover:scale-110 transition-transform"
-              />
-              <span className="text-[9px] font-bold uppercase tracking-wider">
-                Orders
-              </span>
-            </Link>
-            <Link
-              href="/dashboard/user/my-wishlist"
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#0f1524]/40 border border-slate-800/30 hover:bg-[#0f1524]/80 text-slate-400 hover:text-rose-400 transition-all group cursor-pointer"
-            >
-              <Heart
-                size={16}
-                className="mb-2 group-hover:scale-110 transition-transform"
-              />
-              <span className="text-[9px] font-bold uppercase tracking-wider">
-                Wishlist
-              </span>
-            </Link>
-            <Link
-              href="/dashboard/user/my-cart"
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#0f1524]/40 border border-slate-800/30 hover:bg-[#0f1524]/80 text-slate-400 hover:text-amber-400 transition-all group cursor-pointer"
-            >
-              <ShoppingCart
-                size={16}
-                className="mb-2 group-hover:scale-110 transition-transform"
-              />
-              <span className="text-[9px] font-bold uppercase tracking-wider">
-                Cart
-              </span>
-            </Link>
-          </div>
+         
         </div>
 
         {/* ================= RIGHT SIDE ================= */}

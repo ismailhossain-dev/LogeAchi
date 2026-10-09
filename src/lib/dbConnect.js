@@ -28,7 +28,6 @@ const connectDB = async () => {
 
 connectDB();
 
-//
 
 export const dbConnect = (cname) => {
   return client.db(dbName).collection(cname);
