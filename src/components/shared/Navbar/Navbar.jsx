@@ -217,7 +217,7 @@ const handleDeleteCartItem = async (itemId) => {
             <span>Total Taka</span>
             <span className="text-orange-500 font-bold">৳{totalTaka}</span>
           </div>
-          <Link href="/user/my-cart" className="w-full py-5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg text-center block cursor-pointer">
+          <Link href="/dashboard/user/my-cart" className="w-full py-5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg text-center block cursor-pointer">
             GO TO CART & CHEEKOUT
           </Link>
         </div>

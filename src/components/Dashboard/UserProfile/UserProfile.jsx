@@ -200,7 +200,7 @@ const UserProfile = () => {
           {/* Quick Action Buttons */}
           <div className="grid grid-cols-3 gap-3">
             <Link
-              href="/user/my-orders"
+              href="/dashboard/user/my-orders"
               className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#0f1524]/40 border border-slate-800/30 hover:bg-[#0f1524]/80 text-slate-400 hover:text-blue-400 transition-all group cursor-pointer"
             >
               <ShoppingBag
@@ -212,7 +212,7 @@ const UserProfile = () => {
               </span>
             </Link>
             <Link
-              href="/user/my-wishlist"
+              href="/dashboard/user/my-wishlist"
               className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#0f1524]/40 border border-slate-800/30 hover:bg-[#0f1524]/80 text-slate-400 hover:text-rose-400 transition-all group cursor-pointer"
             >
               <Heart
@@ -224,7 +224,7 @@ const UserProfile = () => {
               </span>
             </Link>
             <Link
-              href="/user/my-cart"
+              href="/dashboard/user/my-cart"
               className="flex flex-col items-center justify-center p-3 rounded-xl bg-[#0f1524]/40 border border-slate-800/30 hover:bg-[#0f1524]/80 text-slate-400 hover:text-amber-400 transition-all group cursor-pointer"
             >
               <ShoppingCart

@@ -34,7 +34,7 @@ const OurServices = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full font-sans antialiased">
+    <section className="py-20  mx-auto w-full font-sans antialiased">
       {/* Section Header */}
       <div className=" italic mb-16 uppercase ">
         <Title >Our <br/> <span className='text-blue-500 font-bold'>Premium Services</span></Title>

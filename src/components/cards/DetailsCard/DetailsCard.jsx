@@ -37,8 +37,8 @@ const DetailsCard = ({ product }) => {
     _id,
   } = product;
 
-
-  const galleryImages = productImages.length > 0 ? productImages : [image].filter(Boolean);
+  const galleryImages =
+    productImages.length > 0 ? productImages : [image].filter(Boolean);
 
   const [mainImage, setMainImage] = useState(image);
   const [selectedColor, setSelectedColor] = useState("");
@@ -58,14 +58,11 @@ const DetailsCard = ({ product }) => {
 
   return (
     <div className="bg-[#0f172a] min-h-screen text-slate-100 antialiased relative overflow-hidden py-12 sm:py-16">
-      
-  
       <div className="absolute top-10 left-10 w-[400px] h-[400px] bg-blue-500/10 blur-[130px] rounded-full pointer-events-none" />
       <div className="absolute bottom-20 right-10 w-[350px] h-[350px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-start">
-          
           <div className="lg:col-span-6 flex flex-col gap-5">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-[#1e293b]/30 border border-slate-700/50 p-1.5 shadow-2xl group">
               {mainImage ? (
@@ -118,13 +115,12 @@ const DetailsCard = ({ product }) => {
           </div>
 
           <div className="lg:col-span-6 flex flex-col justify-between space-y-6 lg:space-y-8">
-            
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#1e293b]/60 border border-slate-700/50 text-slate-300 rounded-lg text-xs font-bold tracking-widest uppercase font-mono">
                   <Tag size={12} className="text-blue-400" /> {category}
                 </span>
-                
+
                 <span
                   className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide border font-mono ${
                     stock
@@ -132,7 +128,9 @@ const DetailsCard = ({ product }) => {
                       : "bg-rose-500/10 text-rose-400 border-rose-500/20"
                   }`}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full mr-2 ${stock ? "bg-emerald-400 animate-pulse" : "bg-rose-400"}`} />
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full mr-2 ${stock ? "bg-emerald-400 animate-pulse" : "bg-rose-400"}`}
+                  />
                   {stock ? "In Stock" : "Unavailable"}
                 </span>
               </div>
@@ -142,7 +140,9 @@ const DetailsCard = ({ product }) => {
               </h1>
 
               <div className="flex items-center gap-4 text-xs font-mono text-slate-400">
-                <span>SKU: <span className="text-slate-200">{sku}</span></span>
+                <span>
+                  SKU: <span className="text-slate-200">{sku}</span>
+                </span>
                 {date && (
                   <span className="flex items-center gap-1">
                     <Calendar size={12} /> {date}
@@ -166,17 +166,20 @@ const DetailsCard = ({ product }) => {
 
               <div className="pt-2">
                 <p className="text-sm text-slate-300 leading-relaxed font-normal">
-                  {description || "Discover the perfect blend of style and comfort with this premium product. Crafted with care using high-quality materials to ensure long-lasting durability."}
+                  {description ||
+                    "Discover the perfect blend of style and comfort with this premium product. Crafted with care using high-quality materials to ensure long-lasting durability."}
                 </p>
               </div>
             </div>
 
             <div className="space-y-6 border-t border-slate-800 pt-6">
-              
               {colors?.length > 0 && (
                 <div>
                   <h3 className="text-xs font-bold tracking-wider text-slate-400 uppercase mb-3 font-mono">
-                    Color Variation: <span className="text-blue-400 font-semibold">{selectedColor}</span>
+                    Color Variation:{" "}
+                    <span className="text-blue-400 font-semibold">
+                      {selectedColor}
+                    </span>
                   </h3>
                   <div className="flex flex-wrap items-center gap-3">
                     {colors.map((color) => (
@@ -253,24 +256,32 @@ const DetailsCard = ({ product }) => {
                 </div>
               </div>
             </div>
-
+              {/* most important work for checkout */}
             <div className="pt-4">
-              <Link href={`/checkout/${_id}`} className="block w-full">
+              <Link
+                href={
+                  stock
+                    ? `/checkout?type=single&id=${_id}&quantity=${quantity}&size=${encodeURIComponent(
+                        selectedSize || "",
+                      )}&color=${encodeURIComponent(selectedColor || "")}`
+                    : "#"
+                }
+                className="block w-full"
+              >
                 <button
                   type="button"
                   disabled={!stock}
-                  className={`w-full h-14 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all duration-300 border cursor-pointer active:scale-[0.99] ${
+                  className={`w-full h-14 rounded-2xl text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all duration-300  cursor-pointer active:scale-[0.99] ${
                     stock
-                      ? "btn "
+                      ? " py-3.5  bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-lg shadow-orange-600/20 active:scale-[0.99] cursor-pointer"
                       : "bg-slate-800 text-slate-500 border-slate-700/40 cursor-not-allowed"
                   }`}
                 >
                   <BsCart3 size={15} />
-                  {stock ? 'Add to Cart / Proceed' : 'Out of Stock'}
+                  {stock ? "Buy Now / Proceed" : "Out of Stock"}
                 </button>
               </Link>
             </div>
-
           </div>
         </div>
       </div>

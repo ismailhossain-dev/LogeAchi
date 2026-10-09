@@ -89,9 +89,9 @@ export default function WishListTable({ wishlist = [], refetch }) {
     }
   };
 
-  const handlePurchase = (title, qty, price) => {
-    toast.info(`Moving ${qty}x ${title} to Cart...`);
-  };
+  // const handlePurchase = (title, qty, price) => {
+  //   toast.info(`Moving ${qty}x ${title} to Cart...`);
+  // };
 
   // console.log("item", items)
 
@@ -443,7 +443,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
                   </div>
                 </div>
 
-                <div className="pt-2">
+                {/* <div className="pt-2">
                   <button
                     onClick={() => {
                       handlePurchase(
@@ -457,7 +457,7 @@ export default function WishListTable({ wishlist = [], refetch }) {
                   >
                     <ShoppingCart size={15} /> Add to bag & proceed
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

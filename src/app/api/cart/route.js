@@ -58,7 +58,7 @@ export async function POST(req) {
 }
 
 
-//query params get api
+//query params get api for dashboad and checkout form
 //http://localhost:3000/api/user?email=lywyzuxaji@mailinator.com
 export async function GET(req) {
   try{

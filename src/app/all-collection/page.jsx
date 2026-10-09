@@ -1,4 +1,5 @@
 import ProductCard from "@/components/cards/ProductCard/ProductCard";
+import Container from "@/components/Dashboard/shared/container/Container";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import Footer from "@/components/shared/Footer/Footer";
 import Title from "@/components/Title/Title";
@@ -16,9 +17,7 @@ const allCollectionPage = async ({ searchParams }) => {
       cache: "no-store",
     },
   );
-  // const res = await fetch("http://localhost:3000//api/all-products", {
-  //   cache: "no-store"
-  // });
+
 
   if (!res.ok) {
     throw new Error("Failed to fetch products");
@@ -76,8 +75,8 @@ const allCollectionPage = async ({ searchParams }) => {
           background: rgba(59, 130, 246, 0.7);
         }
       `}</style>
-
-      <div className="max-w-7xl mx-auto px-5 w-full flex-grow">
+      <Container>
+      <div className=" mx-auto  w-full flex-grow">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center italic my-8 gap-4 border-b border-white/5 pb-6">
           <Title>
             Shop <br />{" "}
@@ -158,6 +157,7 @@ const allCollectionPage = async ({ searchParams }) => {
           </div>
         </div>
       </div>
+      </Container>
       <Footer />
     </div>
   );

@@ -230,7 +230,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-green-500 font-bold not-italic hover:underline decoration-2 underline-offset-4"
           >
-            Sabbir
+            Ismail
           </a>
         </p>
       </div>

@@ -69,13 +69,14 @@ const Page = async () => {
             )}
           </div>
         </section>
-      </Container>
+      
 
       {/* Our Services Section */}
       <OurServices />
 
       {/* gallery */}
       <Gallery />
+      </Container>
       
       {/* Footer */}
       <Footer />
